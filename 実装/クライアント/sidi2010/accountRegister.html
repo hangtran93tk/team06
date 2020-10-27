@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>AccountRegister</title>
+		<link rel="stylesheet" href="./assets/css/accountRegister.css">
+	</head>
+	<body>
+		<div id="wrap">
+			<header role="banner">
+				<h1>アカウント登録</h1>
+			</header>
+
+			<main role="main">
+				<section id="inputInfo">
+						<input type="text" id="nickname" value="ニックネーム"><br>								
+                        <input type="text" id="mail" value="メールアドレス"><br>
+                        <input type="text" id="password" value="パスワード"><br>
+                        <input type="text" id="passwordConfirm" value="パスワード再入力">			
+                </section>
+                
+				<section id="birthday">
+					<h2>生年月日</h2>
+                    <input type="date" name="birthday">
+                </section>
+
+                <section id="section3">
+                    <section id="gender">
+                        <h2>性別</h2>
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">男性</label>
+                        
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">女性</label>
+                       
+                    </section>	
+                    <section id="heightWeigh">
+                        <div id="height">
+                            <h2>身長</h2>
+                            <input type="text" name="userHeight"><label for="height">cm</label>
+                        </div>
+                        <div id="weigh">
+                            <h2>体重</h2>
+                            <input type="text" name="userWeigh"><label for="weigh">kg</label>
+                        </div> 
+                    </section>
+                </section>
+                
+                
+                <section id="active">
+                    <h2>運動レベル</h2>
+                    <button><label for="level1">レベル1</label></button>
+                    <button><label for="level2">レベル2</label></button>
+                    <button><label for="level3">レベル3</label></button>
+                </section>
+
+                <a href="#"><h4>運動レベルとは ?</h4></a>	
+
+                <div id="register">
+                    <button><label for="register">登録</label></button>
+                </div>
+                
+
+			</main>	
+		</div>	
+	</body>
+</html>

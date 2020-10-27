@@ -1,0 +1,10 @@
+html {
+    font-size: 62.5%;
+    background-color: #000000;
+}
+img {
+    max-width: 100%;
+}
+#selectButton {
+    display: flex;
+}
