@@ -14,13 +14,16 @@ header {
 	margin-top: 180px;
 }
 img {
-	display: flex;
+	display: inline-block;
 	justify-content: center;
 	width: 125px;
-	margin-left: 33.333%;	
 }
 main {
-	margin: 72px 0;
+	margin: 0 auto;
+	max-width: 375px;
+}
+#wrap {
+	text-align: center;
 }
 #input {
 	padding: 0;
@@ -57,7 +60,6 @@ button {
 	width: 33.3333%;
 	width: 196px;
 	height: 49px;
-	margin-left: 25%;
 }
 #registerBtn {
 	margin-bottom: 72px;
