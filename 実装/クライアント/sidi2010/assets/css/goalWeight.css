@@ -7,6 +7,7 @@ html {
     background: linear-gradient(#f5f1da,#58a054);
     background-image: url('../img/background2.png');
     background-attachment: fixed;
+    background-size:100%;
     margin: 0;
     padding: 0;
 }
@@ -31,9 +32,12 @@ h2 {
     font-size: 2rem;
     color: #63a052;
     font-weight: bold;
+    margin: 30px;
 }
 
-
+#block{
+    margin-left: 10%;
+}
 
 main {
     margin-bottom: 150px;
@@ -43,7 +47,8 @@ main {
 #weight{
     height: 280px;
     display: inline-block;
-    width: 430px;
+    width: 375px;
+    background-position-x: 187.5px;
 }
 
 label{  
@@ -69,7 +74,9 @@ label{
    
 }
 
-
+#update{
+    margin-left: 10%;
+}
 
 #update button {
     margin-right: 13%;
@@ -79,12 +86,13 @@ label{
     border-radius: 50px; 
     width: 196px;
     height: 49px;
+    
 
 }
 img {
-    width: 170px;
-    height: 170px;
-    margin-right:9%;
+    width: 35%;
+    height:35%;
+    margin-right:7%;
 }
 
 button{
