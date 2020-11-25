@@ -1,0 +1,70 @@
+@charset "UTF-8";
+* {
+		margin: 0;
+		padding: 0;
+	}
+html {
+	font-size: 62.5%;
+	background: linear-gradient(#f5f1da,#58a054);
+	background-image: url('../img/leaf_login.png');
+	margin: 0;
+	padding: 0;
+}
+header {
+	margin-top: 180px;
+}
+img {
+	display: inline-block;
+	justify-content: center;
+	width: 125px;
+}
+main {
+	margin: 0 auto;
+	max-width: 375px;
+}
+#wrap {
+	text-align: center;
+}
+#input {
+	padding: 0;
+	margin: 30px;
+}
+main input {
+	width: 318px;
+	height: 49px;
+	margin-bottom: 16px;
+	border-radius: 25px;
+	border: 1px solid #f5f1da;
+	color: #f5f1da;
+	background-color: #81b277;
+	background-size: 25px;
+	text-align: center;	
+		
+}
+#mail {	
+	background-image: url('../img/email.png');
+	background-repeat: no-repeat;
+	background-position: 10% center;
+	
+}
+#password {
+	background-image: url('../img/password.png');
+	background-repeat: no-repeat;
+	background-position: 10% center;
+}
+button {
+	margin-top: 16px;
+	background: #2b811a;
+	border: none;
+	border-radius: 50px; 
+	width: 33.3333%;
+	width: 196px;
+	height: 49px;
+}
+.registerBtn {
+	margin-bottom: 72px;
+}
+a {
+	text-decoration: none;
+	color:#f5f1da;
+}
