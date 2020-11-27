@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Main</title>
 		<link rel="stylesheet" href="./assets/css/main.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	</head>
 	<body>
 		<div id="wrap">
@@ -21,23 +22,50 @@
 			<main role="main">
                 <section class="calories">
 					<p>摂取目安カロリー</p>
-					
-
+					<div>
+						<p>現在　1500kcal</p>
+						<p>目標  2000kcal</p>
+					</div>					
+					<p>不足  500kcal</p>
                 </section>
 
                 <section class="calories_graph">
-
+					<div class="oneday_info">
+						<button class="meal"></button>
+						<button class="breakfast"></button>
+						<button class="lunch"></button>
+						<button class="dinner"></button>
+						<button class="snack"></button>
+						<canvas id="radar-chart" width="50" height="40"></canvas>
+					</div>
+					
                 </section>
 
                 <section class="meal_register">
+					<div class="register_breakfast">
 
+					</div>
+					<div class="register_lunch">
+
+					</div>
+					<div class="register_dinner">
+
+					</div>
+					<div class="register_snack">
+
+					</div>
                 </section>
 								
             </main>
 
             <footer role="contentinfo">
-
+				
+				<a href="#"><img src="./assets/img/meal.png" alt="">食事</a>
+				<a href="#"><img src="./assets/img/meal.png" alt="">体重</a>
+				<a href="#"><img src="./assets/img/weight.png" alt="">アドバイス</a>
+				<a href="#"><img src="./assets/img/advice.png" alt="">メニュー</a>
             </footer>	
 		</div>	
 	</body>
+	<script src="./assets/js/chart.js"></script>
 </html>

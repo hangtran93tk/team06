@@ -1,6 +1,99 @@
 @charset "UTF-8";
-
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+    font-family: sans-serif;
+    background-image: url('../img/background4.png');
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+#wrap {
+    margin: 0 auto;
+    padding: 0;
+}
+body {
+    margin: 0 auto;
+    padding: 0;
+}
 /**header**/
 header {
     display: inline-block;
+}
+button {
+    width: 68px;
+    height: 37px;
+    background-size: 100%;
+    border: none;
+    display: block;
+}
+button + button {
+    margin-top: 8px;
+}
+img {
+    max-width: 50%;
+}
+.calories {
+    border: none;
+    border-radius: 5px;
+    background-color: #F5F1DA;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.meal {
+    background-image: url('../img/background_meal1.png');
+    background-size: 100%;
+}
+.breakfast {
+    background-image: url('../img/background_meal_breakfast.png');
+}
+.lunch {
+    background-image: url('../img/background_meal_lunch.png');
+}
+.dinner {
+    background-image: url('../img/background_meal_dinner.png');
+}
+.snack {
+    background-image: url('../img/background_meal_snack.png');
+}
+.meal_register {
+    display: block;
+}
+.register_breakfast {
+    background-image: url('../img/background_register_breakfast.png');
+    background-size: 100%;
+    width: 380px;
+    height: 38px;
+}
+.register_lunch {
+    background-image: url('../img/background_register_lunch.png');
+    background-size: 100%;
+    width: 380px;
+    height: 38px;
+}
+.register_dinner {
+    background-image: url('../img/background_register_dinner.png');
+    background-size: 100%;
+    width: 380px;
+    height: 38px;
+}
+.register_snack {
+    background-image: url('../img/background_register_snack.png');
+    background-size: 100%;
+    width: 380px;
+    height: 38px;
+}
+/**footer**/
+footer {
+    bottom: 0;
+    background: #03780B;
+    width: 480px;
+    height: 80px;
+}
+img {
+    max-width: 50%;
+    max-height: 50%;
 }

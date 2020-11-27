@@ -61,7 +61,7 @@ button {
 	width: 196px;
 	height: 49px;
 }
-#registerBtn {
+.registerBtn {
 	margin-bottom: 72px;
 }
 a {
