@@ -1,0 +1,27 @@
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidi</title>
+    <!-- <link rel="stylesheet" href="./assets/css/login.css">
+    <script type="module" src="./assets/js/main.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+</head>
+<body>
+    <h1>てすと</h1>
+    <div id="app">
+        
+        <!-- <header role="banner">
+            <img src="./assets/img/user_login.png" alt="login user">
+        </header>
+        <main role="main">
+            <router-view></router-view>
+        </main> -->
+    <!-- /#app -->
+    </div>
+    {% render_bundle 'app' %}
+
+</body>
+</html>
