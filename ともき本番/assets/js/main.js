@@ -14,8 +14,8 @@ import Login from './views/Login.js';
 
 */
 
-    // (function() {
-    //     "use strict";
+    (function() {
+        "use strict";
     Vue.use(VueRouter);
 
     // VueRouter //=====//
@@ -47,5 +47,4 @@ import Login from './views/Login.js';
         el: '#app',
         router,
     });
-
-//    });
+   })();
