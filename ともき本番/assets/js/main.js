@@ -4,6 +4,7 @@ import VueRouter from './vendor/vue-router.esm.browser.js';
 
 // views
 import Login from './views/Login.js';
+import Test from './views/Test.js';
 // import Register from './views/Register.js';
 
 
@@ -27,6 +28,11 @@ import Login from './views/Login.js';
                 name: "Login",
                 component: Login
             },
+            {
+                path: "/test",
+                name: "Test",
+                component: Test
+            },
             // { 
             //     path: '/main', 
             //     name: 'Main', 
@@ -47,4 +53,5 @@ import Login from './views/Login.js';
         el: '#app',
         router,
     });
+
    })();

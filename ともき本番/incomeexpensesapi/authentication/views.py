@@ -1,10 +1,10 @@
 from django.shortcuts import render
 
-from rest_framework import generics, status, views
-from .serializers import RegisterSerializer, EmailVerificationSerializer, LoginSerializer
+from rest_framework import generics, status, views, permissions
+from .serializers import RegisterSerializer, EmailVerificationSerializer, LoginSerializer, UserWeightSerializer
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import User
+from .models import User, UserWeight
 from .utils import Util
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
@@ -12,6 +12,8 @@ import jwt
 from django.conf import settings
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+from .permissions import IsOwner
+from .renderers import UserRenderer
 # Create your views here.
 
 from django.views.generic import TemplateView
@@ -22,6 +24,7 @@ class IndexView(TemplateView):
 class RegisterView(generics.GenericAPIView):
 
     serializer_class=RegisterSerializer
+    renderer_classes = (UserRenderer,)
 
     def post(self, request):
         user = request.data
@@ -70,9 +73,23 @@ class VerifyEmail(views.APIView):
 
 class LoginAPIView(generics.GenericAPIView):
     serializer_class = LoginSerializer
+    renderer_classes = (UserRenderer,)
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+# generics.〜　の使い方は　くろのて　さんのブログがわかりやすく解説されている
+class CreateUserWeight(generics.ListCreateAPIView):   
+    serializer_class = UserWeightSerializer
+    queryset = UserWeight.objects.all()
+    permission_classes=(permissions.IsAuthenticated,)
+
+
+    def perform_create(self, serializer):
+        return serializer.save(user=self.request.user)
+
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
 

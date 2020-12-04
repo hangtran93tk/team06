@@ -1,8 +1,9 @@
 
 from rest_framework import serializers
-from .models import User
+from .models import User, UserWeight
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=68, min_length=6, write_only=True)
@@ -31,9 +32,18 @@ class LoginSerializer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=68, min_length=6, write_only=True)
     username = serializers.CharField(
         max_length=255, min_length=3, read_only=True)
-    tokens = serializers.CharField(max_length=68, min_length=6, read_only=True)
-
+    # tokens = serializers.CharField(max_length=68, min_length=6, read_only=True)
+    tokens = serializers.SerializerMethodField()
     
+    def get_tokens(self, obj):
+        user = User.objects.get(email=obj['email'])
+
+        return {
+            'refresh': user.tokens()['refresh'],
+            'access': user.tokens()['access']
+        }
+
+
     class Meta:
         model=User
         fields=['email', 'password', 'username', 'tokens']
@@ -49,19 +59,25 @@ class LoginSerializer(serializers.ModelSerializer):
         #         detail='Please continue your login using ' + filtered_user_by_email[0].auth_provider)
 
         if not user:
-            raise AuthenticationFailed('Invalid credentials, try again')
+            raise AuthenticationFailed('["メールアドレスまたはパスワードが違う。/登録されていないユーザーです。"]' )
+            # return Response({'error': 'メールアドレスまたはパスワードが違う。/登録されていないユーザーです。'}, status=status.HTTP_400_BAD_REQUEST)
         if not user.is_active:
-            raise AuthenticationFailed('Account disabled, contact admin')
+            raise AuthenticationFailed('アカウントが停止されています。管理者にお問い合わせください。')
         if not user.is_verified:
-            raise AuthenticationFailed('Email is not verified')
+            raise AuthenticationFailed('Emailの認証がされていません。')
 
         return {
             'email': user.email,
             'password': user.password,
             'username': user.username,
-            'tokens': user.tokens()
+            'tokens': user.tokens
 
         }
 
         return super().validate(attrs)
+
+class UserWeightSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=UserWeight
+        fields = ['date', 'weight', 'user_id']
 

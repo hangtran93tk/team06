@@ -10,6 +10,7 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name="register"),
     path('login/', LoginAPIView.as_view(), name="login"),
     path('email-verify/', VerifyEmail.as_view(), name="email-verify"), 
-    path('email-verify/<token>/', VerifyEmail.as_view(), name="email-verify"), 
+    # path('email-verify/<token>/', VerifyEmail.as_view(), name="email-verify"), 
+    path('user-weight/', views.CreateUserWeight.as_view(), name="userweight"),
 
 ]
