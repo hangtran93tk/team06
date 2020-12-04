@@ -1,0 +1,167 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+    background: linear-gradient(#f5f1da,#58a054);
+    background-image: url('../img/leaf_login.png');
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+#wrap {
+    text-align: center;
+}
+header {
+    margin-top: 180px;
+}
+h1 {
+    text-align: center;
+    font-size: 2.0rem;
+    color: #63a052;
+    margin: 72px 0;
+    font-weight: bold;
+}
+img {
+    display: flex;
+    justify-content: center;
+    width: 125px;
+    margin-left: 33.333%;	
+}
+main {
+    margin: 0 auto;
+    max-width: 375px;
+    padding-bottom: 72px;
+}
+#inputInfo input {
+    width: 318px;
+    height: 49px;
+    margin-bottom: 16px;
+    border-radius: 25px;
+    border: 1px solid #f5f1da;
+    color: #f5f1da;
+    background-color: #81b277;
+    background-size: 25px;
+    text-align: center;	   
+}
+#nickname {
+    background-image: url('../img/user_login.png');
+    background-repeat: no-repeat;
+    background-position: 10% center;
+}
+#mail {	
+    background-image: url('../img/email.png');
+    background-repeat: no-repeat;
+    background-position: 10% center;
+
+}
+#password {
+    background-image: url('../img/password.png');
+    background-repeat: no-repeat;
+    background-position: 10% center;
+}
+#passwordConfirm {
+    background-image: url('../img/password.png');
+    background-repeat: no-repeat;
+    background-position: 10% center;
+}
+#birthday {
+    margin: 36px 0;
+}
+#birthday input {
+    width: 318px;
+    height: 49px;
+    border-radius: 25px;
+    border: 1px solid #f5f1da;
+    color: #f5f1da;
+    background-color: #81b277;
+}
+#gender {
+    display: inline-block;
+}
+#gender input {
+    padding: 0px;
+    max-width: 50%;
+    border: 1px solid #fff;
+    margin: 16px 0 0 0;
+}
+#gender label {
+   margin: 16px 16px 0 16px;
+}
+#heightWeight {
+    text-align: center;
+}
+#heightWeight input {
+    width: 113px;
+    height: 40px;
+    border: 1px solid #fff;
+    border-radius: 0%;
+    background-color: #87b67c;
+}
+#active button {
+    width: 110px;
+    height: 35px;
+    background-color: #fff;
+    border: 1px solid #58a054;
+    display: inline-block;
+}
+#active label {
+    color: #58A054;
+}
+#register button {
+        margin: 0 auto;
+        background: #2b811a;
+        border: none;
+        border-radius: 50px; 
+        width: 196px;
+        height: 49px;
+}
+a {
+    text-decoration: none;
+    color:#f5f1da;
+}
+label {
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 0 16px;
+}
+h2 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 16px 60px 16px 16px;
+    font-weight: normal;
+    text-align: left;
+    display: block;
+}
+h4{
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 16px;
+    font-weight: normal;
+    text-align: center;
+}
+#height {
+    display: inline-block;   
+}
+#weight {
+    display: inline-block;
+}
+#gender h2, #height h2, #weight h2 {
+    display: inline-block;
+}
+.goalWeight {
+    margin: 16px 25px 16px 16px;
+}
+input[type=radio] {
+    display: none; /* ラジオボタンを非表示にする */
+}
+.active  {
+    margin: 5px; /* ラベル外側の余白を指定する */
+    border: none;/* ラベルの境界線を実線で指定する */
+    background: #FFFFFF;
+}
+input:checked + .active {
+    background-color: #000;
+}

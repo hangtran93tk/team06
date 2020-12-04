@@ -22,18 +22,18 @@ import Register from './views/Register.js';
             path: "/login",
             name: "Login",
             component: Login
-        },
-        { 
-            path: '/main', 
-            name: 'Main', 
-            query: { auth: '' }, 
-            component: Main 
-        },
-        { 
-            path: '/register', 
-            name: 'Register', 
-            component: Register 
         }
+        // { 
+        //     path: '/main', 
+        //     name: 'Main', 
+        //     query: { auth: '' }, 
+        //     component: Main 
+        // },
+        // { 
+        //     path: '/register', 
+        //     name: 'Register', 
+        //     component: Register 
+        // }
     ];
 
     const router = new VueRouter({
