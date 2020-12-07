@@ -15,13 +15,13 @@ html {
     text-align: center;
 }
 header {
-    margin-top: 180px;
+    margin-top: 10px;
 }
 h1 {
     text-align: center;
     font-size: 2.0rem;
     color: #63a052;
-    margin: 72px 0;
+    margin: 36px 0;
     font-weight: bold;
 }
 img {
@@ -45,13 +45,16 @@ main {
     background-color: #81b277;
     background-size: 25px;
     text-align: center;	   
+
+    margin: 30px;
+
 }
 #nickname {
     background-image: url('../img/user_login.png');
     background-repeat: no-repeat;
     background-position: 10% center;
 }
-#mail {	
+.mail {	
     background-image: url('../img/email.png');
     background-repeat: no-repeat;
     background-position: 10% center;
@@ -67,9 +70,9 @@ main {
     background-repeat: no-repeat;
     background-position: 10% center;
 }
-#birthday {
+/* #birthday {
     margin: 36px 0;
-}
+} */
 #birthday input {
     width: 318px;
     height: 49px;
@@ -77,9 +80,11 @@ main {
     border: 1px solid #f5f1da;
     color: #f5f1da;
     background-color: #81b277;
+    margin: 10px 30px 10px 30px;
 }
 #gender {
     display: inline-block;
+    margin-left: 12%;
 }
 #gender input {
     padding: 0px;
@@ -111,7 +116,13 @@ main {
     color: #58A054;
 }
 #register button {
-        margin: 0 auto;
+        /* margin: 0 auto;
+        background: #2b811a;
+        border: none;
+        border-radius: 50px; 
+        width: 196px;
+        height: 49px; */
+        margin-top: 16px;
         background: #2b811a;
         border: none;
         border-radius: 50px; 
@@ -154,9 +165,7 @@ h4{
 .goalWeight {
     margin: 16px 25px 16px 16px;
 }
-input[type=radio] {
-    display: none; /* ラジオボタンを非表示にする */
-}
+
 .active  {
     margin: 5px; /* ラベル外側の余白を指定する */
     border: none;/* ラベルの境界線を実線で指定する */
@@ -164,4 +173,33 @@ input[type=radio] {
 }
 input:checked + .active {
     background-color: #000;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6);
+}
+.modal .wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 16px;
+    background: #fff;
+    border-radius: 8px;
+}
+.modal .wrap .show-modal-btn {
+    display: inline-block;
+    margin: 0;
+    padding: 8px 16px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    background: #333;
 }
