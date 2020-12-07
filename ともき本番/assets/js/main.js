@@ -5,8 +5,7 @@ import VueRouter from './vendor/vue-router.esm.browser.js';
 // views
 import Login from './views/Login.js';
 import Test from './views/Test.js';
-// import Register from './views/Register.js';
-
+import AccountRegister from './views/AccountRegister.js';
 
 
 /*
@@ -33,17 +32,18 @@ import Test from './views/Test.js';
                 name: "Test",
                 component: Test
             },
+            { 
+                path: '/register', 
+                name: 'AccountRegister', 
+                component: AccountRegister 
+            },
             // { 
             //     path: '/main', 
             //     name: 'Main', 
             //     query: { auth: '' }, 
             //     component: Main 
             // },
-            // { 
-            //     path: '/register', 
-            //     name: 'Register', 
-            //     component: Register 
-            // }
+            
         ]
     
     });

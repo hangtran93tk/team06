@@ -22,7 +22,7 @@ export default {
     
     methods: {
         clickLogin() {   
-            Ajax(`http://192.168.1.10:8000/auth/user-weight/`,'GET', localStorage.getItem('access'), obj )
+            Ajax(`http://192.168.1.10:8000/auth/user-weight/`,'GET', localStorage.getItem('access'), null )
                 .then((res) => {
                     console.log(res);
                     

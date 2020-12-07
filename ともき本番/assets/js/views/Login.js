@@ -39,6 +39,7 @@ export default {
                 "email": this.email,
                 "password": this.password
             };
+            
             Ajax(`http://192.168.1.10:8000/auth/login/`,'POST', null, obj)
                 .then((res) => {
                     console.log(res);

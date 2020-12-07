@@ -5,6 +5,7 @@
 	}
 html {
 	font-size: 62.5%;
+	background: linear-gradient(#f5f1da,#58a054);
 	background-image: url('../img/leaf_login.png');
 	margin: 0;
 	padding: 0;
@@ -40,13 +41,13 @@ main input {
 	text-align: center;	
 		
 }
-#mail {	
+.mail {	
 	background-image: url('../img/email.png');
 	background-repeat: no-repeat;
 	background-position: 10% center;
 	
 }
-#password {
+.password {
 	background-image: url('../img/password.png');
 	background-repeat: no-repeat;
 	background-position: 10% center;
