@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    background-image: url('../img/background5.png');
+    background-size: 100%;
+    background-position-y: 50%;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    height:100%;
+}
+
+header{
+    position: fixed;
+    width:100%;
+    height:30%;
+    top: 0;
+    background:	#FAF9F6;
+    
+}
+
+header label{
+    margin-right: 15%;
+}
+
+.register{
+    color: #63a052;
+    margin-top: 13%;
+    font-size: larger;
+}
+
+#wrap {
+    text-align: center;
+    margin-top: 15%;
+
+}
+
+main {
+    margin-top: 49%;
+    margin-bottom: 10%;
+}
+
+.menuName {
+    display: inline-block;
+    
+}
+
+.foodStuff{
+    font-size: 1.5rem;
+    margin-left: -42%;
+}
+
+#foodStuffName{
+    color: #63a052;
+    font-size: 1.3rem;
+    background-color:	#ffffff;
+    text-align: center;
+    width:55%;
+    height:100%;
+    margin-top: 5%;
+    margin-left: 3%;
+
+}
+#gram {
+    color: #63a052;
+    font-size: 1.3rem;
+    background-color:	#ffffff;
+    text-align: center;
+    width:15%;
+    height:100%;
+    margin-top: 5%;
+    margin-right: 3%;
+}
+
+#block{
+    display: inline-block;
+}
+
+#update{
+    margin-top: 35%;
+    width:100%;
+}
+
+#update button {
+    background:   #81b277;
+    border: none;
+    border-radius: 50px; 
+    width: 50%;
+    height: 49px;
+
+}
+
+
+img {
+    width: 40%;
+    height: 55%;
+    margin-left: 5%;
+    margin-top:7%;
+    border: 2px solid #000000;
+}
+
+label{  
+    color: #0c0c0c;
+    font-size: 1.5rem;
+    margin-left: 10%;
+    margin-top: 20%;
+    display: inline-block;
+}
+
+
+button{
+    color: #f5f1da;
+    font-size: medium;
+}
+
