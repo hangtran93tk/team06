@@ -1,99 +1,322 @@
 @charset "UTF-8";
-* {
-    margin: 0;
-    padding: 0;
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 html {
     font-size: 62.5%;
-    font-family: sans-serif;
+    line-height: 1.4;
     background-image: url('../img/background4.png');
     background-attachment: fixed;
     margin: 0;
     padding: 0;
 }
-#wrap {
+body {	
+	flex-direction: row;
+	font-family: sans-serif;	
+	align-items: center;
+    justify-content: center;
     margin: 0 auto;
-    padding: 0;
+    padding: 0;	
 }
-body {
-    margin: 0 auto;
-    padding: 0;
-}
+
 /**header**/
 header {
-    display: inline-block;
+    background: #F9F8EF;
 }
 button {
     width: 68px;
-    height: 37px;
-    background-size: 100%;
+    height: 40px;
     border: none;
-    display: block;
+    font-size: 1rem;
 }
 button + button {
     margin-top: 8px;
 }
-img {
-    max-width: 50%;
+
+h1 {
+   font-size: 1.8rem;
+   color: #58A054;
+   margin: 30px 0;
+   display: inline-flex;
 }
+p {
+    font-size: 1.5rem;
+    color: #58A054;
+    margin: 0;
+}
+img {
+    margin: 14px;
+}
+
+/* メニュー */
+#btn-menu {
+    position: fixed;
+    text-align: left;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    background:#F5F1DA;
+    outline: none;
+    top: 10px;
+    left: 5%;
+    height: 70px;
+}
+
+#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0px;
+    display: flex;
+    background: #4FA353;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .4s ease-out;
+
+}
+#menu.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#menu ul {
+    display: block;
+    width: 100%;
+    padding: 120px 0 0;
+}
+
+#menu ul li {
+    border-right: none;
+    border-bottom: 1px solid #333;
+    text-align: center;
+}
+#menu ul li:first-child {
+    border-left: none;
+    border-top: 1px solid #333;
+}
+#menu ul li a {
+    display: block;
+    padding: 0.5em 0;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+/* grid */
+.grid {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr 1fr;
+    grid-template-rows: 180px 295px 180px;
+    /* grid-auto-rows: 100px; */
+    grid-template-areas: 
+    "calories calories calories calories"
+    "oneday_info highcharts-figure highcharts-figure highcharts-figure"
+    "meal_register meal_register meal_register meal_register"
+    ;
+}
+
 .calories {
+    grid-area: calories;
     border: none;
     border-radius: 5px;
     background-color: #F5F1DA;
-    max-width: 300px;
+    margin: 0 auto;
+    width: 320px;
+    text-align: center;
+}
+/** 一日の情報 */
+.oneday_info {
+    grid-area: oneday_info;
+    padding-top: 36px;  
+    margin-left: 25%;
+}
+.oneday_info .info {
+    background: #F5F1DA;
+    border-radius: 5px;
+    border: 1px solid #D1CDB9; 
+    height: 40px;
+    width: 68px; 
+}
+.oneday_info .info .icon {
+    height: 18px;
+    width: 18px;
+    background-size: 100%;
+    background-repeat: no-repeat; 
     margin: 0 auto;
 }
-.meal {
-    background-image: url('../img/background_meal1.png');
-    background-size: 100%;
+.oneday_info .info .icon-breakfast {
+    background-image: url('../img/sun.png');
 }
-.breakfast {
-    background-image: url('../img/background_meal_breakfast.png');
+.oneday_info .info .icon-lunch {
+    background-image: url('../img/weather.png');
 }
-.lunch {
-    background-image: url('../img/background_meal_lunch.png');
+.oneday_info .info .icon-dinner {
+    background-image: url('../img/moon.png');
 }
-.dinner {
-    background-image: url('../img/background_meal_dinner.png');
+.oneday_info .info .icon-snack {
+    background-image: url('../img/coffee-breaks.png');
 }
-.snack {
-    background-image: url('../img/background_meal_snack.png');
+.oneday_info .info .input-calories {
+    color: #333;
+    font-size: 1rem;
+    margin-top: 3px;
 }
-.meal_register {
-    display: block;
+
+/* nutrition charts */
+.highcharts-root {
+    max-height: 350px;  
 }
-.register_breakfast {
-    background-image: url('../img/background_register_breakfast.png');
-    background-size: 100%;
-    width: 380px;
-    height: 38px;
+.highcharts-figure {
+    grid-area: highcharts-figure;
 }
-.register_lunch {
-    background-image: url('../img/background_register_lunch.png');
-    background-size: 100%;
-    width: 380px;
-    height: 38px;
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 250px;
+    max-width: 300px;
+    margin: 1em auto;
+  }
+  
+  .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #000;
+      margin: 10px auto;
+      text-align: center;
+      width: 100%;
+      max-width: 300px;
+  }
+  .highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.0em;
+    color: #000;
+  }
+  .highcharts-data-table th {
+      font-weight: 400;
+    padding: 0.5em;
+  }
+  .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+  }
+  .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: none;
+  }
+  .highcharts-data-table tr:hover {
+    background: none;
+  }
+  .highcharts-background {
+      fill: none;
+  }
+  .highcharts-credits {
+      display: none;
+  }
+  .highcharts-point {
+      fill: #EEBB4D;
+  }
+  .highcharts-graph {
+      stroke: #EEBB4D;
+  }
+  * {
+	box-sizing: border-box;
 }
-.register_dinner {
-    background-image: url('../img/background_register_dinner.png');
-    background-size: 100%;
-    width: 380px;
-    height: 38px;
+/**calories chart **/
+.progress {
+	background-color: #d8d8d8;
+	border-radius: 20px;
+	position: relative;
+	margin: 0 auto;
+	height: 30px;
+	width: 300px;
 }
-.register_snack {
-    background-image: url('../img/background_register_snack.png');
-    background-size: 100%;
-    width: 380px;
-    height: 38px;
+.progress-done {
+	background: linear-gradient(to left, #fc8621, #f9e0ae);
+	box-shadow: 0 3px 3px -5px #f9e0ae, 0 2px 5px #f9e0ae;
+	border-radius: 20px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 0;
+	opacity: 0;
+	transition: 1s ease 0.3s;
 }
-/**footer**/
-footer {
-    bottom: 0;
-    background: #03780B;
-    width: 480px;
-    height: 80px;
-}
-img {
-    max-width: 50%;
-    max-height: 50%;
-}
+    .index-calories .item-name{
+        float: left;
+        font-size: 1.8rem;
+        width: 33.3333%;
+        margin-top: 36px;
+        font-weight: bold;
+    }
+    .meal_register .item{
+        background-color: #EEBB4D;
+        width: 100%;
+        height: 50px;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+    /**食事登録**/
+    .meal_register {
+        display: block;
+        grid-area: meal_register;
+    }
+    .meal_register .item .box-left{
+        width: 30%;
+        float: left;
+        height: 100%;
+    }
+    .meal_register .item .box-right{
+        width: 70%;
+        float: left;
+        height: 100%;
+        
+    }
+    .meal_register .item .icon{
+        height: 25px;
+        width: 25px;
+        background-size: 100% !important;
+        background-repeat: no-repeat !important;    
+        margin-right: 20px;    
+    }
+    .meal_register .item .icon.icon-breakfast{
+        background: url('../img/sun.png') center;
+    }
+    .meal_register .item .icon.icon-lunch {
+        background: url('../img/weather.png');
+    }
+    .meal_register .item .icon.icon-dinner {
+        background: url('../img/moon.png');
+    }
+    .meal_register .item .icon.icon-teabreak {
+        background: url('../img/coffee-breaks.png');
+    }
+    .meal_register .item .name{
+        color: #fff;
+        font-size: 1.8rem;
+    }
+    .meal_register .item .btn-register{
+        width: 100px;
+        height: 30px;
+        border-radius: 15px;
+        border: 1px solid #C7C3AE;
+        font-size: 13px;
+        margin-top: unset;
+    }
+    .meal_register .item .btn-register.btn-left{
+        color: #D8B669;
+        font-weight: bold;
+        margin-right: 20px;
+    }
+    .meal_register .item .btn-register.btn-right{
+        color: #9EE097;
+        font-weight: bold;        
+    }
+    .meal_register .item .content{
+        display: inline-flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    
