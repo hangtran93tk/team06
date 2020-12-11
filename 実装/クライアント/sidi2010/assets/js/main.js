@@ -30,5 +30,23 @@
         });
     });
   })();
+//   img_register() {
+//     const btnImgRegis = document.querySelector('.btn-left');
+//     const selectPhoto = document.querySelector('#select-photo');
+
+//     btnImgRegis.addEventListener('click', function() {
+//         if ( selectPhoto.classList.contains('active') ) {
+//             // 消す
+//             menu.classList.remove('active');
+    
+  
+//         // class="active" がなかったら
+//         } else {
+//             // 追加
+//             selectPhoto.classList.add('active');
+            
+//         }
+//     });
+//   }
   
   

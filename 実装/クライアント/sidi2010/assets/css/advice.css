@@ -87,11 +87,14 @@ header {
 #menu ul li a {
     display: block;
     padding: 0.5em 0;
-
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
 }
 /* advice */
 .advice {
-    margin: 0 16px;
+    margin: 0 25px;
     width: 350px;
     padding-bottom: 55px;
 }

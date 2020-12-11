@@ -90,10 +90,10 @@ main {
 #gender label {
    margin: 16px 16px 0 16px;
 }
-#heighTweigh {
+#heightWeight {
     text-align: center;
 }
-#heightWeigh input {
+#heightWeight input {
     width: 113px;
     height: 40px;
     border: 1px solid #fff;
@@ -130,7 +130,7 @@ label {
 h2 {
     color: #fff;
     font-size: 1.8rem;
-    margin: 16px 36px 16px 16px;
+    margin: 16px 60px 16px 16px;
     font-weight: normal;
     text-align: left;
     display: block;
@@ -143,12 +143,25 @@ h4{
     text-align: center;
 }
 #height {
-    display: inline-block;
-    
+    display: inline-block;   
 }
-#weigh {
+#weight {
     display: inline-block;
 }
-#gender h2, #height h2, #weigh h2 {
+#gender h2, #height h2, #weight h2 {
     display: inline-block;
+}
+.goalWeight {
+    margin: 16px 25px 16px 16px;
+}
+input[type=radio] {
+    display: none; /* ラジオボタンを非表示にする */
+}
+.active  {
+    margin: 5px; /* ラベル外側の余白を指定する */
+    border: none;/* ラベルの境界線を実線で指定する */
+    background: #FFFFFF;
+}
+input:checked + .active {
+    background-color: #000;
 }

@@ -35,30 +35,37 @@
                         <label for="female">女性</label>
                        
                     </section>	
-                    <div id="heightWeigh">
+                    <div id="heightWeight">
                         <div id="height">
                             <h2>身長</h2>
                             <input type="text" name="userHeight"><label for="height">cm</label>
                         </div>
-                        <div id="weigh">
-                            <h2>体重</h2>
-                            <input type="text" name="userWeigh"><label for="weigh">kg</label>
+                        <div id="weight">
+                            <h2 class="goalWeight">目標体重</h2>
+                            <input type="text" name="userWeight"><label for="weight">kg</label>
+                            
                         </div> 
+                        
                     </div>
                 </div>
                 
                 
                 <section id="active">
                     <h2>運動レベル</h2>
-                    <button><label for="level1">レベル1</label></button>
-                    <button><label for="level2">レベル2</label></button>
-                    <button><label for="level3">レベル3</label></button>
+                    <input type="radio" id="active" name="active" value="1" v-model="picked">
+                    <label class="active" for="0">レベル１</label>
+            
+                    <input type="radio" id="active" name="active" value="2" v-model="picked">
+                    <label class="active" for="1">レベル2</label>
+
+                    <input type="radio" id="active" name="active" value="3" v-model="picked">
+                    <label class="active" for="2">レベル3</label>
                 </section>
 
                 <a href="#"><h4>運動レベルとは ?</h4></a>	
 
                 <div id="register">
-                    <button><label for="register">登録</label></button>
+                    <button onclick="location.href='./main.html'"><label for="register">登録</label></button>
                 </div>
 			</main>	
 		</div>	

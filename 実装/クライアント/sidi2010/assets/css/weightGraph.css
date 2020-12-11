@@ -14,67 +14,20 @@ html {
     color: #333;
     background-image: url(../img/background6.png);
 }
-header {
-    position: fixed;
-    top: 10px; 
-    background-color: ivory;
-    width:100%;
-    height:10%;
-    margin-top: -3%;
-    z-index: 1;
-  }
-
-header img{
-    height:0%;
-    margin-left: 1%;
-    margin-right: 1%;
-}
-
-header label{
-    margin-left: 4%;
-    margin-right: 4%;
-    color:   #81b277;
-    font-size: 120%;
-    padding-top: 90%;
-    
-}
-
-header button{
-    width:10%;
-}
-
 h1 {
     font-family: '小塚ゴシック Pro','Kozuka Gothic Pro',sans-serif;
     width: 87%;
     font-size: 1.5rem;
     display: inline-block;
     margin-bottom: 50px;
-    margin-top: 10%;
 }
 h2 {
     font-size: 2.0rem;
     margin: 60px 0;
     background-color: #9BC595;
     border-radius: 5px;
-   margin: 0 0px;
+   margin: 0 100px;
     color: #ffffff;
-    margin-bottom: 3%;
-}
-
-h3 {
-    font-size: 2.0em;
-}
-
-p{
-    font-size: 1.5em;
-}
-
-main{
-    margin-top: 30%;
-}
-
-main p {
-    font-size: 1.5em;
 }
 button {
     font-size: 1.6rem;
@@ -104,21 +57,20 @@ a {
 #btn-menu {
     position: fixed;
     text-align: left;
-    z-index: 3;
+    z-index: 2;
     margin: 25px 0;
     padding: 0;
     background:#FFFEF9;
     outline: none;
-    top: 5px;
-    left: 4%;
-    opacity    : 0.8;
+    top: 10px;
+    left: 5%;
 }
 
 #menu {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 1;
     width: 100%;
     height: 100%;
     border: none;
@@ -171,7 +123,7 @@ a {
       background: #FFFEF9;
   }
   .highcharts-data-table th {
-    font-weight: 600;
+      font-weight: 600;
     padding: 0.5em;
   }
   .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table {
@@ -186,9 +138,3 @@ a {
   .highcharts-background {
       fill: #FFFEF9;
   }
-  .colories-graph {
-    border-bottom: 1px solid #fcf1f1;
-    margin-bottom: 25px;
-}
-
-
