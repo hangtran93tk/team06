@@ -5,67 +5,147 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Main</title>
 		<link rel="stylesheet" href="./assets/css/main.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/highcharts-more.js"></script>
 	</head>
 	<body>
 		<div id="wrap">
 			<header role="banner">
-                <div>
-					<img src="./assets/img/settings.png" alt="settings">
-					<img src="./assets/img/left.png" alt="left">
-					<label for="today">2020年11月6日</label>
-					<img src="./assets/img/right.png" alt="right">
-					<img src="./assets/img/calendar.png" alt="">                   
-                </div>				
-			</header>
+                <!-- nav追加 -->
+                <button type="button" id="btn-menu"><img src="./assets/img/hamburger_menu.png" alt="メニューボタン"></button>
+                
+                <nav role="navigation" id="menu">
+                    <ul>
+                    <li><a href="#">食事</a></li>
+                    <li><a href="#weight">体重</a></li>
+                    <li><a href="#advise">アドバイス</a></li>
+                    <li><a href="#menu">メニュー</a></li>
+                    <li><a href="#calendar">カレンダー</a></li>
+                    <li><a href="#settings">設定</a></li>
+                    </ul>
+                </nav>                
+                <h1>
+					<span><img src="./assets/img/left.png" alt="left"></span>
+					<span><p class="date">2020年10月13日</p> </span>
+					<span><img src="./assets/img/right.png" alt="right"></span>	
+                </h1>       
+            </header>
 
 			<main role="main">
-                <section class="calories">
-					<p>摂取目安カロリー</p>
-					<div>
-						<p>現在　1500kcal</p>
-						<p>目標  2000kcal</p>
-					</div>					
-					<p>不足  500kcal</p>
-                </section>
+				<div class="grid">
+					<section class="calories">
+						<h2>摂取目安カロリー</h2>
+						<div class="progress">
+							<div class="progress-done" data-done="90">
+								70%
+							</div>
+						</div>
+						<div class="index-calories">
+							<p class="item-name">現在　1500kcal</p>
+							<p class="item-name">目標  2000kcal</p>											
+							<p class="item-name">不足  500kcal</p>
+						</div>
+						
+					</section>	
 
-                <section class="calories_graph">
-					<div class="oneday_info">
-						<button class="meal"></button>
-						<button class="breakfast"></button>
-						<button class="lunch"></button>
-						<button class="dinner"></button>
-						<button class="snack"></button>
-						<canvas id="radar-chart" width="50" height="40"></canvas>
+					<!-- <div class="calories_graph"> -->
+						<div class="oneday_info">
+							<button class="info">
+								<p>全体</p>
+								<p class="input-calories">1000kcal</p>
+							</button>
+							<!-- <button class="info breakfast">1000kcal</button> -->
+							<button class="info">
+								<div class="icon icon-breakfast"></div>
+								<!-- <p>朝食</p> -->
+								<p class="input-calories">1000kcal</p>
+							</button>
+							<button class="info">
+								<div class="icon icon-lunch"></div>
+								<!-- <p>昼食</p> -->
+								<p class="input-calories">1000kcal</p>
+							</button>
+							<button class="info">
+								<div class="icon icon-dinner"></div>
+								<!-- <p>晩食</p> -->
+								<p class="input-calories">1000kcal</p>
+							</button>
+							<button class="info">
+								<div class="icon icon-snack"></div>
+								<!-- <p>間食</p> -->
+								<p class="input-calories">1000kcal</p>
+							</button>
+													
+						</div>
+						<div class="highcharts-figure">
+							<div id="container"></div>
+						</div>						
+					<!-- </div>	 -->
+
+					<div class="meal_register">
+			
+						<div class="item">
+							<div class="box-left">
+								<div class="content">
+									<span class="icon icon-breakfast"></span>
+									<span class="name">朝食</span>
+								</div>
+							</div>
+							<div class="box-right">
+								<div class="content">
+									<button class="btn-register btn-left" onclick="img_register()">写真</button>
+									<button class="btn-register btn-right" onclick="menu_register()">記録</button>													
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="box-left">
+								<div class="content">
+									<span class="icon icon-lunch"></span>
+									<span class="name">昼食</span>
+								</div>
+							</div>
+							<div class="box-right">
+								<div class="content">
+									<button class="btn-register btn-left" onclick="img_register()">写真</button>
+									<button class="btn-register btn-right" onclick="menu_register()">記録</button>													
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="box-left">
+								<div class="content">
+									<span class="icon icon-dinner"></span>
+									<span class="name">晩食</span>
+								</div>
+							</div>
+							<div class="box-right">
+								<div class="content">
+									<button class="btn-register btn-left" onclick="img_register()">写真</button>
+									<button class="btn-register btn-right" onclick="menu_register()">記録</button>													
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="box-left">
+								<div class="content">
+									<span class="icon icon-teabreak"></span>
+									<span class="name">間食</span>
+								</div>
+							</div>
+							<div class="box-right">
+								<div class="content">
+									<button class="btn-register btn-left" onclick="img_register()">写真</button>
+									<button class="btn-register btn-right" onclick="menu_register()">記録</button>													
+								</div>
+							</div>
+						</div>
 					</div>
-					
-                </section>
 
-                <section class="meal_register">
-					<div class="register_breakfast">
-
-					</div>
-					<div class="register_lunch">
-
-					</div>
-					<div class="register_dinner">
-
-					</div>
-					<div class="register_snack">
-
-					</div>
-                </section>
-								
-            </main>
-
-            <footer role="contentinfo">
-				
-				<a href="#"><img src="./assets/img/meal.png" alt="">食事</a>
-				<a href="#"><img src="./assets/img/meal.png" alt="">体重</a>
-				<a href="#"><img src="./assets/img/weight.png" alt="">アドバイス</a>
-				<a href="#"><img src="./assets/img/advice.png" alt="">メニュー</a>
-            </footer>	
-		</div>	
+				</div>									
+			</main>	
+		</div>              
 	</body>
 	<script src="./assets/js/chart.js"></script>
+	<script src="./assets/js/main.js"></script>
 </html>
