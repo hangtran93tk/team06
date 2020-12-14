@@ -138,3 +138,9 @@ a {
   .highcharts-background {
       fill: #FFFEF9;
   }
+  /** pick weight **/
+  #pick-weight {
+      top: 60%;
+      width: 250px;
+      height: 200px;
+  }

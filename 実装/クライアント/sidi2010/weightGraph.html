@@ -6,6 +6,8 @@
 		<title>Weight Graph</title>
         <link rel="stylesheet" href="./assets/css/weightGraph.css">
         <script src="https://code.highcharts.com/highcharts.js"></script>
+        <link rel="stylesheet" href="./assets/css/mobileSelect.css">
+		
 	</head>
 	<body>
 		<div id="wrap">
@@ -35,7 +37,7 @@
                     <figure class="highcharts-figure">
                         <div id="container"></div>
                     </figure>
-                    <button class="weight-btn">体重記録</button>
+                    <button class="weight-btn" onclick="pick_weight()">体重記録</button>
                     <div>
                         <button>1週間</button>
                         <button>1ヶ月</button>
@@ -55,6 +57,9 @@
                         <button>1年</button>
                     </div>
                 </section>
+            <dialog id="pick-weight">
+                HANG HANG HANG
+            </dialog>   
 			</main>				
         </div>
         <script src="./assets/js/weightGraph.js"></script>

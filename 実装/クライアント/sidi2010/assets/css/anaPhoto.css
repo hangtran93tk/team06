@@ -18,9 +18,10 @@ body {
 /**header**/
 header {
     position: fixed;
-    padding: 90px 40px 0;
+    padding-top: 90px;
     top: 0;
     background: #FFFEF8;
+    width: 100%;
 }
 img {
     max-width: 100%;

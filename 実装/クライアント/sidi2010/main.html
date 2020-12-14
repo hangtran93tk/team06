@@ -136,16 +136,21 @@
 							</div>
 						</div>
 					</div>
-					<div id="select-photo">
-						<ul>
-							<li>写真を撮る</li>
-							<li>ライブラリから選択</li>
-						</ul>
-					</div>
-				</div>									
+				</div>
+				<dialog id="select-photo">
+					<ul>						
+						<li>
+							<label for="file" id="library">ライブラリから選択</label>
+							<input type="file" name="file" id="file" class="inputfile" />
+						</li>
+						<li>
+							<label id="take-photo">写真を撮る</label>
+						</li>						
+					</ul>					
+				</dialog>									
 			</main>	
 		</div>              
 	</body>
-	<script src="./assets/js/chart.js"></script>
+	<script src="./assets/js/main.js"></script>
 	<script src="./assets/js/menuButton.js"></script>
 </html>

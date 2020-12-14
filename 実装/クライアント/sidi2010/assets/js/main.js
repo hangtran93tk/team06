@@ -65,3 +65,9 @@ const progress = document.querySelector('.progress-done');
 
 progress.style.width = progress.getAttribute('data-done') + '%';
 progress.style.opacity = 1;
+/** meal dialog */
+var x = document.getElementById("select-photo");
+
+function img_register() {
+  x.show();
+}

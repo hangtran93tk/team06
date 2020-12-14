@@ -42,4 +42,17 @@
           }]
         }
       });
+/** meal dialog */
+var x = document.getElementById("pick-weight");
 
+function pick_weight() {
+  x.show();
+}
+/** weight picker */
+var weekdayArr=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var mobileSelect1 = new MobileSelect({
+  trigger: '#trigger1',
+  wheels: [
+    {data: weekdayArr}
+  ],
+});
