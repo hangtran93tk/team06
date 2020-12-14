@@ -10,13 +10,13 @@
         if ( menu.classList.contains('active') ) {
             // 消す
             menu.classList.remove('active');
-            btnImg.setAttribute('src', './assets/img/hamburger_menu.png');
+            btnImg.setAttribute('src', 'C:/Users/81805/Desktop/sidi1/assets/img/hamburger_menu.png');
 
         // class="active" がなかったら
         } else {
             // 追加
             menu.classList.add('active');
-            btnImg.setAttribute('src', './assets/img/close.png');
+            btnImg.setAttribute('src', 'C:/Users/81805/Desktop/sidi1/assets/img/close.png');
         }
     });
 
@@ -25,7 +25,7 @@
         item.addEventListener('click', function(){
             // 消す
             menu.classList.remove('active');
-            btnImg.setAttribute('src', './assets/img/hamburger_menu.png');
+            btnImg.setAttribute('src', 'C:/Users/81805/Desktop/sidi1/assets/img/hamburger_menu.png');
         });
     });
 })();
