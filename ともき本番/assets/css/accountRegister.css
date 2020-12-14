@@ -84,6 +84,7 @@ main {
 }
 #gender {
     display: inline-block;
+    margin-left: 11.5%;
 }
 #gender input {
     padding: 0px;
@@ -113,6 +114,15 @@ main {
 }
 #active label {
     color: #58A054;
+    border-style: solid 1px;
+    border-color: white;
+}
+#active h2{
+    margin-left: 11.5%;
+}
+
+#register{
+    text-align: center;
 }
 #register button {
         /* margin: 0 auto;
@@ -170,6 +180,78 @@ h4{
     border: none;/* ラベルの境界線を実線で指定する */
     background: #FFFFFF;
 }
-input:checked + .active {
-    background-color: #000;
+
+input:checked + .active{
+    color:white;
+    background-color:white;
+    position: relative;
+}
+.active :hover{
+    cursor: pointer;
+}
+#active input[type="radio"]{
+    display: none;
+}
+   /* --- チェックボックス直後のlabel --- */
+#active input[type="radio"]:not(:checked) + label{
+    display    : inline-block; 
+    margin-left     : 10%;             /* labelの間隔  */
+
+    cursor     : pointer;         /* カーソル設定 */
+    transition : .2s;             /* なめらか変化 */
+    transform  : scale(0.8, 0.8); /* 少し小さく   */
+}
+   /* --- 選択されたチェックボックス直後のlabel --- */
+#active input[type="radio"]:checked + label{
+    background-color: #88cc11;
+    color: #FFFFFF;
+    transform  : scale(1, 1);     /* 原寸に戻す   */
+    
+}
+   
+
+
+#active:checked　~ .active{
+    display: block;
+}
+
+#active .active{
+    margin-left: 5%;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6);
+}
+.modal .wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 16px;
+    background: #fff;
+    border-radius: 8px;
+}
+.modal .wrap .show-modal-btn {
+    display: inline-block;
+    margin: 0;
+    padding: 8px 16px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    background: #333;
+}
+
+details img{
+    margin: 5px 30px;
+    width: 80%;
+    height: 80%;
+    object-fit: cover; /* この一行を追加するだけ！ */
 }

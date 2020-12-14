@@ -6,6 +6,9 @@ import VueRouter from './vendor/vue-router.esm.browser.js';
 import Login from './views/Login.js';
 import Test from './views/Test.js';
 import AccountRegister from './views/AccountRegister.js';
+import weightGraph from './views/weightGraph.js';
+
+
 
 
 /*
@@ -17,6 +20,7 @@ import AccountRegister from './views/AccountRegister.js';
     (function() {
         "use strict";
     Vue.use(VueRouter);
+    const VueHighcharts = window['VueHighcharts'].default;
 
     // VueRouter //=====//
     const router = new VueRouter({
@@ -27,15 +31,20 @@ import AccountRegister from './views/AccountRegister.js';
                 name: "Login",
                 component: Login
             },
-            {
-                path: "/test",
-                name: "Test",
-                component: Test
-            },
+            // {
+            //     path: "/test",
+            //     name: "Test",
+            //     component: Test
+            // },
             { 
                 path: '/register', 
                 name: 'AccountRegister', 
                 component: AccountRegister 
+            },
+            {
+                path: '/test',
+                name: "weightGraph",
+                component: weightGraph
             },
             // { 
             //     path: '/main', 
@@ -52,6 +61,9 @@ import AccountRegister from './views/AccountRegister.js';
     var app = new Vue({
         el: '#app',
         router,
+        components: {
+            'vue-highcharts':VueHighcharts
+        },
     });
 
    })();

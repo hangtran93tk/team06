@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import User, UserWeight
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
+import datetime
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -60,7 +61,6 @@ class LoginSerializer(serializers.ModelSerializer):
 
         if not user:
             raise AuthenticationFailed('["メールアドレスまたはパスワードが違う。/登録されていないユーザーです。"]' )
-            # return Response({'error': 'メールアドレスまたはパスワードが違う。/登録されていないユーザーです。'}, status=status.HTTP_400_BAD_REQUEST)
         if not user.is_active:
             raise AuthenticationFailed('アカウントが停止されています。管理者にお問い合わせください。')
         if not user.is_verified:
@@ -79,5 +79,17 @@ class LoginSerializer(serializers.ModelSerializer):
 class UserWeightSerializer(serializers.ModelSerializer):
     class Meta:
         model=UserWeight
-        fields = ['date', 'weight', 'user_id']
+        # fields = ['date', 'weight', 'user_id']
+        fields = ['date','weight','user_id']
+    def create(self, validated_data):
+        test, created = UserWeight.objects.update_or_create(
+            date=datetime.date.today(),user_id=self.context['request'].user.id,
+            defaults={'weight': validated_data.get('weight')}
+        )
+        return test
 
+
+        # answer, created = UserWeight.objects.update_or_create(
+        # question=validated_data.get('question', None),
+        # defaults={'answer': validated_data.get('answer', None)})
+    # return created

@@ -5,6 +5,7 @@ export default {
     // テンプレート //================//
     template: `
     <div id="input">
+    <link rel="stylesheet" href="./assets/css/test.css">
     <h1>ログイン成功</h1>
     <div class="bottom">
             <button type="button" class="loginBtn" @click="clickLogin" >ログイン</button> 

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from rest_framework import generics, status, views, permissions
+from rest_framework import generics, status, views, permissions, viewsets, mixins
 from .serializers import RegisterSerializer, EmailVerificationSerializer, LoginSerializer, UserWeightSerializer
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -14,9 +14,13 @@ from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from .permissions import IsOwner
 from .renderers import UserRenderer
+from django_filters import rest_framework as filters
 # Create your views here.
 
 from django.views.generic import TemplateView
+# import datetime
+from datetime import timedelta, date
+from dateutil.relativedelta import relativedelta
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -28,14 +32,16 @@ class RegisterView(generics.GenericAPIView):
 
     def post(self, request):
         user = request.data
+        if User.objects.filter(email=request.data.get("email"), is_verified=False).exists():
+            test = User.objects.filter(email=request.data.get("email"), is_verified=False)
+            test.delete()
+        
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-
         user_data = serializer.data
 
         user=User.objects.get(email=user_data['email'])
-
         token=RefreshToken.for_user(user).access_token
         current_site=get_current_site(request).domain
         relativeLink=reverse('email-verify')
@@ -79,17 +85,66 @@ class LoginAPIView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-# generics.〜　の使い方は　くろのて　さんのブログがわかりやすく解説されている
+# generics.〜　の使い方は　くろのて　さんのブログがわかりやすく解説されている views.APIView
+class UserWeightFilter(filters.FilterSet):
+    # 体重グラフ表示データ取得するためのフィルタ
+    selectNumber = filters.NumberFilter(method="get_date_filter")
+    def get_date_filter(self, queryset, name, value):
+        d = date.today()
+        # dt = d - timedelta(days=7)
+        if 'selectNumber' in self.request.GET:
+            result = self.request.GET['selectNumber']
+            if int(result) == 2 :
+                dt = d + relativedelta(months=-1)
+            elif int(result) == 3 :
+                dt = d + relativedelta(months=-12)
+            elif int(result) == 1 :
+                dt = d - timedelta(days=7)
+        return queryset.filter(date__gte=dt)
+    class Meta:
+        model = UserWeight
+        fields = ['selectNumber']
+
+    
+
 class CreateUserWeight(generics.ListCreateAPIView):   
     serializer_class = UserWeightSerializer
     queryset = UserWeight.objects.all()
-    permission_classes=(permissions.IsAuthenticated,)
+    permission_classes=(permissions.IsAuthenticated, IsOwner,)
 
-
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = UserWeightFilter
+    
     def perform_create(self, serializer):
         return serializer.save(user=self.request.user)
 
-
     def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
+        if 'selectNumber' in self.request.GET:
+            return self.queryset.filter(user=self.request.user).order_by('date')
+
+        d = date.today()
+        dt = d - timedelta(days=7)
+        return self.queryset.filter(user=self.request.user).filter(date__gte=dt).order_by('date')
+
+
+# class UserWeightFilter(filters.FilterSet):
+#     # 体重グラフ表示データ取得するためのフィルタ
+#     date_gte = filters.DateTimeFilter(field_name='date', lookup_expr='gte')
+
+#     class Meta:
+#         model = UserWeight
+#         fields = ['date', 'weight']
+
+
+# class UserWeightRetrieve(generics.RetrieveAPIView):
+#     serializer_class = UserWeightSerializer
+#     lookup_field="date"
+#     permission_classes=(permissions.IsAuthenticated, IsOwner,)     
+#     filter_backends = [filters.DjangoFilterBackend]
+#     filterset_class = UserWeightFilter
+#     queryset = UserWeight.objects.all()
+
+    
+
+
 

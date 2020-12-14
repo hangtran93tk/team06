@@ -35,8 +35,7 @@ export default {
                         <input type="text" name="userHeight" v-model="height" ><label for="height">cm</label>
                     </div>
                     <div id="weight">
-                        <h2>体重</h2>
-                        <input type="text" name="userWeight" v-model="weight"><label for="weight">kg</label>
+            
                         <h2 class="goalWeight">目標体重</h2>
                         <input type="text" name="userWeight" v-model="goal_weight"><label for="weight">kg</label>
                     </div> 
@@ -44,14 +43,13 @@ export default {
             </div>    
             <section id="active">
                 <h2>運動レベル</h2>
-                <input type="radio" id="active" name="active" value="1" v-model="active" checked>
-                <label class="active" for="0">レベル１</label>
+                <input type="radio" name="active" value="1" v-model="active" id="radio_1"><label class="active"for="radio_1">レベル１</label>
             
-                <input type="radio" id="active" name="active" value="2" v-model="active">
-                <label class="active" for="1">レベル2</label>
+                <input type="radio" name="active" value="2" v-model="active" id="radio_2"><label class="active" for="radio_2">レベル2</label>
+                
 
-                <input type="radio" id="active" name="active" value="3" v-model="active">
-                <label class="active" for="2">レベル3</label>
+                <input type="radio" name="active" value="3" v-model="active" id="radio_3"><label class="active" for="radio_3">レベル3</label>
+                
             </section>
             <br>
             <details>
@@ -64,6 +62,18 @@ export default {
                 <button type="button" @click="clickRegister"><label for="register">登録</label></button>
             </div>
         </main>
+        <div class="modal" v-if="regis_error">
+            <div class="wrap">
+                <p>{{ message }}</p>
+                <button class="show-modal-btn" @click="regis_error = false">OK</button>
+            </div>
+        </div>
+        <div class="modal" v-if="regis_comp">
+        <div class="wrap">
+            <p>{{ message }}</p>
+            <router-link to="/" class="btn">TOPへ戻る</router-link>
+        </div>
+    </div>
     </div>
     `,
     data() {
@@ -78,8 +88,11 @@ export default {
             active_level: "",
             confirm_pass: "",
             gender: "",
-            weight: "",
+            // weight: "",
             active: "",
+            regis_comp: false,
+            regis_error: "",
+
         };
     },
     methods: {
@@ -100,18 +113,32 @@ export default {
             
             
 
-            const obj2 = {
-                "weight": this.weight
-            };
+            // const obj2 = {
+            //     "weight": this.weight
+            // };
 
             Ajax(`http://192.168.1.10:8000/auth/register/`,'POST',null, obj1)
             .then((res) => {
                 console.log(res);
-
+                this.regis_comp = true;
+                if (res.errors) {
+                    this.message = res.errors;
+                } else {
+                    this.message = '登録終了。メール確認ください。'
+                }
             })
             .catch((err) => {
                 console.log(err);
             });
+
+            // Ajax(`http://192.168.1.10:8000/auth/user-weight/`,'POST',null, obj1)
+            // .then((res) => {
+            //     console.log(res);
+
+            // })
+            // .catch((err) => {
+            //     console.log(err);
+            // });
 
         }
 
