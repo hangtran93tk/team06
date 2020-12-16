@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+    background: linear-gradient(#f5f1da,#58a054);
+    background-image: url('../img/background8.png');
+    background-attachment: fixed;
+    background-size:100%;
+    margin: 0;
+    padding: 0;
+}
+#wrap {
+    text-align: center;
+}
+
+header {
+    margin-top: 60px;
+}
+h1 {
+    text-align: center;
+    font-size: 3.0rem;
+    color: #63a052;
+    margin: 20px 0;
+    font-weight: bold;
+}
+main {
+    margin-bottom: 150px;
+    height: auto;
+    text-align: center;
+}
+button {
+    color:#f5f1da;
+    margin-right: 13%;
+    margin-top: 18%;
+    background:  #63a052;
+    border: none;
+    border-radius: 50px; 
+    width: 200px;
+    height: 50px;
+    font-size: large;
+}
+#btn{
+    margin-left: 12%;
+}
