@@ -20,7 +20,8 @@ body {
 /**header**/
 header {
     background: #F9F8EF;
-    
+    /* position: fixed;
+    z-index: 9999; */  
 }
 button {
     width: 68px;
@@ -54,18 +55,35 @@ img {
 
 /* メニュー */
 #btn-menu {
+    left: 5%;
+    height: 100%;
+    width: 40px;
+    position: absolute;
+    z-index: 3;
+    background-color: unset;
+    outline: none;
+    padding: 0;
+}
+/* #btn-menu{
+    background: url('../img/hamburger_menu.png') center no-repeat;
+    background-size: cover !important;
+    left: 5%;
+    height: 36px;
+    width: 36px;
     position: fixed;
     text-align: left;
     z-index: 3;
     margin: 0;
     padding: 0;
-    background:#F5F1DA;
-    outline: none;
-    top: 10px;
-    left: 5%;
-    height: 70px;
 }
-
+.btn-menu-head.close{
+    background: url('../img/close.png') center no-repeat;
+} */
+#btn-menu img{
+    margin: 0px;
+    height: 40px;
+    width: 40px;
+}
 #menu {
     position: fixed;
     top: 0;
@@ -335,6 +353,7 @@ img {
     width: 250px;
     height: 200px;
     top: 60%;
+    z-index: 2;
 }
 #select-photo ul {
     list-style: none;
@@ -362,4 +381,43 @@ img {
 }
 #library {
     cursor: pointer;
+}
+/* custom */
+.head-menu{
+    display: inline-block;
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    z-index: 9999;
+    top: 0px;
+    height: 70px;
+}
+.head-menu h1.box-title{
+    margin: 0px;
+    top: 0px;
+    margin: 0px;
+    height: 100%;
+    align-items: center;
+    display: inline-flex;
+}
+.head-menu .box-title .txt-tile{
+    margin-top: 0px;
+    display: inline-flex;
+    align-items: center;
+}
+.head-menu .box-title .icon-date{
+    background-size: cover !important;
+    height: 18px;
+    width: 14px;
+    display: inline-block;
+}
+.head-menu .box-title .date-pre{
+    background: url('../img/left.png') center no-repeat;
+    margin-right: 5px;
+    float: left;
+}
+.head-menu .box-title .date-next{
+    background: url('../img/right.png') center no-repeat; 
+    float: right;   
+    margin-left: 5px;
 }

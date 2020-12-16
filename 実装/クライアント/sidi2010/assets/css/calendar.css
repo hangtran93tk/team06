@@ -1,0 +1,199 @@
+html {
+    font-size: 62.5%;
+    line-height: 1.4;
+    background-image: url('../img/background9.png');
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+body {	
+	flex-direction: row;
+	font-family: sans-serif;	
+	align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0;	
+}
+
+/**header**/
+header {
+    background: unset;
+    
+}
+button {
+    width: 68px;
+    height: 40px;
+    border: none;
+    font-size: 1rem;
+}
+button + button {
+    margin-top: 8px;
+}
+
+h1 {
+   font-size: 1.8rem;
+   color: #58A054;
+   margin: 30px 0;
+   display: flex;
+   justify-content: center;
+   vertical-align: middle;
+}
+h1 .date {
+    margin-top: 15px;
+}
+p {
+    font-size: 1.5rem;
+    color: #58A054;
+    margin: 0;
+}
+img {
+    margin: 14px;
+}
+/* メニュー */
+#btn-menu {
+    position: fixed;
+    text-align: left;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    background:unset;
+    outline: none;
+    top: 10px;
+    left: 5%;
+    height: 70px;
+}
+
+#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0px;
+    display: flex;
+    background: #4FA353;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .4s ease-out;
+
+}
+#menu.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#menu ul {
+    display: block;
+    width: 100%;
+    padding: 120px 0 0;
+}
+
+#menu ul li {
+    border-right: none;
+    border-bottom: 1px solid #333;
+    text-align: center;
+}
+#menu ul li:first-child {
+    border-left: none;
+    border-top: 1px solid #333;
+}
+#menu ul li a {
+    display: block;
+    padding: 0.5em 0;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+/** calendar **/
+.wrapper {
+    margin: 15px auto;
+    max-width: 700px;
+  }
+  .container-calendar {
+    /* background: #ffffff;
+    padding: 15px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: auto; */
+    margin: 25px;
+    padding-top: 70px;
+   
+  }
+  .button-container-calendar button {
+    cursor: pointer;  
+    zoom: 1;
+    width: unset;
+    /* display: inline-block;
+    background: #00a2b7;
+    color: #fff;
+    border-radius: 4px;
+    padding: 5px 10px; */
+  }
+  .table-calendar {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .table-calendar th,
+  .table-calendar td{
+    padding: 10px;
+    border: 1px solid #e2e2e2;
+    text-align: center;
+    vertical-align: top;
+  }
+  .date-picker.selected {
+    font-weight: bold;
+    color: #fff;
+    background: #cc0000;
+  }
+  .date-picker.selected span {
+    border-bottom: 2px solid currentColor;
+  }
+  /* 日曜 */
+  .date-picker:nth-child(1) {
+  color: red;
+  }
+  /* 土曜 */
+  .date-picker:nth-child(7) {
+  color: blue;
+  }
+  #monthAndYear {
+    text-align: center;
+    margin-top: 0;
+    font-size: 1.6rem;
+    color: #58A054;
+    width: 150px;
+  }
+  .button-container-calendar {
+    position: relative;
+    margin-bottom: 1em;
+    overflow: hidden;
+    clear: both;
+    display: inline-flex;
+  }
+  #previous {
+    float: left;
+    background: url('../img/left.png') no-repeat;
+  }
+  #next {
+    float: right;
+    margin: 0;
+    background: url('../img/right.png') no-repeat;
+  }
+  .footer-container-calendar {
+    margin-top: 1em;
+    border-top: 1px solid #dadada;
+    padding: 10px 0;
+  }
+  .footer-container-calendar select {
+    cursor: pointer;
+    display: inline-block;
+    zoom: 1;
+    background: #ffffff;
+    color: #454545;
+    border: 1px solid #bfc5c5;
+    border-radius: 3px;
+    padding: 5px 1em;
+  }

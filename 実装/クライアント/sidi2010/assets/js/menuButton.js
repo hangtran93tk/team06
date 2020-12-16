@@ -20,6 +20,20 @@
         }
     });
 
+    // $(".btn-menu-head").click(function(){
+    //     var data = parseInt($(this).attr('data-status'));
+    //     console.log("test" + data);
+    //     if(data === 1){
+    //         $(this).addClass('close');
+    //         $(this).attr('data-status',0);
+    //     }
+    //     else{
+    //         $(this).remove('close');
+    //         $(this).attr('data-status',1);
+    //     }
+
+    // })
+
     // メニュークリックされたら消す処理
     menu.querySelector('ul').childNodes.forEach(function(item){
         item.addEventListener('click', function(){

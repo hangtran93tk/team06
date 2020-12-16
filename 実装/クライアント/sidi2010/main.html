@@ -10,9 +10,11 @@
 	</head>
 	<body>
 		<div id="wrap">
-			<header role="banner">
+			<header role="banner" class="head-menu">
                 <!-- nav追加 -->
-                <button type="button" id="btn-menu"><img src="./assets/img/hamburger_menu.png" alt="メニューボタン"></button>
+                <button type="button" id="btn-menu" class="btn-menu-head">
+					<img src="./assets/img/hamburger_menu.png" alt="メニューボタン">
+				</button>
                 
                 <nav role="navigation" id="menu">
                     <ul>
@@ -24,11 +26,15 @@
                         <li><a href="#settings">設定</a></li>
                     </ul>
                 </nav>                
-                <h1>
-					<span><img src="./assets/img/left.png" alt="left"></span>
+                <h1 class="box-title">
+					<!-- <span><img src="./assets/img/left.png" alt="left"></span>
 					<span><p class="date">2020年10月13日</p> </span>
-					<span><img src="./assets/img/right.png" alt="right"></span>	
-                </h1>       
+					<span><img src="./assets/img/right.png" alt="right"></span>	 -->
+					
+					<p class="date-pre icon-date"></p>
+					<p class="txt-tile date">2020年10月13日</p>
+					<p class="date-next icon-date"></p>
+				</h1>   
             </header>
 
 			<main role="main">
@@ -47,8 +53,6 @@
 						</div>
 						
 					</section>	
-
-					<!-- <div class="calories_graph"> -->
 						<div class="oneday_info">
 							<button class="info">
 								<p>全体</p>
