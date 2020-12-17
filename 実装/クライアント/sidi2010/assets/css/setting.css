@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
 }
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 html {
     font-size: 62.5%;
     background: linear-gradient(#f5f1da,#58a054);
@@ -14,10 +15,85 @@ html {
 #wrap {
     text-align: center;
 }
-
-header {
-    margin-top: 60px;
+button{
+    border: none;
 }
+
+/* メニュー */
+#btn-menu {
+    left: 5%;
+    width: 40px;
+    position: fixed;
+    z-index: 3;
+    background-color: unset;
+    outline: none;
+    padding: 0;
+    margin-bottom: 100%;
+}
+
+#btn-menu img{
+    margin: 0px;
+    height: 40px;
+    width: 40px;
+    margin-bottom: 100%;
+}
+
+#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0px;
+    display: flex;
+    background: #4FA353;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .4s ease-out;
+
+}
+#menu.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#menu ul {
+    display: block;
+    width: 100%;
+    padding: 120px 0 0;
+}
+
+#menu ul li {
+    border-right: none;
+    border-bottom: 1px solid #333;
+    text-align: center;
+}
+#menu ul li:first-child {
+    border-left: none;
+    border-top: 1px solid #333;
+}
+#menu ul li a {
+    display: block;
+    padding: 0.5em 0;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* custom */
+.head-menu{
+    display: inline-block;
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    z-index: 9999;
+    top: 0px;
+    height: 70px;
+}
+
 h1 {
     text-align: center;
     font-size: 3.0rem;
@@ -30,7 +106,7 @@ main {
     height: auto;
     text-align: center;
 }
-button {
+main button{
     color:#f5f1da;
     margin-right: 13%;
     margin-top: 18%;

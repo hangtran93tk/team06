@@ -9,11 +9,22 @@
 	<body>
 		<div id="wrap">
 			<header role="banner">
-				<img src="./assets/img/settings.png" alt="settings">
-				<img src="./assets/img/left.png" alt="left">
-				<label for="day">20xx年○○月△△日</label>
-				<img src="./assets/img/right.png" alt="right">
-				<img src="./assets/img/calendar.png" alt="">
+				<!-- nav追加 -->
+                <button type="button" id="btn-menu" class="btn-menu-head">
+					<img src="./assets/img/hamburger_menu.png" alt="メニューボタン">
+				</button>
+                
+                <nav role="navigation" id="menu">
+                    <ul>
+						<li><a href="./main.html">食事</a></li>
+                        <li><a href="./weightGraph.html">体重</a></li>
+                        <li><a href="./advice.html">アドバイス</a></li>
+                        <li><a href="./menuTable.html">メニュー</a></li>
+                        <li><a href="#calendar">カレンダー</a></li>
+                        <li><a href="./setting.html">設定</a></li>
+                    </ul>
+                </nav> 
+				<h1>メニュー</h1>
 				<div id="register">
 					<button onclick="location.href='./mymenuRegister.html'">Myメニュー登録</button>
 				</div>
@@ -44,4 +55,5 @@
 			</main>	
 		</div>	
 	</body>
+	<script src="./assets/js/menuButton.js"></script>
 </html>

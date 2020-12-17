@@ -9,8 +9,24 @@
 	<body>
 		<div id="wrap">
 			<header role="banner">
-				<h1>設定</h1>
-            </header>
+				
+				<!-- nav追加 -->
+                <button type="button" id="btn-menu" class="btn-menu-head">
+					<img src="./assets/img/hamburger_menu.png" alt="メニューボタン">
+				</button>
+                
+                <nav role="navigation" id="menu">
+                    <ul>
+						<li><a href="./main.html">食事</a></li>
+                        <li><a href="./weightGraph.html">体重</a></li>
+                        <li><a href="./advice.html">アドバイス</a></li>
+                        <li><a href="./menuTable.html">メニュー</a></li>
+                        <li><a href="#calendar">カレンダー</a></li>
+                        <li><a href="./setting.html">設定</a></li>
+                    </ul>
+                </nav>                
+			</header>
+			<h1>設定</h1>
 			<main role="main">
 				<div id="btn">
 					<button>プロフィール</button><br>
@@ -21,4 +37,5 @@
 			</main>	
 		</div>	
 	</body>
+		<script src="./assets/js/menuButton.js"></script>
 </html>
