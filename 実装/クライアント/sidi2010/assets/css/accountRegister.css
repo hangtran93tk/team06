@@ -154,7 +154,7 @@ h4{
 .goalWeight {
     margin: 16px 25px 16px 16px;
 }
-input[type=radio] {
+#active input[type=radio] {
     display: none; /* ラジオボタンを非表示にする */
 }
 .active  {
