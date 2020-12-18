@@ -5,8 +5,7 @@
 }
 html {
     font-size: 62.5%;
-    background: linear-gradient(#f5f1da,#58a054);
-    background-image: url('../img/leaf_login.png');
+    background-image: url('../img/background2.png');
     background-attachment: fixed;
     margin: 0;
     padding: 0;
@@ -21,7 +20,7 @@ h1 {
     text-align: center;
     font-size: 2.0rem;
     color: #63a052;
-    margin: 72px 0;
+    margin-bottom: 72px;
     font-weight: bold;
 }
 img {
@@ -36,13 +35,15 @@ main {
     padding-bottom: 72px;
 }
 #inputInfo input {
+    margin-top: 32px;
     width: 318px;
     height: 49px;
     margin-bottom: 16px;
     border-radius: 25px;
-    border: 1px solid #f5f1da;
-    color: #f5f1da;
-    background-color: #81b277;
+    border: 1px solid #93B88D;
+    color: #93B88D;
+    /* color: #f5f1da;
+    background-color: #81b277; */
     background-size: 25px;
     text-align: center;	   
 }
@@ -112,31 +113,34 @@ main {
 }
 #register button {
         margin: 0 auto;
-        background: #2b811a;
+        background: #81b277;
         border: none;
         border-radius: 50px; 
         width: 196px;
         height: 49px;
+}
+#register label {
+    color: #FFFFFF;
 }
 a {
     text-decoration: none;
     color:#f5f1da;
 }
 label {
-    color: #fff;
+    color: #93B88D;
     font-size: 1.8rem;
     margin: 0 16px;
 }
 h2 {
-    color: #fff;
+    color:#93B88D;
     font-size: 1.8rem;
     margin: 16px 60px 16px 16px;
-    font-weight: normal;
+    font-weight: bold;
     text-align: left;
     display: block;
 }
-h4{
-    color: #fff;
+h3{
+    color:#93B88D;
     font-size: 1.8rem;
     margin: 16px;
     font-weight: normal;
@@ -152,7 +156,7 @@ h4{
     display: inline-block;
 }
 .goalWeight {
-    margin: 16px 25px 16px 16px;
+    margin: 16px 64px 16px 0px;
 }
 #active input[type=radio] {
     display: none; /* ラジオボタンを非表示にする */
