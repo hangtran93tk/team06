@@ -345,6 +345,7 @@ img {
         align-items: center;
         justify-content: center;
     }
+    
 /* meal regis dialog */
 #select-photo {
     border-radius: 30px;
@@ -381,6 +382,11 @@ img {
 }
 #library {
     cursor: pointer;
+}
+.label-select-photo {
+    font-size: 1.8rem;
+    color: #fff;
+    text-decoration: none;
 }
 /* custom */
 .head-menu{
