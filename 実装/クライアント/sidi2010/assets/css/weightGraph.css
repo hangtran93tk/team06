@@ -61,6 +61,7 @@ a {
     margin: 25px 0;
     padding: 0;
     background:#FFFEF9;
+    background-color: unset;
     outline: none;
     top: 10px;
     left: 5%;
