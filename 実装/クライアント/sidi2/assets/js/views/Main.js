@@ -1,6 +1,7 @@
 import Ajax from '../lib/Ajax.js';
 
 
+
 export default {
     // テンプレート //================//
     template: `
@@ -39,14 +40,11 @@ export default {
                     <section class="calories">
                         <h2>摂取目安カロリー</h2>
                         <div class="progress">
-                            <div class="progress-done" data-done="90">
-                                70%
-                            </div>
+                            <div class="progress-done" data-done="1500">{{ percent }} %</div>
                         </div>
                         <div class="index-calories">
                             <p class="item-name">現在　1500kcal</p>
                             <p class="item-name">目安  {{ goalKcal }}kcal</p>											
-                            <p class="item-name">不足  500kcal</p>
                         </div>
                         
                     </section>	
@@ -174,6 +172,7 @@ export default {
               goalKcal: null,
               showDialog: false,
               ActiveBtn: false,
+              percent: null,
               
       
               // Vue HighCharts
@@ -233,6 +232,16 @@ export default {
                  .then((res) => {
                     console.log(res);
                     this.goalKcal = res[0].kcal;
+                    const progress = document.querySelector('.progress-done');
+
+                    this.percent = parseInt((progress.getAttribute('data-done') / this.goalKcal) * 100, 10);
+                    progress.style.width = Math.min(this.percent, 100) + '%';
+
+                    if (progress.getAttribute('data-done') > this.goalKcal) {
+                      progress.style.background = "linear-gradient(to left, #fc8621, #f9e0ae)";
+                    } else {
+                      progress.style.background = "linear-gradient(to left, #58A054, #9EE097)";
+                    }
                  })
                  .catch((err) => {
                     console.log(err);

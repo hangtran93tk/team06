@@ -59,12 +59,21 @@ Highcharts.chart('container', {
     }]
   }
 
-});
+}
 
 /**progress chart */
 const progress = document.querySelector('.progress-done');
 
-progress.style.width = progress.getAttribute('data-done') + '%';
+var test = progress.getAttribute('data-done') / 1.5;
+progress.style.width = test + '%';
+
+if (test * 1.5 > 100) {
+  progress.style.background = "linear-gradient(to left, #fc8621, #f9e0ae)";
+} else {
+  progress.style.background = "linear-gradient(to left, #58A054, #9EE097)";
+}
+
+// progress.style.width = progress.getAttribute('data-done') + '%';
 progress.style.opacity = 1;
 
 /** meal dialog */
