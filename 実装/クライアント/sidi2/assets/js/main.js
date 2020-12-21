@@ -1,8 +1,15 @@
 import Vue from './vendor/vue.esm.browser.js';
 import VueRouter from './vendor/vue-router.esm.browser.js';
+
+
 // views
 import Login from './views/Login.js';
-import Register from './views/Register.js';
+// import Test from './views/Test.js';
+import AccountRegister from './views/AccountRegister.js';
+import weightGraph from './views/weightGraph.js';
+import Main from './views/Main.js';
+
+
 
 
 /*
@@ -11,39 +18,53 @@ import Register from './views/Register.js';
 
 */
 
-(function() {
-    "use strict";
+    (function() {
+        "use strict";
+    Vue.use(VueRouter);
+    const VueHighcharts = window['VueHighcharts'].default;
 
     // VueRouter //=====//
-    Vue.use(VueRouter);
-
-    const routes = [
-        {
-            path: "/login",
-            name: "Login",
-            component: Login
-        }
-        // { 
-        //     path: '/main', 
-        //     name: 'Main', 
-        //     query: { auth: '' }, 
-        //     component: Main 
-        // },
-        // { 
-        //     path: '/register', 
-        //     name: 'Register', 
-        //     component: Register 
-        // }
-    ];
-
     const router = new VueRouter({
-        routes
+        routes : [
+
+            {
+                path: "/",
+                name: "Login",
+                component: Login
+            },
+            // {
+            //     path: "/test",
+            //     name: "Test",
+            //     component: Test
+            // },
+            { 
+                path: '/register', 
+                name: 'AccountRegister', 
+                component: AccountRegister 
+            },
+            {
+                path: '/weightGraph',
+                name: "weightGraph",
+                component: weightGraph
+            },
+            { 
+                path: '/main', 
+                name: 'Main', 
+                query: { auth: '' }, 
+                component: Main 
+            },
+            
+        ]
+    
     });
 
     // vueの設定 //=====//
-    new Vue({
+    var app = new Vue({
         el: '#app',
-        router
+        router,
+        components: {
+            'vue-highcharts':VueHighcharts
+        },
     });
 
-})();
+   })();

@@ -5,12 +5,14 @@
 	}
 html {
 	font-size: 62.5%;
+	background: linear-gradient(#f5f1da,#58a054);
 	background-image: url('../img/leaf_login.png');
 	margin: 0;
 	padding: 0;
 }
 header {
-	margin-top: 180px;
+	margin-top: 150px;
+	margin-bottom: 85px;
 }
 img {
 	display: inline-block;
@@ -20,6 +22,11 @@ img {
 main {
 	margin: 0 auto;
 	max-width: 375px;
+}
+h1 {
+	margin-bottom: 32px;
+	font-size: 4.0rem;
+	color: #F5F1DA;
 }
 #app {
 	text-align: center;
@@ -40,7 +47,7 @@ main input {
 	text-align: center;	
 		
 }
-.email {	
+.mail {	
 	background-image: url('../img/email.png');
 	background-repeat: no-repeat;
 	background-position: 10% center;
@@ -51,7 +58,12 @@ main input {
 	background-repeat: no-repeat;
 	background-position: 10% center;
 }
+
+#bottom{
+	text-align: center;
+}
 button {
+	color: snow;
 	margin-top: 16px;
 	background: #2b811a;
 	border: none;
@@ -61,9 +73,26 @@ button {
 	height: 49px;
 }
 .registerBtn {
-	margin-bottom: 72px;
+	display: inline-block;
+    line-height: 50px;
+	font-size: 1.4em;
+	margin-top: 16px;
+	background: #2b811a;
+	border: none;
+	border-radius: 50px; 
+	width: 33.3333%;
+	width: 196px;
+	height: 49px;
 }
 a {
 	text-decoration: none;
 	color:#f5f1da;
+	text-align: center;
+	margin-top: 50%;
+	height: 100%;
+}
+p{
+    color: red;
+    text-align: center;
+    font-size: 1.6em;
 }

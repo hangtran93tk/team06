@@ -53,7 +53,7 @@ Highcharts.chart('container', {
           layout: 'horizontal'
         },
         pane: {
-          size: '70%'
+          size: '90%'
         }
       }
     }]
