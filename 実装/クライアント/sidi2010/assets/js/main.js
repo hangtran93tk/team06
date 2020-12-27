@@ -59,7 +59,7 @@ Highcharts.chart('container', {
     }]
   }
 
-}
+})
 
 /**progress chart */
 const progress = document.querySelector('.progress-done');

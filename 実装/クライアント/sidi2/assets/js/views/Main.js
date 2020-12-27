@@ -40,10 +40,10 @@ export default {
                     <section class="calories">
                         <h2>摂取目安カロリー</h2>
                         <div class="progress">
-                            <div class="progress-done" data-done="1500">{{ percent }} %</div>
+                            <div class="progress-done">{{ percent }} %</div>
                         </div>
                         <div class="index-calories">
-                            <p class="item-name">現在　1500kcal</p>
+                            <p class="item-name">現在　{{ nowKcal }}kcal</p>
                             <p class="item-name">目安  {{ goalKcal }}kcal</p>											
                         </div>
                         
@@ -169,6 +169,7 @@ export default {
               dataDate: ["0"], // x軸更新するときに配列の0番目は参照されないっぽい直し方わからんから0番目にダミーデータ入れてる。いつか直したい。
               dataWeight: [],
               loading: false,
+              nowKcal:null,
               goalKcal: null,
               showDialog: false,
               ActiveBtn: false,
@@ -178,7 +179,7 @@ export default {
               // Vue HighCharts
               options: {
                 chart: {
-                  type: 'spline'
+                  polar : true
                 },
                 title: {
                   text: ''
@@ -186,13 +187,18 @@ export default {
                 subtitle: {
                   text: ''
                 },
+                pane: {
+                  size: '80%'
+                },
                 yAxis: {
-                  title: {
-                    text: ''
-                  }
+                  gridLineInterpolation: 'polygon',
+                  lineWidth: 0,
+                  min: 0                  
                 },
                 xAxis: {
-                  
+                  categories: ['カロリー', '第一群点数', '第二群点数', '第三群点数','第四群点数'],
+                  tickmarkPlacement: 'on',
+                  lineWidth: 0
                 },
                 plotOptions: {
                   series: {
@@ -225,30 +231,43 @@ export default {
             this.init();
           },
           methods: {
-            init() {
-                // this.loading = true;
-                Ajax('http://192.168.1.10:8000/auth/update-KcalID/','GET', localStorage.getItem('access'), null )
+            init() {    
+               //カロリーグラフ表示          
                 Ajax('http://192.168.1.10:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
                  .then((res) => {
+                  console.log(res);
+                  this.goalKcal = res[0].kcal;
+                  Ajax('http://192.168.1.10:8000/menu/get-MenuInfo','GET', localStorage.getItem('access'), null )
+                  .then((res) => {
                     console.log(res);
-                    this.goalKcal = res[0].kcal;
+                    this.nowKcal = res[0].kcal;
+                    console.log(res[0].kcal);                  
+                   
                     const progress = document.querySelector('.progress-done');
 
-                    this.percent = parseInt((progress.getAttribute('data-done') / this.goalKcal) * 100, 10);
+                    this.percent = parseInt((this.nowKcal / this.goalKcal) * 100, 10);
                     progress.style.width = Math.min(this.percent, 100) + '%';
 
-                    if (progress.getAttribute('data-done') > this.goalKcal) {
-                      progress.style.background = "linear-gradient(to left, #fc8621, #f9e0ae)";
-                    } else {
-                      progress.style.background = "linear-gradient(to left, #58A054, #9EE097)";
-                    }
+                      if (this.nowKcal > this.goalKcal) {
+                        progress.style.background = "linear-gradient(to left, #fc8621, #f9e0ae)";
+                      } else {
+                        progress.style.background = "linear-gradient(to left, #58A054, #9EE097)";
+                      }
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+                    
                  })
                  .catch((err) => {
                     console.log(err);
                   });
+
+
                 let lineCharts = this.$refs.lineCharts
                 lineCharts.delegateMethod('showLoading', 'Loading...');
-                
+
+                //４群点数フラフ表示
                 Ajax(this.userWeightURL,'GET', localStorage.getItem('access'), null )
                 .then((res) => {
                     this.userWeight = res;
@@ -264,6 +283,7 @@ export default {
                 .catch((err) => {
                   console.log(err);
                 });
+                //目標カロリー取得
               Ajax("http://192.168.1.10:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
                 .then((res) => {
                   this.goal_weight = res.goal_weight;
@@ -298,19 +318,5 @@ export default {
                   console.log(err);
                 });
             },
-            // 体重登録
-            postUserWeight(){
-              const obj = {
-                "weight": this.postWeight
-              };
-              Ajax(`http://192.168.1.10:8000/auth/user-weight/`,'POST', localStorage.getItem('access'), obj)
-              .then((res) => {
-                this.weightChartChange('?selectNumber=1');
-                console.log(res);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-            }
           }
 };
