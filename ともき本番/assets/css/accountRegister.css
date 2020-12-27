@@ -1,0 +1,270 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+    background: linear-gradient(#f5f1da,#58a054);
+    background-image: url('../img/leaf_login.png');
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+#wrap {
+    text-align: center;
+}
+header {
+    margin-top: 10px;
+}
+h1 {
+    text-align: center;
+    font-size: 2.0rem;
+    color: #63a052;
+    margin: 36px 0;
+    font-weight: bold;
+}
+img {
+    display: flex;
+    justify-content: center;
+    width: 125px;
+    margin-left: 33.333%;	
+}
+main {
+    margin: 0 auto;
+    max-width: 375px;
+    padding-bottom: 72px;
+}
+#inputInfo input {
+    width: 318px;
+    height: 49px;
+    margin-bottom: 16px;
+    border-radius: 25px;
+    border: 1px solid #f5f1da;
+    color: #f5f1da;
+    background-color: #81b277;
+    background-size: 25px;
+    text-align: center;	   
+
+    margin: 30px;
+
+}
+#nickname {
+    background-image: url('../img/user_login.png');
+    background-repeat: no-repeat;
+    background-position: 10% center;
+}
+.mail {	
+    background-image: url('../img/email.png');
+    background-repeat: no-repeat;
+    background-position: 10% center;
+
+}
+#password {
+    background-image: url('../img/password.png');
+    background-repeat: no-repeat;
+    background-position: 10% center;
+}
+#passwordConfirm {
+    background-image: url('../img/password.png');
+    background-repeat: no-repeat;
+    background-position: 10% center;
+}
+/* #birthday {
+    margin: 36px 0;
+} */
+#birthday input {
+    width: 318px;
+    height: 49px;
+    border-radius: 25px;
+    border: 1px solid #f5f1da;
+    color: #f5f1da;
+    background-color: #81b277;
+    margin: 10px 30px 10px 30px;
+}
+#gender {
+    display: inline-block;
+    margin-left: 11.5%;
+}
+#gender input {
+    padding: 0px;
+    max-width: 50%;
+    border: 1px solid #fff;
+    margin: 16px 0 0 0;
+}
+#gender label {
+   margin: 16px 16px 0 16px;
+}
+#heightWeight {
+    text-align: center;
+}
+#heightWeight input {
+    width: 113px;
+    height: 40px;
+    border: 1px solid #fff;
+    border-radius: 0%;
+    background-color: #87b67c;
+}
+#active button {
+    width: 110px;
+    height: 35px;
+    background-color: #fff;
+    border: 1px solid #58a054;
+    display: inline-block;
+}
+#active label {
+    color: #58A054;
+    border-style: solid 1px;
+    border-color: white;
+}
+#active h2{
+    margin-left: 11.5%;
+}
+
+#register{
+    text-align: center;
+}
+#register button {
+        /* margin: 0 auto;
+        background: #2b811a;
+        border: none;
+        border-radius: 50px; 
+        width: 196px;
+        height: 49px; */
+        margin-top: 16px;
+        background: #2b811a;
+        border: none;
+        border-radius: 50px; 
+        width: 196px;
+        height: 49px;
+}
+a {
+    text-decoration: none;
+    color:#f5f1da;
+}
+p{
+    color: red;
+    text-align: center;
+    font-size: 1.6em;
+}
+
+label {
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 0 16px;
+}
+h2 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 16px 60px 16px 16px;
+    font-weight: normal;
+    text-align: left;
+    display: block;
+}
+h4{
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 16px;
+    font-weight: normal;
+    text-align: center;
+}
+#height {
+    display: inline-block;   
+}
+#weight {
+    display: inline-block;
+}
+#gender h2, #height h2, #weight h2 {
+    display: inline-block;
+}
+.goalWeight {
+    margin: 16px 25px 16px 16px;
+}
+
+.active  {
+    margin: 5px; /* ラベル外側の余白を指定する */
+    border: none;/* ラベルの境界線を実線で指定する */
+    background: #FFFFFF;
+}
+input:checked + .active{
+    color:white;
+    background-color:white;
+    position: relative;
+}
+.active :hover{
+    cursor: pointer;
+}
+#active input[type="radio"]{
+    display: none;
+}
+   /* --- チェックボックス直後のlabel --- */
+#active input[type="radio"]:not(:checked) + label{
+    display    : inline-block; 
+    margin-left     : 10%;             /* labelの間隔  */
+    cursor     : pointer;         /* カーソル設定 */
+    transition : .2s;             /* なめらか変化 */
+    transform  : scale(0.8, 0.8); /* 少し小さく   */
+}
+   /* --- 選択されたチェックボックス直後のlabel --- */
+#active input[type="radio"]:checked + label{
+    background-color: #88cc11;
+    color: #FFFFFF;
+    transform  : scale(1, 1);     /* 原寸に戻す   */
+    
+}
+#active:checked　~ .active{
+    display: block;
+}
+
+#active .active{
+    margin-left: 5%;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6);
+}
+.modal .wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 16px;
+    background: #fff;
+    border-radius: 8px;
+}
+.modal .wrap .show-modal-btn {
+    display: inline-block;
+    margin: 0;
+    padding: 8px 16px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    background: #333;
+}
+
+details img{
+    margin: 5px 30px;
+    width: 80%;
+    height: 80%;
+    object-fit: cover; /* この一行を追加するだけ！ */
+}
+summary{
+    font-size: 1.7em;
+}
+
+.btn{
+    display: inline-block;
+    color: black;
+    background-color: lightgray;
+    text-align: center;
+    font-size: 1.5em;
+    margin-left: 25%;
+}

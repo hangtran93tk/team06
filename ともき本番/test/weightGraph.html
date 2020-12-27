@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Weight Graph</title>
+        <link rel="stylesheet" href="./assets/css/weightGraph.css">
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+	</head>
+	<body>
+		<div id="wrap">
+            <header role="banner">
+                <!-- nav追加 -->
+                <button type="button" id="btn-menu"><img src="./assets/img/hamburger_menu.png" alt="メニューボタン"></button>
+                
+                <nav role="navigation" id="menu">
+                    <ul>
+                    <li><a href="#">食事</a></li>
+                    <li><a href="#weight">体重</a></li>
+                    <li><a href="#advise">アドバイス</a></li>
+                    <li><a href="#menu">メニュー</a></li>
+                    <li><a href="#calendar">カレンダー</a></li>
+                    <li><a href="#settings">設定</a></li>
+                    </ul>
+                </nav>
+                <h1>
+                    <p>グラフ</p>
+                </h1> 
+            </header>
+			<main role="main">
+				<section class="weight-graph">
+                    <h2>体重</h2>
+                    <h3>60kg</h3>
+                    <p>目標　55kg</p>
+                    <figure class="highcharts-figure">
+                        <div id="container"></div>
+                    </figure>
+                    <button class="weight-btn">体重記録</button>
+                    <div>
+                        <input type="button" name="week" value="1週間" onclick="chartChange(1)">
+                        <input type="button" name="month" value="1ヶ月" onclick="chartChange(2)">
+                        <input type="button" name="year" value="1年" onclick="chartChange(3)">
+                    </div>
+                </section>
+                <section class="calories-graph">
+                    <h2>摂取カロリー</h2>
+                    <h3> 1200kcal</h3>
+                    <p> 摂取目安 1500kcal</p>
+                    <figure class="highcharts-figure">
+                        <div id="container2"></div>
+                    </figure>
+                    <div>
+                        <button>1週間</button>
+                        <button>1ヶ月</button>
+                        <button>1年</button>
+                    </div>
+                </section>
+			</main>				
+        </div>
+        <script src="assets/js/weightGraph.js"></script>	
+	</body>
+</html>
