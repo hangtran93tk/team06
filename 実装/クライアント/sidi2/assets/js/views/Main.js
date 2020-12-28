@@ -1,5 +1,7 @@
 import Ajax from '../lib/Ajax.js';
 
+const VueHighcharts = window['VueHighcharts'].default;
+const Highcharts = window["Highcharts"]
 
 
 export default {
@@ -16,8 +18,8 @@ export default {
                 
                 <nav role="navigation" id="menu">
                     <ul>
-                        <li><a href="./main.html">食事</a></li>
-                        <li><a href="./weightGraph.html">体重</a></li>
+                        <li><router-link :to="'/main'">食事</router-link></li>
+                        <li><router-link :to="'/weightGraph'">体重</router-link></li>
                         <li><a href="./advice.html">アドバイス</a></li>
                         <li><a href="./menuTable.html">メニュー</a></li>
                         <li><a href="./calendar.html">カレンダー</a></li>
@@ -49,31 +51,39 @@ export default {
                         
                     </section>	
                         <div class="oneday_info">
-                            <button class="info">
+                            <button class="info" @click="eatTimeChartChange('')">
                                 <p>全体</p>
                                 <!-- <p class="input-calories">1000kcal</p> -->
                             </button>
-                            <button class="info">
+                            <button class="info" @click="eatTimeChartChange('?eatTime=1') ">
                                 <div class="icon icon-breakfast"></div>							
                                 <p class="input-calories">朝食</p>
                             </button>
-                            <button class="info">
+                            <button class="info" @click="eatTimeChartChange('?eatTime=2')">
                                 <div class="icon icon-lunch"></div>								
                                 <p class="input-calories">昼食</p>
                             </button>
-                            <button class="info">
+                            <button class="info" @click="eatTimeChartChange('?eatTime=3')">
                                 <div class="icon icon-dinner"></div>
                                 <p class="input-calories">夕食</p>
                             </button>
-                            <button class="info">
+                            <button class="info" @click="eatTimeChartChange('?eatTime=4')">
                                 <div class="icon icon-snack"></div>
                                 <p class="input-calories">間食</p>
                             </button>													
                         </div>
 
+
+
+
                         <div class="highcharts-figure">
-                            <div id="container"></div>
+                            <!-- <div id="container"></div> -->
+                            <vue-highcharts :options="options" :highcharts="Highcharts" ref="lineCharts"></vue-highcharts>
                         </div>
+                        
+
+
+
 
                     <div class="meal_register">
             
@@ -164,22 +174,31 @@ export default {
           // 変数
           data()　{
             return{
+              Highcharts: Highcharts,
               data: [],
-              userWeight: [],
+              userEat: [],
               dataDate: ["0"], // x軸更新するときに配列の0番目は参照されないっぽい直し方わからんから0番目にダミーデータ入れてる。いつか直したい。
-              dataWeight: [],
+              dataEat: [0,0,0,0],
               loading: false,
               nowKcal:null,
               goalKcal: null,
               showDialog: false,
               ActiveBtn: false,
               percent: null,
+
+              userEatInfo: [], //　menu/get-MenuInfo　の値を格納する
               
       
               // Vue HighCharts
               options: {
+                pane:{
+                  startAngle: -45,
+                },
                 chart: {
-                  polar : true
+                  polar: true,
+                  type: 'line',
+                  height: 255,
+                  width: 345,
                 },
                 title: {
                   text: ''
@@ -187,18 +206,18 @@ export default {
                 subtitle: {
                   text: ''
                 },
-                pane: {
-                  size: '80%'
-                },
                 yAxis: {
+                  gridLineColor: '#999999',
                   gridLineInterpolation: 'polygon',
-                  lineWidth: 0,
-                  min: 0                  
+                  title: {
+                    text: ''
+                  },
                 },
                 xAxis: {
-                  categories: ['カロリー', '第一群点数', '第二群点数', '第三群点数','第四群点数'],
-                  tickmarkPlacement: 'on',
-                  lineWidth: 0
+                  gridLineColor: '#dddddd',
+                  lineWidth: 0,
+                  categories: ['','第1群', '第2群', '第3群','第4群'],
+                  
                 },
                 plotOptions: {
                   series: {
@@ -208,11 +227,11 @@ export default {
                     pointStart: 1
                   }
                 },
-                series: [],
+                series: [],//{ data: [ 6, 6, 6, 10],showInLegend: false,}
                 responsive: {
                   rules: [{
                     condition: {
-                      maxWidth: 500
+                      maxWidth: 500,
                     },
                     chartOptions: {
                       legend: {
@@ -231,28 +250,46 @@ export default {
             this.init();
           },
           methods: {
-            init() {    
-               //カロリーグラフ表示          
+            init() {
+                // this.loading = true;                
+                Ajax('http://192.168.1.10:8000/auth/update-KcalID/','GET', localStorage.getItem('access'), null )
+               
                 Ajax('http://192.168.1.10:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
                  .then((res) => {
                   console.log(res);
                   this.goalKcal = res[0].kcal;
+                  let lineCharts = this.$refs.lineCharts
+                  lineCharts.delegateMethod('showLoading', 'Loading...');
                   Ajax('http://192.168.1.10:8000/menu/get-MenuInfo','GET', localStorage.getItem('access'), null )
                   .then((res) => {
                     console.log(res);
-                    this.nowKcal = res[0].kcal;
-                    console.log(res[0].kcal);                  
+                    this.userEatInfo = res;
+                    for(let i = 0; i < this.userEatInfo.length; i++) {
+                      this.nowKcal += res[i].kcal;
+                      this.dataEat[0] += res[i].one_point;
+                      this.dataEat[1] += res[i].two_point;
+                      this.dataEat[2] += res[i].three_point;
+                      this.dataEat[3] += res[i].four_point;
+                    }
+                    console.log("データ" + this.dataEat);
+                    lineCharts.addSeries({name: "点数",showInLegend: false,  data: this.dataEat} );
+                    lineCharts.hideLoading();
+                    
                    
+                    //カロリーグラフ表示
                     const progress = document.querySelector('.progress-done');
 
+                    // this.percent = parseInt((progress.getAttribute('data-done') / this.goalKcal) * 100, 10);
+                    // this.percent = parseInt(this.nowKcal / this.goalKcal * 100, 10);
                     this.percent = parseInt((this.nowKcal / this.goalKcal) * 100, 10);
                     progress.style.width = Math.min(this.percent, 100) + '%';
 
+                    // if (progress.getAttribute('data-done') > this.goalKcal) {
                       if (this.nowKcal > this.goalKcal) {
-                        progress.style.background = "linear-gradient(to left, #fc8621, #f9e0ae)";
-                      } else {
-                        progress.style.background = "linear-gradient(to left, #58A054, #9EE097)";
-                      }
+                      progress.style.background = "linear-gradient(to left, #fc8621, #f9e0ae)";
+                    } else {
+                      progress.style.background = "linear-gradient(to left, #58A054, #9EE097)";
+                    }
                   })
                   .catch((err) => {
                     console.log(err);
@@ -264,25 +301,25 @@ export default {
                   });
 
 
-                let lineCharts = this.$refs.lineCharts
-                lineCharts.delegateMethod('showLoading', 'Loading...');
+                // let lineCharts = this.$refs.lineCharts
+                // lineCharts.delegateMethod('showLoading', 'Loading...');
 
-                //４群点数フラフ表示
-                Ajax(this.userWeightURL,'GET', localStorage.getItem('access'), null )
-                .then((res) => {
-                    this.userWeight = res;
-                    for(let i = 0; i < this.userWeight.length; i++) {
-                        this.dataDate.push(this.userWeight[i].date);
-                        this.dataWeight.push(this.userWeight[i].weight);
-                    }
-                    lineCharts.addSeries({name:"体重", showInLegend: false,  data: this.dataWeight} );
-                    lineCharts.getChart().xAxis[0].setCategories(this.dataDate);
-                    lineCharts.hideLoading();
-                    this.loading = false;
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
+                // //４群点数フラフ表示
+                // Ajax(this.userWeightURL,'GET', localStorage.getItem('access'), null )
+                // .then((res) => {
+                //     this.userEat = res;
+                //     for(let i = 0; i < this.userWeight.length; i++) {
+                //         this.dataDate.push(this.userWeight[i].date);
+                //         this.dataWeight.push(this.userWeight[i].weight);
+                //     }
+                //     lineCharts.addSeries({name:"体重", showInLegend: false,  data: this.dataWeight} );
+                //     lineCharts.getChart().xAxis[0].setCategories(this.dataDate);
+                //     lineCharts.hideLoading();
+                //     this.loading = false;
+                // })
+                // .catch((err) => {
+                //   console.log(err);
+                // });
                 //目標カロリー取得
               Ajax("http://192.168.1.10:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
                 .then((res) => {
@@ -294,23 +331,25 @@ export default {
       
             },
             // ボタン押されたときの処理
-            weightChartChange(parameter){
+            eatTimeChartChange(parameter){
               let lineCharts = this.$refs.lineCharts
               lineCharts.removeSeries();
               lineCharts.delegateMethod('showLoading', 'Loading...');
               this.loading = true;
-              Ajax(this.userWeightURL + parameter,'GET', localStorage.getItem('access'), null )
+              Ajax('http://192.168.1.10:8000/menu/get-MenuInfo' + parameter,'GET', localStorage.getItem('access'), null )
                 .then((res) => {
-                  this.userWeight = res;
-                  this.dataDate.splice(1);
-                  this.dataWeight.splice(0);
-                  console.log(this.userWeight);
-                  for(let i = 0; i < this.userWeight.length; i++) {
-                    this.dataDate.push(this.userWeight[i].date);
-                    this.dataWeight.push(this.userWeight[i].weight);
+                  this.userEatInfo = res;
+                  for(let i = 0; i < this.dataEat.length; i++) {
+                    this.dataEat[i] = 0;
                   }
-                  lineCharts.addSeries({name:"体重", showInLegend: false,  data: this.dataWeight} );
-                  lineCharts.getChart().xAxis[0].setCategories(this.dataDate);
+                  for(let i = 0; i < this.userEatInfo.length; i++) {
+                    this.dataEat[0] += res[i].one_point;
+                    this.dataEat[1] += res[i].two_point;
+                    this.dataEat[2] += res[i].three_point;
+                    this.dataEat[3] += res[i].four_point;
+                  }
+                  console.log("切り替わったデータ" + this.dataEat);
+                  lineCharts.addSeries({name: "点数",showInLegend: false,  data: this.dataEat} );
                   lineCharts.hideLoading();
                   this.loading = false;
                 })

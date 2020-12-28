@@ -1,10 +1,10 @@
 import Ajax from '../lib/Ajax.js';
+// import { HighchartsVue } from '../vendor/highcharts-vue.min.js';
+
 
 // import User from '../lib/User';
 const VueHighcharts = window['VueHighcharts'].default;
-
 // const VueHighcharts2 = window['VueHighcharts'].default;
-
 
 
 export default {
@@ -18,18 +18,21 @@ export default {
         <div id="wrap">
            <header role="banner">
               <!-- nav追加 -->
-              <button type="button" id="btn-menu" v-on:click='ActiveBtn=!ActiveBtn'><img src="./assets/img/hamburger_menu.png" alt="メニューボタン"></button>
+              <div is="script" src="./assets/js/menuButton.js"></div>  
+              <button type="button" id="btn-menu" class="btn-menu-head">
+                    <img src="./assets/img/hamburger_menu.png" alt="メニューボタン">
+                </button>
               
-              <nav role="navigation" id="menu" class="menu" v-show="ActiveBtn">
-                  <ul>
-                  <li><a href="#">食事</a></li>
-                  <li><a href="#weight">体重</a></li>
-                  <li><a href="#advise">アドバイス</a></li>
-                  <li><a href="#menu">メニュー</a></li>
-                  <li><a href="#calendar">カレンダー</a></li>
-                  <li><a href="#settings">設定</a></li>
-                  </ul>
-              </nav>
+              <nav role="navigation" id="menu">
+                    <ul>
+                        <li><router-link :to="'/main'">食事</router-link></li>
+                        <li><router-link :to="'/weightGraph'">体重</router-link></li>
+                        <li><a href="./advice.html">アドバイス</a></li>
+                        <li><a href="./menuTable.html">メニュー</a></li>
+                        <li><a href="./calendar.html">カレンダー</a></li>
+                        <li><a href="./setting.html">設定</a></li>
+                    </ul>
+                </nav>
               <h1>
                   <p>グラフ</p>
               </h1>       
@@ -55,7 +58,7 @@ export default {
                   <div class="container">
                     <div class="range-slider">
                       <span id="rs-bullet" class="rs-label">{{ postWeight }}</span>
-                      <input id="rs-range-line" class="rs-range" type="range" value="20" min="20" max="100" step="0.1" v-model="postWeight">
+                      <input id="rs-range-line" class="rs-range" type="range" value="20" min="20" max="120" step="0.1" v-model="postWeight">
                     </div> 
                   </div>
                 </div>
@@ -75,16 +78,16 @@ export default {
        </section>
        <section class="calories-graph">
            <h2>摂取カロリー</h2>
-           <h3> 1200kcal</h3>
-           <p> 摂取目安 {{ goal_kcal }}</p>
+           <h3>摂取目安 {{ goal_kcal }}Kcal</h3>
+
            <figure class="highcharts-figure">
                <div id="container2"></div>
                <vue-highcharts :options="options2" ref="lineCharts2"></vue-highcharts>
            </figure>
            <div>
-               <button>1週間</button>
-               <button>1ヶ月</button>
-               <button>1年</button>
+            <button type="button" name="week"  @click="kcalChartChange('?selectNumber=1')">1週間</button>
+            <button type="button" name="month" @click="kcalChartChange('?selectNumber=2')">1ヶ月</button>
+            <button type="button" name="week"  @click="kcalChartChange('?selectNumber=3')">1年</button>
            </div>
       </section>
       </main>				
@@ -107,19 +110,67 @@ export default {
       return{
         data: [],
         userWeight: [],
+        userKcal: [],
         dataDate: ["0"], // x軸更新するときに配列の0番目は参照されないっぽい直し方わからんから0番目にダミーデータ入れてる。いつか直したい。
         dataWeight: [],
+        dataKcalDate: ["0"],
+        dataKcal: [],
         loading: false,
         userWeightURL: `http://192.168.1.10:8000/auth/user-weight/`,
+        userKcalURL: 'http://192.168.1.10:8000/menu/get-Kcal/',
         goal_weight: null,
         goal_kcal: null,
         showDialog: false,
-        postWeight: 60,
-        ActiveBtn: false,
+        postWeight: 55,
         
 
         // Vue HighCharts
+        
         options: {
+          chart: {
+            type: 'spline'
+          },
+          title: {
+            text: ''
+          },
+          subtitle: {
+            text: ''
+          },
+          yAxis: {
+            gridLineInterpolation: 'polygon',
+            title: {
+              text: ''
+            }
+          },
+          xAxis: {
+          },
+          plotOptions: {
+            series: {
+              label: {
+                connectorAllowed: false
+              },
+              pointStart: 1
+            }
+          },
+          series: [],
+          responsive: {
+            rules: [{
+              condition: {
+                maxWidth: 500
+              },
+              chartOptions: {
+                legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+                }
+              }
+            }]
+          }
+        },
+        // カロリーグラフ開始
+
+        options2: {
           chart: {
             type: 'spline'
           },
@@ -160,52 +211,6 @@ export default {
               }
             }]
           }
-        },
-        // カロリーグラフ開始
-
-        options2: {
-          chart: {
-            type: 'spline'
-          },
-          title: {
-            text: 'Monthly Average Temperature'
-          },
-          subtitle: {
-            text: 'Source: WorldClimate.com'
-          },
-          xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-          },
-          yAxis: {
-            title: {
-              text: 'Temperature'
-            },
-            labels: {
-              formatter: function () {
-                return this.value + '°';
-              }
-            }
-          },
-          tooltip: {
-            crosshairs: true,
-            shared: true
-          },
-          credits: {
-            enabled: false
-          },
-          plotOptions: {
-            spline: {
-              marker: {
-                radius: 4,
-                lineColor: '#666666',
-                lineWidth: 1
-              }
-            }
-          },
-          series: [{
-            data: []
-          }]
         }
       }
     },
@@ -214,14 +219,17 @@ export default {
       this.init();
     },
     methods: {
+      
       init() {
-
         let lineCharts = this.$refs.lineCharts
+        let lineCharts2 = this.$refs.lineCharts2
         lineCharts.delegateMethod('showLoading', 'Loading...');
+        lineCharts2.delegateMethod('showLoading', 'Loading...');
         this.loading = true;
         Ajax(this.userWeightURL,'GET', localStorage.getItem('access'), null )
           .then((res) => {
             this.userWeight = res;
+            console.log(res);
             for(let i = 0; i < this.userWeight.length; i++) {
               this.dataDate.push(this.userWeight[i].date);
               this.dataWeight.push(this.userWeight[i].weight);
@@ -229,6 +237,23 @@ export default {
             lineCharts.addSeries({name:"体重", showInLegend: false,  data: this.dataWeight} );
             lineCharts.getChart().xAxis[0].setCategories(this.dataDate);
             lineCharts.hideLoading();
+            this.loading = false;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        Ajax(this.userKcalURL,'GET', localStorage.getItem('access'), null )
+          .then((res) => {
+            this.userKcal = res;
+            console.log(res);
+            for(let i = 0; i < this.userKcal.length; i++) {
+              this.dataKcalDate.push(this.userKcal[i].date);
+              this.dataKcal.push(this.userKcal[i].kcal);
+            }
+            lineCharts2.addSeries({name:"カロリー", showInLegend: false,  data: this.dataKcal} );
+            console.log(this.dataKcalDate)
+            lineCharts2.getChart().xAxis[0].setCategories(this.dataKcalDate);
+            lineCharts2.hideLoading();
             this.loading = false;
           })
           .catch((err) => {
@@ -289,7 +314,33 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-      }
+      },
+      //カロリーグラフ　ボタン押されたときの処理
+      kcalChartChange(parameter){
+        let lineCharts2 = this.$refs.lineCharts2
+        lineCharts2.removeSeries();
+        lineCharts2.delegateMethod('showLoading', 'Loading...');
+        this.loading = true;
+        Ajax(this.userKcalURL + parameter,'GET', localStorage.getItem('access'), null )
+          .then((res) => {
+            this.userKcal = res;
+            this.dataKcalDate.splice(1);
+            this.dataKcal.splice(0);
+            console.log(this.userKcal);
+            for(let i = 0; i < this.userKcal.length; i++) {
+              this.dataKcalDate.push(this.userKcal[i].date);
+              this.dataKcal.push(this.userKcal[i].kcal);
+            }
+            lineCharts2.addSeries({name:"カロリー", showInLegend: false,  data: this.dataKcal} );
+            console.log(this.dataKcalDate)
+            lineCharts2.getChart().xAxis[0].setCategories(this.dataKcalDate);
+            lineCharts2.hideLoading();
+            this.loading = false;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
     }
     
 };
