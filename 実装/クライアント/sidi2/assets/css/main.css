@@ -427,3 +427,25 @@ img {
     float: right;   
     margin-left: 5px;
 }
+/** meal-detail */
+.meal-detail {
+    background: #F5F1DA;
+    border-radius: 5px;
+    box-shadow: #333;
+}
+.meal-detail-name {
+    text-align: center;
+}
+.meal-detail h3 {
+    padding-top: 8px;
+}
+.meal-detail ul {
+    width: 100%;
+    list-style: none;   
+    padding: 0 20px;
+}
+.meal-detail ul li {
+    display: inline-block;
+    width: calc(50% - 3px);
+    margin: 5px 0;
+}

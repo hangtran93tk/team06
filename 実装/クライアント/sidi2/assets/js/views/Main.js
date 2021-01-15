@@ -26,14 +26,10 @@ export default {
                         <li><a href="./setting.html">設定</a></li>
                     </ul>
                 </nav>                
-                <h1 class="box-title">
-                    <!-- <span><img src="./assets/img/left.png" alt="left"></span>
-                    <span><p class="date">2020年10月13日</p> </span>
-                    <span><img src="./assets/img/right.png" alt="right"></span>	 -->
-                    
-                    <p class="date-pre icon-date"></p>
-                    <p class="txt-tile date">2020年10月13日</p>
-                    <p class="date-next icon-date"></p>
+                <h1 class="box-title">                    
+                    <p class="date-pre icon-date" @click="previousDate()"></p>
+                    <p class="txt-tile date">{{ year }}年{{ month }}月{{ date }}日</p>
+                    <p class="date-next icon-date" @click="nextDate()"></p>
                 </h1>   
             </header>
 
@@ -81,12 +77,8 @@ export default {
                             <vue-highcharts :options="options" :highcharts="Highcharts" ref="lineCharts"></vue-highcharts>
                         </div>
                         
-
-
-
-
                     <div class="meal_register">
-            
+                      <div>
                         <div class="item">
                             <div class="box-left">
                                 <div class="content">
@@ -102,6 +94,18 @@ export default {
                                 </div>
                             </div>
                         </div>
+                        <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 1">
+                          <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
+                            <ul> 
+                              <li>カロリー     : {{ userEatInfo.kcal }}kcal</li>
+                              <li>第一群点数 : {{ userEatInfo.one_point }}</li>
+                              <li>第二群点数 : {{ userEatInfo.two_point }}</li>
+                              <li>第三群点数 : {{ userEatInfo.three_point }}</li>
+                              <li>第四群点数 : {{ userEatInfo.four_point }}</li>
+                            </ul>
+                        </div>
+                      </div>
+                      <div>
                         <div class="item">
                             <div class="box-left">
                                 <div class="content">
@@ -116,6 +120,18 @@ export default {
                                 </div>
                             </div>
                         </div>
+                        <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 2">
+                          <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
+                            <ul> 
+                              <li>カロリー     : {{ userEatInfo.kcal }}kcal</li>
+                              <li>第一群点数 : {{ userEatInfo.one_point }}</li>
+                              <li>第二群点数 : {{ userEatInfo.two_point }}</li>
+                              <li>第三群点数 : {{ userEatInfo.three_point }}</li>
+                              <li>第四群点数 : {{ userEatInfo.four_point }}</li>
+                            </ul>
+                        </div>
+                      </div>
+                      <div>
                         <div class="item">
                             <div class="box-left">
                                 <div class="content">
@@ -130,6 +146,18 @@ export default {
                                 </div>
                             </div>
                         </div>
+                        <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 3">
+                          <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
+                            <ul> 
+                              <li>カロリー     : {{ userEatInfo.kcal }}kcal</li>
+                              <li>第一群点数 : {{ userEatInfo.one_point }}</li>
+                              <li>第二群点数 : {{ userEatInfo.two_point }}</li>
+                              <li>第三群点数 : {{ userEatInfo.three_point }}</li>
+                              <li>第四群点数 : {{ userEatInfo.four_point }}</li>
+                            </ul>
+                        </div>
+                      </div>
+                      <div>
                         <div class="item">
                             <div class="box-left">
                                 <div class="content">
@@ -144,7 +172,19 @@ export default {
                                 </div>
                             </div>
                         </div>
+                        <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 4">
+                          <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
+                            <ul> 
+                              <li>カロリー     : {{ userEatInfo.kcal }}kcal</li>
+                              <li>第一群点数 : {{ userEatInfo.one_point }}</li>
+                              <li>第二群点数 : {{ userEatInfo.two_point }}</li>
+                              <li>第三群点数 : {{ userEatInfo.three_point }}</li>
+                              <li>第四群点数 : {{ userEatInfo.four_point }}</li>
+                            </ul>
+                        </div>
                     </div>
+                    
+                  </div>
                 </div>
                 <dialog id="select-photo">
                     <ul>						
@@ -185,8 +225,10 @@ export default {
               showDialog: false,
               ActiveBtn: false,
               percent: null,
-
-              userEatInfo: [], //　menu/get-MenuInfo　の値を格納する
+              year : new Date().getFullYear(),
+              month: new Date().getMonth() + 1,
+              date: new Date().getDate(),
+              userEatInfos: [], //　menu/get-MenuInfo　の値を格納する
               
       
               // Vue HighCharts
@@ -250,8 +292,7 @@ export default {
             this.init();
           },
           methods: {
-            init() {
-                // this.loading = true;                
+            init() {                
                 Ajax('http://192.168.1.10:8000/auth/update-KcalID/','GET', localStorage.getItem('access'), null )
                
                 Ajax('http://192.168.1.10:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
@@ -260,11 +301,12 @@ export default {
                   this.goalKcal = res[0].kcal;
                   let lineCharts = this.$refs.lineCharts
                   lineCharts.delegateMethod('showLoading', 'Loading...');
-                  Ajax('http://192.168.1.10:8000/menu/get-MenuInfo','GET', localStorage.getItem('access'), null )
+                  Ajax('http://192.168.1.10:8000/menu/get-MenuInfo','GET', localStorage.getItem('access'), null)
                   .then((res) => {
                     console.log(res);
-                    this.userEatInfo = res;
-                    for(let i = 0; i < this.userEatInfo.length; i++) {
+                    this.userEatInfos = res;
+                    //四群点数グラフ表示
+                    for(let i = 0; i < this.userEatInfos.length; i++) {
                       this.nowKcal += res[i].kcal;
                       this.dataEat[0] += res[i].one_point;
                       this.dataEat[1] += res[i].two_point;
@@ -273,18 +315,11 @@ export default {
                     }
                     console.log("データ" + this.dataEat);
                     lineCharts.addSeries({name: "点数",showInLegend: false,  data: this.dataEat} );
-                    lineCharts.hideLoading();
-                    
-                   
+                    lineCharts.hideLoading();                                    
                     //カロリーグラフ表示
-                    const progress = document.querySelector('.progress-done');
-
-                    // this.percent = parseInt((progress.getAttribute('data-done') / this.goalKcal) * 100, 10);
-                    // this.percent = parseInt(this.nowKcal / this.goalKcal * 100, 10);
+                    const progress = document.querySelector('.progress-done');       
                     this.percent = parseInt((this.nowKcal / this.goalKcal) * 100, 10);
                     progress.style.width = Math.min(this.percent, 100) + '%';
-
-                    // if (progress.getAttribute('data-done') > this.goalKcal) {
                       if (this.nowKcal > this.goalKcal) {
                       progress.style.background = "linear-gradient(to left, #fc8621, #f9e0ae)";
                     } else {
@@ -299,27 +334,6 @@ export default {
                  .catch((err) => {
                     console.log(err);
                   });
-
-
-                // let lineCharts = this.$refs.lineCharts
-                // lineCharts.delegateMethod('showLoading', 'Loading...');
-
-                // //４群点数フラフ表示
-                // Ajax(this.userWeightURL,'GET', localStorage.getItem('access'), null )
-                // .then((res) => {
-                //     this.userEat = res;
-                //     for(let i = 0; i < this.userWeight.length; i++) {
-                //         this.dataDate.push(this.userWeight[i].date);
-                //         this.dataWeight.push(this.userWeight[i].weight);
-                //     }
-                //     lineCharts.addSeries({name:"体重", showInLegend: false,  data: this.dataWeight} );
-                //     lineCharts.getChart().xAxis[0].setCategories(this.dataDate);
-                //     lineCharts.hideLoading();
-                //     this.loading = false;
-                // })
-                // .catch((err) => {
-                //   console.log(err);
-                // });
                 //目標カロリー取得
               Ajax("http://192.168.1.10:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
                 .then((res) => {
@@ -338,11 +352,11 @@ export default {
               this.loading = true;
               Ajax('http://192.168.1.10:8000/menu/get-MenuInfo' + parameter,'GET', localStorage.getItem('access'), null )
                 .then((res) => {
-                  this.userEatInfo = res;
+                  this.userEatInfos = res;
                   for(let i = 0; i < this.dataEat.length; i++) {
                     this.dataEat[i] = 0;
                   }
-                  for(let i = 0; i < this.userEatInfo.length; i++) {
+                  for(let i = 0; i < this.userEatInfos.length; i++) {
                     this.dataEat[0] += res[i].one_point;
                     this.dataEat[1] += res[i].two_point;
                     this.dataEat[2] += res[i].three_point;
@@ -356,6 +370,7 @@ export default {
                 .catch((err) => {
                   console.log(err);
                 });
-            },
+            }
+
           }
 };

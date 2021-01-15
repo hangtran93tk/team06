@@ -8,8 +8,12 @@ import Login from './views/Login.js';
 import AccountRegister from './views/AccountRegister.js';
 import weightGraph from './views/weightGraph.js';
 import Main from './views/Main.js';
+import goalWeight from './views/goalWeight.js';
+import mymenuRegister from './views/mymenuRegister.js';
 
 
+
+const VueHighcharts = window['VueHighcharts'].default;
 
 
 /*
@@ -21,7 +25,8 @@ import Main from './views/Main.js';
     (function() {
         "use strict";
     Vue.use(VueRouter);
-    const VueHighcharts = window['VueHighcharts'].default;
+    // const VueHighcharts = window['VueHighcharts'].default;
+    // const Highcharts = window['Highcharts'].default;
 
     // VueRouter //=====//
     const router = new VueRouter({
@@ -52,6 +57,16 @@ import Main from './views/Main.js';
                 name: 'Main', 
                 query: { auth: '' }, 
                 component: Main 
+            },
+            {
+                path: '/goalWeight',
+                name: "goalWeight",
+                component: goalWeight
+            },
+            {
+                path: '/mymenuRegister',
+                name: "mymenuRegister",
+                component: mymenuRegister
             },
             
         ]
