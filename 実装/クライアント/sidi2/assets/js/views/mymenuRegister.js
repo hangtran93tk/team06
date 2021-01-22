@@ -6,125 +6,144 @@ export default {
     //テンプレート//
     template: `
     <div id="input">
-        <div id="wrap">
-            <header role="banner">  
+    <header role="banner">  
+    <script src="https://cdn.jsdelivr.net/npm/vue-autosuggest@2.1.1/dist/vue-autosuggest.min.js"></script>
             <link rel="stylesheet" href="./assets/css/mymenuRegister.css">
+            <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
               <h1>Myメニュー登録</h1><br>
-              <div id="menu">
+              <!-- <div id="menu">
                 <label for="menuName" class="menuName">食事名</label><br>
                 <img src="./assets/img/goal.png" alt="image">
-              </div>
+              </div> -->
             </header>
-            <main role="main">
-                <label for="foodStuff" class="foodStuff">食材</label><br> 
-                <div id="block">
-                  <input type="text"  id="foodStuffName"  placeholder="食材名"style="float:left;">
-                  <input type="text"  id="gram" >g/ml
+              <main role="main">
+                <label for="foodStuff" class="foodStuff">食材</label><br>
+                <div id="block" v-for="find in foodStuff">
+                  <div id="input_pluralBox">
+                    <div id="input_plural">
+                      <div id="form1">
+                      <div id="app">
+　　　　　　　　　  <vue-autosuggest
+　　　　　　　　　      v-model="selected"
+　　　　　　　　　      :suggestions="filteredOptions">
+　　　　　　　　　  </vue-autosuggest>
+　　　　　　　　　</div>
+                        <input type="search" @click="foodStuffName()" id="foodStuffName" class="form-control" placeholder="食材" style="float:left;" v-model="find.name"  @input="getFoodStuffName" autocomplete="off">
+                      </div>
+                      <input type="text"  id="gram" v-model="find.gram" >g/ml
+                      <button @click="delFoodstuff"　class="del pluralBtn">削除</button>
+                      <div id="kouhos">
+                        <ul>
+                          <li v-for="n in foodStuffList" :key="n">{{n}}</li>
+                      </div>
+                      </ul>
+                    </div>
+                  <br>
                 </div>
-                <div id="block">
-                  <input type="text"  id="foodStuffName"  placeholder="食材名"style="float:left;">
-                  <input type="text"  id="gram" >g/ml
-                </div>
-                <div id="block">
-                  <input type="text"  id="foodStuffName"  placeholder="食材名"style="float:left;">
-                  <input type="text"  id="gram" >g/ml
-                </div>
-                <div id="block">
-                  <input type="text"  id="foodStuffName"  placeholder="食材名"style="float:left;">
-                  <input type="text"  id="gram" >g/ml
-                </div>
-                <div id="block">
-                  <input type="text"  id="foodStuffName"  placeholder="食材名"style="float:left;">
-                  <input type="text"  id="gram" >g/ml
-                </div>
-                <div id="block">
-                  <input type="text"  id="foodStuffName"  placeholder="食材名"style="float:left;">
-                  <input type="text"  id="gram" >g/ml
-                </div>
+              </div>
+              <button @click="addFoodstuff"　class="add pluralBtn">追加</button>
                 <div id="update">
                   <button onclick="location.href='./menuTable.html'">登録</button>
+                  <br><br><br><br><br>
+                  <pre>{{ $data | json }}</pre>
                 </div>
-            </main>	
+              </main>	
         </div>
     </div>
-    
-    `,
-    // 変数
-    data()　{
-      return{
 
+`,
+
+//method(){
+//  this.init();
+//  $('#foodStuffName.form-control').focusin(function(){
+//    $('#kouhos').show();
+//  });
+//  $('#foodStuffName.form-control').focusout(function(){
+//    setTimeout(function(){
+//      $('#kouhos').hide();
+//    },100);
+//  });
+//  $('#kouhos').on('touchstart click','li', function(){
+//    $('#foodStuffName.form-control').val($(this).text());
+//    setTimeout(function(){
+//    $('#kouhos').hide();
+//    },100);
+//  });
+//},
+
+// 変数
+data()　{
+  return{
+    foodStuff: [{name: '', gram: ''}],
+    findName: '',
+    foodStuffList: [],
+    foodStuffItem: [],
+    selected: '',
+    options: [{
+      data: ['Canada', 'China', 'Cameroon', "Italy", "Iraq", "Iceland" ]
+    }]
+  }
+},
+computed: {
+  filteredOptions() {
+    return [
+      {
+        data: this.options[0].data.filter(option => {
+          return option.toLowerCase().indexOf(this.selected.toLowerCase()) > -1;
+        })
       }
-    },
-    //　初期化
-    mounted(){
-      this.init();
-    },
-    methods: {
-      init() {
+    ];
+  }
+},
 
-        // let lineCharts = this.$refs.lineCharts
-        // lineCharts.delegateMethod('showLoading', 'Loading...');
-        // this.loading = true;
-        // Ajax(this.userWeightURL,'GET', localStorage.getItem('access'), null )
-        //   .then((res) => {
-        //     this.userWeight = res;
-        //     for(let i = 0; i < this.userWeight.length; i++) {
-        //       this.dataDate.push(this.userWeight[i].date);
-        //       this.dataWeight.push(this.userWeight[i].weight);
-        //     }
-        //     lineCharts.addSeries({name:"体重", showInLegend: false,  data: this.dataWeight} );
-        //     lineCharts.getChart().xAxis[0].setCategories(this.dataDate);
-        //     lineCharts.hideLoading();
-        //     this.loading = false;
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   });
-        // Ajax("http://192.168.1.10:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
-        //   .then((res) => {
-        //     this.goal_weight = res.goal_weight;
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   });
-        //   Ajax('http://192.168.1.10:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
-        //   .then((res) => {
-        //      console.log(res);
-        //      this.goal_kcal = res[0].kcal;
-        //   })
-        //   .catch((err) => {
-        //      console.log(err);
-        //    });
+//　初期化
 
-      },
-      // ボタン押されたときの処理
-      // weightChartChange(parameter){
-      //   let lineCharts = this.$refs.lineCharts
-      //   lineCharts.removeSeries();
-      //   lineCharts.delegateMethod('showLoading', 'Loading...');
-      //   this.loading = true;
-      //   Ajax(this.userWeightURL + parameter,'GET', localStorage.getItem('access'), null )
-      //     .then((res) => {
-      //       this.userWeight = res;
-      //       this.dataDate.splice(1);
-      //       this.dataWeight.splice(0);
-      //       console.log(this.userWeight);
-      //       for(let i = 0; i < this.userWeight.length; i++) {
-      //         this.dataDate.push(this.userWeight[i].date);
-      //         this.dataWeight.push(this.userWeight[i].weight);
-      //       }
-      //       lineCharts.addSeries({name:"体重", showInLegend: false,  data: this.dataWeight} );
-      //       lineCharts.getChart().xAxis[0].setCategories(this.dataDate);
-      //       lineCharts.hideLoading();
-      //       this.loading = false;
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //     });
-      // },
+
+methods: {
+  init() {
+  },
+      // テキストボックスへ値を設定します
+
+
+  addFoodstuff: function() {
+    var food = document.getElementById('foodStuffName').value;
+    var g = document.getElementById('gram').value;
+    this.foodStuff.push({ name: food, gram: g});
+
+
+    food.value = '';
+  },
+  
+
+
+  delFoodstuff: function() {
+    this.foodStuff.pop({ name: '', gram: '' });
+  },
+
+
+  getFoodStuffName({ target }) {
+    this.findName = target.value;
+    // let value = "?jp_name=" + foodStuffName;
+    let value = "?jp_name=" + this.findName;
+    if(value.length >= 11) {
+      // console.log(this.$refs.query.value);
+      Ajax('http://192.168.1.10:8000/menu/get-FoodStuffName/' + value,'GET', localStorage.getItem('access'), null)
+      .then((res) => {
+         this.foodStuffItem = res;
+         this.foodStuffList.splice(0);
+         console.log(res);
+         for(let i = 0; i < this.foodStuffItem.length; i++) {
+          this.foodStuffList.push(this.foodStuffItem[i].jp_name);
+         }
+        //  this.foodStuff.push({ name: '', gram: '' });1
+      })
+      .catch((err) => {
+         console.log(err);
+       });
     }
-    
+           
+  },
+}   
+
+
 };
-
-
-

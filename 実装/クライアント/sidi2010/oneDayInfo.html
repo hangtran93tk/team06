@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>One Day Info</title>
+		<link rel="stylesheet" href="./assets/css/oneDayInfo.css">
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	</head>
+	<body>
+		<div id="wrap">
+			<header role="banner" class="head-menu">
+                <!-- nav追加 -->
+                <button type="button" id="btn-menu" class="btn-menu-head">
+					<img src="./assets/img/hamburger_menu.png" alt="メニューボタン">
+				</button>
+                
+                <nav role="navigation" id="menu">
+                    <ul>
+						<li><a href="./main.html">食事</a></li>
+                        <li><a href="./weightGraph.html">体重</a></li>
+                        <li><a href="./advice.html">アドバイス</a></li>
+                        <li><a href="./menuTable.html">メニュー</a></li>
+                        <li><a href="./calendar.html">カレンダー</a></li>
+                        <li><a href="./setting.html">設定</a></li>
+                    </ul>
+                </nav>                
+                <h1 class="box-title">
+					<p class="date-pre icon-date"></p>
+					<p class="txt-tile date">2020年10月13日</p>
+					<p class="date-next icon-date"></p>
+				</h1>   
+            </header>
+
+			<main role="main">
+				<div class="grid">
+					<section class="calories">
+						<h2>摂取目安カロリー</h2>
+						<div class="progress">
+							<div class="progress-done" data-done="90">
+								70%
+							</div>
+						</div>
+						<div class="index-calories">
+							<p class="item-name">現在　1500kcal</p>
+							<p class="item-name">目標  2000kcal</p>											
+							<p class="item-name">不足  500kcal</p>
+						</div>
+						
+					</section>	
+						<div class="oneday_info">
+							<button class="info">
+								<p>全体</p>
+							</button>
+							<button class="info">
+								<div class="icon icon-breakfast"></div>							
+							</button>
+							<button class="info">
+								<div class="icon icon-lunch"></div>								
+							</button>
+							<button class="info">
+								<div class="icon icon-dinner"></div>
+							</button>
+							<button class="info">
+								<div class="icon icon-snack"></div>
+							</button>													
+						</div>
+
+						<div class="highcharts-figure">
+							<div id="container"></div>
+						</div>
+
+					<div class="meal_register">
+					<div>
+						<div class="item">
+							<div class="box-left">
+								<div class="content">
+									<span class="icon icon-breakfast"></span>
+									<span class="name">朝食</span>
+								</div>
+							</div>
+						</div>
+						<div class="meal-detail">
+							<h3 class="meal-detail-name">ごはん</h3>
+								<ul>
+									<li>カロリー     : 400kcal</li>
+									<li>第一群点数 : 11</li>
+									<li>第二群点数 : 22</li>
+									<li>第三群点数 : 33</li>
+									<li>第四群点数 : 10</li>
+								</ul>
+						</div>
+						<div class="meal-detail">
+							<h3 class="meal-detail-name">ごはん</h3>
+								<ul>
+									<li>カロリー     : 400kcal</li>
+									<li>第一群点数 : 11</li>
+									<li>第二群点数 : 22</li>
+									<li>第三群点数 : 33</li>
+									<li>第四群点数 : 10</li>
+								</ul>
+						</div>
+						
+					</div>
+						
+					<div>
+						<div class="item">
+							<div class="box-left">
+								<div class="content">
+									<span class="icon icon-lunch"></span>
+									<span class="name">昼食</span>
+								</div>
+							</div>
+							<!-- <div class="box-right">
+								<div class="content">
+									<button class="btn-register btn-left" onclick="img_register()">写真</button>
+									<button class="btn-register btn-right" onclick="location.href='./mealHistory.html'">記録</button>													
+								</div>
+							</div> -->
+						</div>
+						<div class="meal-detail">
+							<h3 class="meal-detail-name">ごはん</h3>
+								<ul>
+									<li>カロリー     : 400kcal</li>
+									<li>第一群点数 : 11</li>
+									<li>第二群点数 : 22</li>
+									<li>第三群点数 : 33</li>
+									<li>第四群点数 : 10</li>
+								</ul>
+						</div>
+						<div class="meal-detail">
+							<h3 class="meal-detail-name">ごはん</h3>
+								<ul>
+									<li>カロリー     : 400kcal</li>
+									<li>第一群点数 : 11</li>
+									<li>第二群点数 : 22</li>
+									<li>第三群点数 : 33</li>
+									<li>第四群点数 : 10</li>
+								</ul>
+						</div>
+						
+					</div>
+						
+						<div class="item">
+							<div class="box-left">
+								<div class="content">
+									<span class="icon icon-dinner"></span>
+									<span class="name">晩食</span>
+								</div>
+							</div>
+							<!-- <div class="box-right">
+								<div class="content">
+									<button class="btn-register btn-left" onclick="img_register()">写真</button>
+									<button class="btn-register btn-right" onclick="location.href='./mealHistory.html'">記録</button>													
+								</div>
+							</div> -->
+						</div>
+						<div class="item">
+							<div class="box-left">
+								<div class="content">
+									<span class="icon icon-teabreak"></span>
+									<span class="name">間食</span>
+								</div>
+							</div>
+							<!-- <div class="box-right">
+								<div class="content">
+									<button class="btn-register btn-left" onclick="img_register()">写真</button>
+									<button class="btn-register btn-right" onclick="location.href='./mealHistory.html'">記録</button>													
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+				<dialog id="select-photo">
+					<ul>						
+						<li>
+							<label for="file" id="library">ライブラリから選択</label>
+							<input type="file" name="file" id="file" class="inputfile" />
+						</li>
+						<li>
+							<label id="take-photo"><a class="label-select-photo" href="./selectPhoto.html">写真を撮る</a> </label>
+						</li>						
+					</ul>					
+				</dialog>									
+			</main>	
+		</div>              
+	</body>
+	<script src="./assets/js/main.js"></script>
+	<script src="./assets/js/menuButton.js"></script>
+</html>

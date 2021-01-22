@@ -1,4 +1,45 @@
-* {
+#form1{
+    width: 50%;
+    margin: 10px;
+    position: relative;
+  }
+  #form1 input{
+    width: 100%; /*親要素いっぱい広げる*/
+    padding: 10px 15px; /*ボックスを大きくする*/
+    font-size: 16px;
+    border-radius: 3px; /*ボックス角の丸み*/
+    border: 2px solid #ddd; /*枠線*/
+    /* box-sizing: border-box; */
+  }
+  #form1 input:focus {
+    box-shadow: 0 0 5px 0 rgba(255,153,0,1);
+    border: 2px solid #FFF;
+    outline: 0;
+    position: relative;
+  }
+  #kouhos{
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    margin-top:2.5em;
+    display: none;
+  }
+  #kouhos ul{
+    margin: 0;
+    border: 1px solid #EEE;
+    padding-left: 0;
+  }
+  #kouhos li{
+    border: 1px solid white;
+    list-style-type: none;
+    padding: 0.8rem 5%;;
+  }
+  #kouhos li:hover{
+    background-color: lightskyblue;
+    color: white;
+    text-decoration: underline;
+  }
+/* * {
     margin: 0;
     padding: 0;
 }
@@ -10,18 +51,18 @@ html {
     margin: 0;
     padding: 0;
     height:100%;
-}
+} */
 
-header{
+/* header{
     position: fixed;
     width:100%;
     height:45%;
     top: 0;
     background:	#FAF9F6;
     
-}
+} */
 
-h1 {
+/* h1 {
     text-align: center;
     font-size: 1.5rem;
     color: #63a052;
@@ -128,5 +169,5 @@ button{
     color: #f5f1da;
     font-size: medium;
     margin-bottom: 7%;
-}
+} */
 

@@ -229,6 +229,7 @@ export default {
               month: new Date().getMonth() + 1,
               date: new Date().getDate(),
               userEatInfos: [], //　menu/get-MenuInfo　の値を格納する
+              // testdate: "?date=2020-12-28",
               
       
               // Vue HighCharts
@@ -301,7 +302,8 @@ export default {
                   this.goalKcal = res[0].kcal;
                   let lineCharts = this.$refs.lineCharts
                   lineCharts.delegateMethod('showLoading', 'Loading...');
-                  Ajax('http://192.168.1.10:8000/menu/get-MenuInfo','GET', localStorage.getItem('access'), null)
+                  Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/','GET', localStorage.getItem('access'), null)
+                  // Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + this.testdate ,'GET', localStorage.getItem('access'), null) // 過去のきろく取りたいとき
                   .then((res) => {
                     console.log(res);
                     this.userEatInfos = res;
