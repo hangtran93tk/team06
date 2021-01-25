@@ -10,6 +10,7 @@ import weightGraph from './views/weightGraph.js';
 import Main from './views/Main.js';
 import goalWeight from './views/goalWeight.js';
 import mymenuRegister from './views/mymenuRegister.js';
+import Calendar from './views/Calendar.js';
 
 
 
@@ -57,6 +58,11 @@ const VueHighcharts = window['VueHighcharts'].default;
                 name: 'Main', 
                 query: { auth: '' }, 
                 component: Main 
+            },
+            {
+                path: '/calendar',
+                name: "Calendar",
+                component: Calendar
             },
             {
                 path: '/goalWeight',

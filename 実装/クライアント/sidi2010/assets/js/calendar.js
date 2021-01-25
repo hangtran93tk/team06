@@ -62,6 +62,7 @@ function generate_year_range(start, end) {
     monthAndYear.innerHTML = months[month] + " " + year;
     selectYear.value = year;
     selectMonth.value = month;
+    
   
     // creating all cells
     var date = 1;
@@ -69,21 +70,31 @@ function generate_year_range(start, end) {
         var row = document.createElement("tr");
   
         for ( var j = 0; j < 7; j++ ) {
+            var cell = document.createElement("td");
+            console.log(cell.id);
+
             if ( i === 0 && j < firstDay ) {
-                cell = document.createElement( "td" );
+                // cell = document.createElement( "td" );
                 cellText = document.createTextNode("");
                 cell.appendChild(cellText);
                 row.appendChild(cell);
             } else if (date > daysInMonth(month, year)) {
                 break;
             } else {
-                cell = document.createElement("td");
+                // cell = document.createElement("td");
                 cell.setAttribute("data-date", date);
                 cell.setAttribute("data-month", month + 1);
                 cell.setAttribute("data-year", year);
                 cell.setAttribute("data-month_name", months[month]);
                 cell.className = "date-picker";
+
                 cell.innerHTML = "<span>" + date + "</span>";
+               
+
+                cell.addEventListener("click", function() {
+                  var checkdate = year + '-' + (month + 1) + '-' + this.innerText;
+                  console.log(checkdate);
+                });
   
                 if ( date === today.getDate() && year === today.getFullYear() && month === today.getMonth() ) {
                     cell.className = "date-picker selected";
@@ -95,7 +106,6 @@ function generate_year_range(start, end) {
   
         tbl.appendChild(row);
     }
-  
   }
   
   function daysInMonth(iMonth, iYear) {
