@@ -29,7 +29,7 @@ export default {
                         <li><router-link :to="'/weightGraph'">体重</router-link></li>
                         <li><a href="./advice.html">アドバイス</a></li>
                         <li><a href="./menuTable.html">メニュー</a></li>
-                        <li><a href="./calendar.html">カレンダー</a></li>
+                        <li><router-link :to="'/calendar'">カレンダー</router-link></li>
                         <li><a href="./setting.html">設定</a></li>
                     </ul>
                 </nav>

@@ -7,7 +7,8 @@ export default {
     template: `
     <div id="wrap">
     <header role="banner">
-        <link rel="stylesheet" href="./assets/css/calendar.css">      
+        <link rel="stylesheet" href="./assets/css/calendar.css">
+        <!-- nav追加 -->        
         <button type="button" id="btn-menu" class="btn-menu-head">
             <img src="./assets/img/hamburger_menu.png" alt="メニューボタン">
         </button>
@@ -27,9 +28,9 @@ export default {
         <div class="container-calendar">
            
             <div class="button-container-calendar">
-                <button id="previous" @click="previous()"></button>
+                <button id="previous" onclick="previous()"></button>
                 <h4 id="monthAndYear"></h4>
-                <button id="next" @click="next()"></button>
+                <button id="next" onclick="next()"></button>
             </div>
             
             <table class="table-calendar" id="calendar" data-lang="ja">
@@ -39,7 +40,7 @@ export default {
             
             <div class="footer-container-calendar">
                 <label for="month">日付指定：</label>
-                <select id="month" @change="jump()">
+                <select id="month" onchange="jump()">
                     <option value=0>1月</option>
                     <option value=1>2月</option>
                     <option value=2>3月</option>
@@ -53,20 +54,14 @@ export default {
                     <option value=10>11月</option>
                     <option value=11>12月</option>
                 </select>
-                <select id="year" @change="jump()"></select>
+                <select id="year" onchange="jump()"></select>
             </div>
       </div>
   
       <div is="script" src="./assets/js/menuButton.js"></div> 
-      
+      <div is="script" src="./assets/js/calendar.js"></div> 
+     
     </main>
     </div>
         `,
-
-        data () {
-            
-          },
-          methods: {
-            
-          }
 };
