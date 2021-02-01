@@ -51,6 +51,7 @@ export default {
                 } else {
                     this.message = 'テスト'
                 }
+                this.$router.push({path: '/weighGraph'});
             })
             .catch((err) => {
                 console.log(err);

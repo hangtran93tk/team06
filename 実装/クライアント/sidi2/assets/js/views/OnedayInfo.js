@@ -20,7 +20,7 @@ export default {
                     <ul>
                         <li><router-link :to="'/main'">食事</router-link></li>
                         <li><router-link :to="'/weightGraph'">体重</router-link></li>
-                        <li><a href="./advice.html">アドバイス</a></li>
+                        <li><router-link :to="'/advice'">アドバイス</router-link></li>
                         <li><a href="./menuTable.html">メニュー</a></li>
                         <li><router-link :to="'/calendar'">カレンダー</router-link></li>
                         <li><a href="./setting.html">設定</a></li>
@@ -51,19 +51,19 @@ export default {
                                 <p>全体</p>
                                 <!-- <p class="input-calories">1000kcal</p> -->
                             </button>
-                            <button class="info" @click="eatTimeChartChange('?eatTime=1') ">
+                            <button class="info" @click="eatTimeChartChange('&eatTime=1') ">
                                 <div class="icon icon-breakfast"></div>							
                                 <p class="input-calories">朝食</p>
                             </button>
-                            <button class="info" @click="eatTimeChartChange('?eatTime=2')">
+                            <button class="info" @click="eatTimeChartChange('&eatTime=2')">
                                 <div class="icon icon-lunch"></div>								
                                 <p class="input-calories">昼食</p>
                             </button>
-                            <button class="info" @click="eatTimeChartChange('?eatTime=3')">
+                            <button class="info" @click="eatTimeChartChange('&eatTime=3')">
                                 <div class="icon icon-dinner"></div>
                                 <p class="input-calories">夕食</p>
                             </button>
-                            <button class="info" @click="eatTimeChartChange('?eatTime=4')">
+                            <button class="info" @click="eatTimeChartChange('&eatTime=4')">
                                 <div class="icon icon-snack"></div>
                                 <p class="input-calories">間食</p>
                             </button>													

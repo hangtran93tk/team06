@@ -72,7 +72,7 @@ function generate_year_range(start, end) {
   
         for ( var j = 0; j < 7; j++ ) {
             var cell = document.createElement("td");
-            console.log(cell.id);
+            // console.log(cell.id);
 
             if ( i === 0 && j < firstDay ) {
                 // cell = document.createElement( "td" );
@@ -99,7 +99,7 @@ function generate_year_range(start, end) {
                     var checkdate = '?date=' + year + '-' + (month + 1) + '-' + this.innerText;
                   }
                   
-                  console.log(checkdate);
+                  // console.log(checkdate);
                   // Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + checkdate ,'GET', localStorage.getItem('access'), null)
                   // .then((res) => {
                   //   console.log(res);

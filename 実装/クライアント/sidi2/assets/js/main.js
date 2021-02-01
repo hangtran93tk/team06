@@ -8,11 +8,14 @@ import Login from './views/Login.js';
 import AccountRegister from './views/AccountRegister.js';
 import weightGraph from './views/weightGraph.js';
 import Main from './views/Main.js';
-import goalWeight from './views/goalWeight.js';
+import GoalWeight from './views/GoalWeight.js';
 import mymenuRegister from './views/mymenuRegister.js';
 import Calendar from './views/Calendar.js';
 import OnedayInfo from './views/OnedayInfo.js';
-
+import MealHistory from './views/MealHistory.js';
+import Setting from './views/Setting.js';
+import Advice from './views/Advice.js';
+import MyProfile from './views/MyProfile.js';
 
 
 const VueHighcharts = window['VueHighcharts'].default;
@@ -71,9 +74,29 @@ const VueHighcharts = window['VueHighcharts'].default;
                 component: OnedayInfo
             },
             {
+                path: '/mealHistory',
+                name: "MealHistory",
+                component: MealHistory
+            },
+            {
+                path: '/setting',
+                name: "Setting",
+                component: Setting
+            },
+            {
+                path: '/advice',
+                name: "Advice",
+                component: Advice
+            },
+            {
+                path: '/myProfile',
+                name: "MyProfile",
+                component: MyProfile
+            },
+            {
                 path: '/goalWeight',
-                name: "goalWeight",
-                component: goalWeight
+                name: "GoalWeight",
+                component: GoalWeight
             },
             {
                 path: '/mymenuRegister',

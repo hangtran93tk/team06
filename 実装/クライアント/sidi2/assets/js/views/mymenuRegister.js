@@ -7,7 +7,6 @@ export default {
     template: `
     <div id="input">
     <header role="banner">  
-    <script src="https://cdn.jsdelivr.net/npm/vue-autosuggest@2.1.1/dist/vue-autosuggest.min.js"></script>
             <link rel="stylesheet" href="./assets/css/mymenuRegister.css">
             <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
               <h1>Myメニュー登録</h1><br>
@@ -16,85 +15,56 @@ export default {
                 <img src="./assets/img/goal.png" alt="image">
               </div> -->
             </header>
-              <main role="main">
-                <label for="foodStuff" class="foodStuff">食材</label><br>
-                <div id="block" v-for="find in foodStuff">
-                  <div id="input_pluralBox">
-                    <div id="input_plural">
-                      <div id="form1">
-                      <div id="app">
-　　　　　　　　　  <vue-autosuggest
-　　　　　　　　　      v-model="selected"
-　　　　　　　　　      :suggestions="filteredOptions">
-　　　　　　　　　  </vue-autosuggest>
-　　　　　　　　　</div>
-                        <input type="search" @click="foodStuffName()" id="foodStuffName" class="form-control" placeholder="食材" style="float:left;" v-model="find.name"  @input="getFoodStuffName" autocomplete="off">
-                      </div>
-                      <input type="text"  id="gram" v-model="find.gram" >g/ml
-                      <button @click="delFoodstuff"　class="del pluralBtn">削除</button>
-                      <div id="kouhos">
-                        <ul>
-                          <li v-for="n in foodStuffList" :key="n">{{n}}</li>
-                      </div>
-                      </ul>
-                    </div>
-                  <br>
-                </div>
-              </div>
-              <button @click="addFoodstuff"　class="add pluralBtn">追加</button>
-                <div id="update">
-                  <button onclick="location.href='./menuTable.html'">登録</button>
-                  <br><br><br><br><br>
-                  <pre>{{ $data | json }}</pre>
-                </div>
-              </main>	
+
+            <h4>項目1</h4>
+            <p><input type="text" name="text1" size="30" /></p>
+            <div id="item2"></div>
+            
+            <p><input type="button" value="項目を追加する" onclick="ItemField.add();" /></p>
+            <p><input type="button" value="項目を削除する" onclick="ItemField.remove();" /></p>
+            <form>
+            <script src="/.assets/views/addForm.js"></script>
+            <script type="text/javascript">
+            ItemField.currentNumber = 1;
+            ItemField.itemTemplate
+                = '<h4>追加項目__count__</h4>'
+                + '<p><input type="text" name="text__count__" size="30" /></p>';
+            </script>
         </div>
     </div>
 
 `,
 
-//method(){
-//  this.init();
-//  $('#foodStuffName.form-control').focusin(function(){
-//    $('#kouhos').show();
-//  });
-//  $('#foodStuffName.form-control').focusout(function(){
-//    setTimeout(function(){
-//      $('#kouhos').hide();
-//    },100);
-//  });
-//  $('#kouhos').on('touchstart click','li', function(){
-//    $('#foodStuffName.form-control').val($(this).text());
-//    setTimeout(function(){
-//    $('#kouhos').hide();
-//    },100);
-//  });
-//},
+mounted(){
+  this.init();
+
+  $('#foodStuffName.form-control').focusin(function(){
+    $('#kouhos').show();
+  });
+  $('#foodStuffName.form-control').focusout(function(){
+    setTimeout(function(){
+      $('#kouhos').hide();
+    },100);
+  });
+  $('#kouhos').on('touchstart click','li', function(){
+    $('#foodStuffName.form-control').val($(this).text());
+    setTimeout(function(){
+    $('#kouhos').hide();
+    },100);
+  });
+},
 
 // 変数
 data()　{
   return{
     foodStuff: [{name: '', gram: ''}],
     findName: '',
+    findGram: '',
     foodStuffList: [],
     foodStuffItem: [],
-    selected: '',
-    options: [{
-      data: ['Canada', 'China', 'Cameroon', "Italy", "Iraq", "Iceland" ]
-    }]
   }
 },
-computed: {
-  filteredOptions() {
-    return [
-      {
-        data: this.options[0].data.filter(option => {
-          return option.toLowerCase().indexOf(this.selected.toLowerCase()) > -1;
-        })
-      }
-    ];
-  }
-},
+
 
 //　初期化
 
@@ -102,16 +72,44 @@ computed: {
 methods: {
   init() {
   },
-      // テキストボックスへ値を設定します
 
+  add : function () {
+    this.currentNumber++;
 
-  addFoodstuff: function() {
-    var food = document.getElementById('foodStuffName').value;
-    var g = document.getElementById('gram').value;
-    this.foodStuff.push({ name: food, gram: g});
+    var field = document.getElementById('item' + this.currentNumber);
 
+    var newItem = this.itemTemplate.replace(/__count__/mg, this.currentNumber);
+    field.innerHTML = newItem;
 
-    food.value = '';
+    var nextNumber = this.currentNumber + 1;
+    var new_area = document.createElement("div");
+    new_area.setAttribute("id", "item" + nextNumber);
+    field.appendChild(new_area);
+},
+remove : function () {
+    if ( this.currentNumber == 1 ) { return; }
+
+    var field = document.getElementById('item' + this.currentNumber);
+    field.removeChild(field.lastChild);
+    field.innerHTML = '';
+
+    this.currentNumber--;
+},
+
+  foodSelected : function(e){
+    foodStuff[0].name = e.target.value;
+    console.log("デバック");
+  },
+
+  addFoodstuff() {
+        var food = document.getElementById('foodStuffName').value;
+        var g = document.getElementById('gram').value;
+        this.foodStuff.push({ name: food, gram: g});
+        var TargetList = document.getElementById('foodList');
+        TargetList.value = g + TargetList.value + "g/ml" + "\n";
+        TargetList.value = food + TargetList.value;
+        
+        
   },
   
 
@@ -141,7 +139,6 @@ methods: {
          console.log(err);
        });
     }
-           
   },
 }   
 

@@ -20,10 +20,10 @@ export default {
                     <ul>
                         <li><router-link :to="'/main'">食事</router-link></li>
                         <li><router-link :to="'/weightGraph'">体重</router-link></li>
-                        <li><a href="./advice.html">アドバイス</a></li>
+                        <li><router-link :to="'/advice'">アドバイス</router-link></li>
                         <li><a href="./menuTable.html">メニュー</a></li>
                         <li><router-link :to="'/calendar'">カレンダー</router-link></li>
-                        <li><a href="./setting.html">設定</a></li>
+                        <li><router-link :to="'/setting'">設定</router-link></li>
                     </ul>
                 </nav>                
                 <h1 class="box-title">                    
@@ -87,8 +87,8 @@ export default {
 
                             <div class="box-right">
                                 <div class="content">
-                                    <button class="btn-register btn-left" onclick="img_register()">写真</button>
-                                    <button class="btn-register btn-right" onclick="location.href='./mealHistory.html'">記録</button>													
+                                    <button class="btn-register btn-left" onclick="img_register()">写真</button>                                  
+                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right">記録</router-link>							
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@ export default {
                             <div class="box-right">
                                 <div class="content">
                                     <button class="btn-register btn-left" onclick="img_register()">写真</button>
-                                    <button class="btn-register btn-right" onclick="location.href='./mealHistory.html'">記録</button>													
+                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right">記録</router-link>												
                                 </div>
                             </div>
                         </div>
@@ -140,7 +140,7 @@ export default {
                             <div class="box-right">
                                 <div class="content">
                                     <button class="btn-register btn-left" onclick="img_register()">写真</button>
-                                    <button class="btn-register btn-right" onclick="location.href='./mealHistory.html'">記録</button>													
+                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right">記録</router-link>												
                                 </div>
                             </div>
                         </div>
@@ -166,7 +166,7 @@ export default {
                             <div class="box-right">
                                 <div class="content">
                                     <button class="btn-register btn-left" onclick="img_register()">写真</button>
-                                    <button class="btn-register btn-right" onclick="location.href='./mealHistory.html'">記録</button>													
+                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right">記録</router-link>												
                                 </div>
                             </div>
                         </div>

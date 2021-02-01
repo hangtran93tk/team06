@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    background-image: url('../img/background3.png');
+    background-size: 100%;
+    background-position-y: 50%;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    height:100%;
+}
+
+header{
+    position: fixed;
+    width:100%;
+    height:30%;
+    top: 0;
+    background: #FFFEF8;   
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #63a052;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.today{
+    color: #63a052;
+    margin-top: 13%;
+    font-size: larger;
+}
+
+#wrap {
+    text-align: center;
+    margin-top: 15%;
+
+}
+
+main {
+    margin-top: 0%;
+    margin-bottom: 10%;
+}
+
+.tab{
+    position: fixed;
+    width:100%;
+    margin-top:9em;
+    background-color:  #FFFEF8;
+}
+
+.tab img{
+    width:75%;
+    height:75%;
+    margin-bottom: 10%;
+    margin-top: -10%;
+
+}
+
+.tab label{
+    width:15%;
+    height:5%;
+}
+
+table{
+   width: 100%;
+}
+
+td{
+    width:50%;
+}
+
+.tab input[type="radio"] {
+    display    : none;            /* チェックボックスは非表示 */
+}
+   
+   /* --- チェックボックス直後のlabel --- */
+.tab input[type="radio"] + label{
+    display    : inline-block; 
+    margin     : 3%;             /* labelの間隔  */
+    opacity    : 0.4;             /* 透明度       */
+    cursor     : pointer;         /* カーソル設定 */
+    transition : .2s;             /* なめらか変化 */
+    transform  : scale(0.7, 0.7); /* 少し小さく   */
+}
+   /* --- 選択されたチェックボックス直後のlabel --- */
+.tab input[type="radio"]:checked + label {
+    opacity    : 1;               /* 透明度       */
+    transform  : scale(1, 1);     /* 原寸に戻す   */
+}
+   
+   /* --- 選択されたチェックボックス直後のlabel --- */
+.tab input[type="radio"]:not(:checked) + label:hover {
+    opacity    : 0.9;             /* 透明度       */
+}
+
+
+.tabbox input{
+    display: none;
+}
+
+.tabbox2 input{
+    display: none;
+}
+
+.tab1{
+    display: inline-block;
+    border-style: solid;
+    border-color: black;
+    padding: 0.75em 1em;
+    margin-top: 3%;
+    margin-right: 100%;
+    width: 69%;
+
+}
+
+.tab2{
+    display: inline-block;
+    border-style: solid;
+    border-color: black;
+    padding: 0.75em 1em;
+    margin-right: 20%;
+    margin-top: 3%;
+    width:69.37%;
+}
+
+.tab1:hover{
+    cursor: pointer;
+}
+.tab2:hover{
+    cursor: pointer;
+}
+
+input:checked + .tab1{
+    color:white;
+    background-color:#63a052;
+    position: relative;
+
+}
+
+input:checked + .tab2{
+    color:white;
+    background-color:#63a052;
+    position: relative;
+}
+
+#tabcheck1:checked　~ #tabcontent1{
+    display: block;
+}
+
+#tabcheck2:checked　~ #tabcontent2{
+    display: block;
+}
+
+
+
+#cookingName {
+    color: #63a052;
+    font-size: large;
+    background-color:	#ffffff;
+    text-align: center;
+    height:20%;
+    width:75%;
+   
+}
+
+#noRecord{
+    height: 30%;
+    margin-bottom: 15%;
+    float: left;
+    width:50%;
+    margin-left: 1%;
+}
+
+#noRecord button {
+    background:   #81b277;
+    border: none;
+    border-radius: 50px; 
+    width: 90%;
+    height: 49px;
+
+}
+
+#record{
+    margin-bottom: 15%;
+    margin-left: 7%;
+    width:90%;
+}
+
+#record button {
+    background:   #81b277;
+    border: none;
+    border-radius: 50px; 
+    width: 50%;
+    height: 49px;
+
+}
+
+#block{
+  margin-right: 10%;
+  display: inline-block;
+  margin-bottom: 85%;
+  padding-top: 55%;
+}
+
+#block img {
+    width: 20%;
+    height: 20%;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+label{  
+    color: #0c0c0c;
+    font-size: 1rem;
+    margin-left: 5%;
+    margin-top: 12%;
+    display: inline-block;
+}
+
+button{
+    color: #f5f1da;
+    font-size: medium;
+}
+
