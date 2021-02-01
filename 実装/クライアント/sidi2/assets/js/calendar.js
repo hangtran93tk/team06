@@ -1,3 +1,4 @@
+// import Ajax from '../js/lib/Ajax.js';
 function generate_year_range(start, end) {
     var years = "";
     for (var year = start; year <= end; year++) {
@@ -92,8 +93,39 @@ function generate_year_range(start, end) {
                
 
                 cell.addEventListener("click", function() {
-                  var checkdate = year + '-' + (month + 1) + '-' + this.innerText;
+                  if((month + 1) < 10) {
+                    var checkdate = '?date=' + year + '-0' + (month + 1) + '-' + this.innerText;
+                  } else {
+                    var checkdate = '?date=' + year + '-' + (month + 1) + '-' + this.innerText;
+                  }
+                  
                   console.log(checkdate);
+                  // Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + checkdate ,'GET', localStorage.getItem('access'), null)
+                  // .then((res) => {
+                  //   console.log(res);
+                  // })
+                  // .catch((err) => {
+                  //     console.log(err);
+                  // });
+                  var xhr = new XMLHttpRequest();
+                 
+                  xhr.open('GET', 'http://192.168.1.10:8000/menu/get-MenuInfo/' + checkdate);
+                  xhr.setRequestHeader('Authorization',`JWT ` + localStorage.getItem('access'));
+
+                  xhr.send();
+ 
+                  xhr.onreadystatechange = function() {
+                  if(xhr.readyState === 4 && xhr.status === 200) {
+                    console.log( xhr.responseText );
+                    if(xhr.responseText != '[]') {
+                      location.replace("http://192.168.1.10/#/onedayInfo");
+                      sessionStorage.setItem('checkdate',checkdate);
+                    } else {
+                      alert('No Infomation');
+                    }
+                    
+                  }
+                  }
                 });
   
                 if ( date === today.getDate() && year === today.getFullYear() && month === today.getMonth() ) {

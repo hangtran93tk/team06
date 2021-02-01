@@ -11,6 +11,7 @@ import Main from './views/Main.js';
 import goalWeight from './views/goalWeight.js';
 import mymenuRegister from './views/mymenuRegister.js';
 import Calendar from './views/Calendar.js';
+import OnedayInfo from './views/OnedayInfo.js';
 
 
 
@@ -63,6 +64,11 @@ const VueHighcharts = window['VueHighcharts'].default;
                 path: '/calendar',
                 name: "Calendar",
                 component: Calendar
+            },
+            {
+                path: '/onedayInfo',
+                name: "OnedayInfo",
+                component: OnedayInfo
             },
             {
                 path: '/goalWeight',

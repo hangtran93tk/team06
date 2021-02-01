@@ -1,7 +1,6 @@
 import Ajax from '../lib/Ajax.js';
 
 
-
 export default {
     // テンプレート //================//
     template: `

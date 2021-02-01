@@ -27,9 +27,9 @@ export default {
                     </ul>
                 </nav>                
                 <h1 class="box-title">                    
-                    <p class="date-pre icon-date" @click="previousDate()"></p>
+                   
                     <p class="txt-tile date">{{ year }}年{{ month }}月{{ date }}日</p>
-                    <p class="date-next icon-date" @click="nextDate()"></p>
+                    
                 </h1>   
             </header>
 
@@ -85,12 +85,7 @@ export default {
                                 </div>
                             </div>
 
-                            <div class="box-right">
-                                <div class="content">
-                                    <button class="btn-register btn-left" onclick="img_register()">写真</button>
-                                    <button class="btn-register btn-right" onclick="location.href='./mealHistory.html'">記録</button>													
-                                </div>
-                            </div>
+                           
                         </div>
                         <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 1">
                           <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
@@ -111,12 +106,7 @@ export default {
                                     <span class="name">昼食</span>
                                 </div>
                             </div>
-                            <div class="box-right">
-                                <div class="content">
-                                    <button class="btn-register btn-left" onclick="img_register()">写真</button>
-                                    <button class="btn-register btn-right" onclick="location.href='./mealHistory.html'">記録</button>													
-                                </div>
-                            </div>
+                           
                         </div>
                         <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 2">
                           <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
@@ -137,12 +127,7 @@ export default {
                                     <span class="name">晩食</span>
                                 </div>
                             </div>
-                            <div class="box-right">
-                                <div class="content">
-                                    <button class="btn-register btn-left" onclick="img_register()">写真</button>
-                                    <button class="btn-register btn-right" onclick="location.href='./mealHistory.html'">記録</button>													
-                                </div>
-                            </div>
+                           
                         </div>
                         <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 3">
                           <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
@@ -163,12 +148,7 @@ export default {
                                     <span class="name">間食</span>
                                 </div>
                             </div>
-                            <div class="box-right">
-                                <div class="content">
-                                    <button class="btn-register btn-left" onclick="img_register()">写真</button>
-                                    <button class="btn-register btn-right" onclick="location.href='./mealHistory.html'">記録</button>													
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 4">
                           <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
@@ -223,11 +203,11 @@ export default {
               showDialog: false,
               ActiveBtn: false,
               percent: null,
-              year : new Date().getFullYear(),
-              month: new Date().getMonth() + 1,
-              date: new Date().getDate(),
+              year : sessionStorage.getItem('checkdate').substring(6,10),
+              month: sessionStorage.getItem('checkdate').substring(11,13),
+              date: sessionStorage.getItem('checkdate').substring(14,16),
               userEatInfos: [], //　menu/get-MenuInfo　の値を格納する
-              // testdate: "?date=2020-12-28",
+              testdate: sessionStorage.getItem('checkdate'),
               
       
               // Vue HighCharts
@@ -300,8 +280,8 @@ export default {
                   this.goalKcal = res[0].kcal;
                   let lineCharts = this.$refs.lineCharts
                   lineCharts.delegateMethod('showLoading', 'Loading...');
-                  Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/','GET', localStorage.getItem('access'), null)
-                  // Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + this.testdate ,'GET', localStorage.getItem('access'), null) // 過去のきろく取りたいとき
+                //   Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/','GET', localStorage.getItem('access'), null)
+                  Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + this.testdate ,'GET', localStorage.getItem('access'), null) // 過去のきろく取りたいとき
                   .then((res) => {
                     console.log(res);
                     this.userEatInfos = res;
@@ -350,7 +330,7 @@ export default {
               lineCharts.removeSeries();
               lineCharts.delegateMethod('showLoading', 'Loading...');
               this.loading = true;
-              Ajax('http://192.168.1.10:8000/menu/get-MenuInfo' + parameter,'GET', localStorage.getItem('access'), null )
+              Ajax('http://192.168.1.10:8000/menu/get-MenuInfo' + this.testdate + parameter,'GET', localStorage.getItem('access'), null )
                 .then((res) => {
                   this.userEatInfos = res;
                   for(let i = 0; i < this.dataEat.length; i++) {
