@@ -88,7 +88,7 @@ export default {
                             <div class="box-right">
                                 <div class="content">
                                     <button class="btn-register btn-left" onclick="img_register()">写真</button>                                  
-                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right">記録</router-link>							
+                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(1)">記録</router-link>							
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@ export default {
                             <div class="box-right">
                                 <div class="content">
                                     <button class="btn-register btn-left" onclick="img_register()">写真</button>
-                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right">記録</router-link>												
+                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(2)">記録</router-link>												
                                 </div>
                             </div>
                         </div>
@@ -140,7 +140,7 @@ export default {
                             <div class="box-right">
                                 <div class="content">
                                     <button class="btn-register btn-left" onclick="img_register()">写真</button>
-                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right">記録</router-link>												
+                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(3)">記録</router-link>												
                                 </div>
                             </div>
                         </div>
@@ -166,7 +166,7 @@ export default {
                             <div class="box-right">
                                 <div class="content">
                                     <button class="btn-register btn-left" onclick="img_register()">写真</button>
-                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right">記録</router-link>												
+                                    <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(4)">記録</router-link>												
                                 </div>
                             </div>
                         </div>
@@ -228,7 +228,7 @@ export default {
               date: new Date().getDate(),
               userEatInfos: [], //　menu/get-MenuInfo　の値を格納する
               // testdate: "?date=2020-12-28",
-              
+             
       
               // Vue HighCharts
               options: {
@@ -370,6 +370,10 @@ export default {
                 .catch((err) => {
                   console.log(err);
                 });
+            },
+            setEatTime(eatTime) {
+              sessionStorage.setItem('eatTime', eatTime);
+             console.log(eatTime);
             }
 
           }
