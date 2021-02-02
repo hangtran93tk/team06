@@ -167,23 +167,6 @@ input:checked + .tab2{
    
 }
 
-#noRecord{
-    height: 30%;
-    margin-bottom: 15%;
-    float: left;
-    width:50%;
-    margin-left: 1%;
-}
-
-#noRecord button {
-    background:   #81b277;
-    border: none;
-    border-radius: 50px; 
-    width: 90%;
-    height: 49px;
-
-}
-
 #record{
     margin-bottom: 15%;
     margin-left: 7%;
@@ -196,13 +179,10 @@ input:checked + .tab2{
     border-radius: 50px; 
     width: 50%;
     height: 49px;
-
+    margin-top: 72px;
 }
 
 #block{
-  margin-right: 10%;
-  display: inline-block;
-  margin-bottom: 85%;
   padding-top: 55%;
 }
 

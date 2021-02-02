@@ -167,27 +167,14 @@ input:checked + .tab2{
    
 }
 
-#noRecord{
-    height: 30%;
-    margin-bottom: 15%;
-    float: left;
-    width:50%;
-    margin-left: 1%;
-}
-
-#noRecord button {
-    background:   #81b277;
-    border: none;
-    border-radius: 50px; 
-    width: 90%;
-    height: 49px;
-
-}
-
 #record{
-    margin-bottom: 15%;
-    margin-left: 7%;
-    width:90%;
+    margin: auto 0;
+    width: 100%;
+    position: fixed; 
+    z-index: 1;
+    bottom: 0;
+    background-color: rgba(255, 254, 248, .7);
+
 }
 
 #record button {
@@ -196,14 +183,15 @@ input:checked + .tab2{
     border-radius: 50px; 
     width: 50%;
     height: 49px;
-
+    margin: 16px 0;
 }
 
 #block{
-  margin-right: 10%;
-  display: inline-block;
-  margin-bottom: 85%;
   padding-top: 55%;
+  z-index: 2;
+}
+.block1 {
+    border: 1px solid #FAE5D3;
 }
 
 #block img {
@@ -211,16 +199,23 @@ input:checked + .tab2{
     height: 20%;
     margin-left: 5%;
     margin-top: 5%;
+    border: 2px solid #000000;
 }
 
 label{  
     color: #0c0c0c;
-    font-size: 1rem;
-    margin-left: 5%;
-    margin-top: 12%;
+    font-size: 1.1rem;
     display: inline-block;
+    margin: 8px 0;
 }
-
+.label-name {
+    width: 250px;
+    font-weight: bold;
+}
+.label-kcal {
+    width: 50px;
+    font-weight: bold;
+}
 button{
     color: #f5f1da;
     font-size: medium;

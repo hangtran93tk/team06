@@ -13,14 +13,20 @@
 				<input type="text"  id="cookingName"placeholder="料理名を検索">
 				<table>
 					<tr>
-					<td><div class="tabbox">
+					<td>
+						<div class="tabbox">
 							<input type="radio" name="tabset" id="tabcheck1" checked>
-							<label for="tabcheck1" class="tab1">Myメニュー</label></td>
+							<label for="tabcheck1" class="tab1">Myメニュー</label>
 						</div>
-					<td><div class="tabbox2">
+					</td>
+						
+					<td>
+						<div class="tabbox2">
 							<input type="radio" name="tabset" id="tabcheck2">
-							<label for="tabcheck2" class="tab2">食事履歴</label></td>
+							<label for="tabcheck2" class="tab2">食事履歴</label>
 						</div>
+					</td>
+						
 					</tr>
 				</table>
 			</header>
@@ -36,12 +42,26 @@
 					<label for="i4" class="tab3"><img src="./assets/img/coffee-breaks.png"   alt="間食"></label>
 				</div>
 				<div id="block">
-					<img src="./assets/img/goal.png" alt="image"  style="float:left;">
-					<label for="menuName">5品目ミックスサラダ</label>
-					<label for="kcal">3kcal</label>
-				</div>
-				<div id="noRecord">
-					<button onclick="location.href='./main.html'">食べなかった</button>
+					<div class="block1">
+						<input type="checkbox" id="menuname1" value="menuname">						
+						<label for="menuname1">5品目ミックスサラダ</label>
+						<label for="menuname1">3kcal</label>
+					</div>
+					<div class="block1">
+						<input type="checkbox" id="menuname2" value="menuname">						
+						<label for="menuname2">5品目ミックスサラダ</label>
+						<label for="menuname2">3kcal</label>
+					</div>		
+					<div class="block1">
+						<input type="checkbox" id="menuname3" value="menuname">						
+						<label for="menuname3">5品目ミックスサラダ</label>
+						<label for="menuname3">3kcal</label>
+					</div>	
+					<div class="block1">
+						<input type="checkbox" id="menuname4" value="menuname">						
+						<label for="menuname4">5品目ミックスサラダ</label>
+						<label for="menuname4">3kcal</label>
+					</div>			
 				</div>
 
 				<div id="record">
