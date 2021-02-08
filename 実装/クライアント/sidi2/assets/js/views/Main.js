@@ -87,7 +87,7 @@ export default {
 
                             <div class="box-right">
                                 <div class="content">
-                                    <button class="btn-register btn-left" onclick="img_register()">写真</button>                                  
+                                    <button class="btn-register btn-left" @click="showDialog = true">写真</button>                                  
                                     <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(1)">記録</router-link>							
                                 </div>
                             </div>
@@ -113,7 +113,7 @@ export default {
                             </div>
                             <div class="box-right">
                                 <div class="content">
-                                    <button class="btn-register btn-left" onclick="img_register()">写真</button>
+                                    <button class="btn-register btn-left" @click="showDialog = true">写真</button>
                                     <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(2)">記録</router-link>												
                                 </div>
                             </div>
@@ -139,7 +139,7 @@ export default {
                             </div>
                             <div class="box-right">
                                 <div class="content">
-                                    <button class="btn-register btn-left" onclick="img_register()">写真</button>
+                                    <button class="btn-register btn-left" @click="showDialog = true">写真</button>
                                     <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(3)">記録</router-link>												
                                 </div>
                             </div>
@@ -165,7 +165,7 @@ export default {
                             </div>
                             <div class="box-right">
                                 <div class="content">
-                                    <button class="btn-register btn-left" onclick="img_register()">写真</button>
+                                    <button class="btn-register btn-left" @click="showDialog = true">写真</button>
                                     <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(4)">記録</router-link>												
                                 </div>
                             </div>
@@ -184,17 +184,22 @@ export default {
                     
                   </div>
                 </div>
-                <dialog id="select-photo">
+                <div v-if="showDialog" id="select-photo-dialog">
                     <ul>						
                         <li>
                             <label for="file" id="library">ライブラリから選択</label>
-                            <input type="file" name="file" id="file" class="inputfile" />
+                            <input type="file" name="file" id="file" class="inputfile" @change="onFileChange" />
                         </li>
                         <li>
                             <label id="take-photo"><a class="label-select-photo" href="./selectPhoto.html">写真を撮る</a> </label>
                         </li>						
                     </ul>					
-                </dialog>									
+                </div>	
+                <div class="select-photo" v-if="showPreviewImage">	
+                  <img :src="url" />
+                  <button class="select-photo-btn cancel" @click="showPreviewImage = false" >キャンセル</button>
+				          <button class="select-photo-btn ok" @click="uploadFile" >決定</button>
+                </div>							
             </main>	
         </div>
         <div is="script" src="./assets/js/menuButton.js"></div>  
@@ -228,6 +233,9 @@ export default {
               date: new Date().getDate(),
               userEatInfos: [], //　menu/get-MenuInfo　の値を格納する
               // testdate: "?date=2020-12-28",
+              showDialog: false,
+              showPreviewImage: false,
+              selectedFile: null,
              
       
               // Vue HighCharts
@@ -374,6 +382,24 @@ export default {
             setEatTime(eatTime) {
               sessionStorage.setItem('eatTime', eatTime);
              console.log(eatTime);
+            },
+            onFileChange(e) {
+              this.showDialog = false;
+              this.showPreviewImage = true;
+              const file = e.target.files[0];
+              this.url = URL.createObjectURL(file);
+            },
+            uploadFile() {
+              const formData = new FormData();
+              formData.append('myFile', this.selectedFile,this.selectedFile.name)
+              Ajax('http://192.168.1.10:8000/img/image/classification/','POST', localStorage.getItem('access'), formData )
+                .then((res) => {
+                  console.log(res);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+
             }
 
           }
