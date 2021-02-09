@@ -195,10 +195,10 @@ export default {
                         </li>						
                     </ul>					
                 </div>	
-                <div class="select-photo" v-if="showPreviewImage">	
+                <div class="select-photo" v-if="showPreviewImage">
                   <img :src="url" />
                   <button class="select-photo-btn cancel" @click="showPreviewImage = false" >キャンセル</button>
-				          <button class="select-photo-btn ok" @click="uploadFile" >決定</button>
+                  <button class="select-photo-btn ok" @click="uploadFile" >決定</button>
                 </div>							
             </main>	
         </div>
@@ -235,7 +235,8 @@ export default {
               // testdate: "?date=2020-12-28",
               showDialog: false,
               showPreviewImage: false,
-              selectedFile: null,
+              file: null,
+              file_name: null,
              
       
               // Vue HighCharts
@@ -383,18 +384,28 @@ export default {
               sessionStorage.setItem('eatTime', eatTime);
              console.log(eatTime);
             },
+            //選択した画像を表示する
             onFileChange(e) {
               this.showDialog = false;
               this.showPreviewImage = true;
-              const file = e.target.files[0];
-              this.url = URL.createObjectURL(file);
+              this.file = e.target.files[0];
+              this.file_name = this.file.name;
+              this.url = URL.createObjectURL(this.file);
+            //  console.log(this.file_name);
             },
+            //サーバーへ画像を送信する
             uploadFile() {
               const formData = new FormData();
-              formData.append('myFile', this.selectedFile,this.selectedFile.name)
-              Ajax('http://192.168.1.10:8000/img/image/classification/','POST', localStorage.getItem('access'), formData )
-                .then((res) => {
+              console.log(this.file_name);
+              // formData.append('myFile', this.selectedFile,this.selectedFile.name)
+              formData.append('image', this.file, this.file_name);
+              console.log('>>>>>>',formData);
+              Ajax('http://192.168.1.10:8000/menu/Image/','POST', localStorage.getItem('access'), formData, {
+                contentType: 'multipart/form-data'
+              } )
+                .then((res) =>{
                   console.log(res);
+
                 })
                 .catch((err) => {
                   console.log(err);
