@@ -16,6 +16,8 @@ import MealHistory from './views/MealHistory.js';
 import Setting from './views/Setting.js';
 import Advice from './views/Advice.js';
 import MyProfile from './views/MyProfile.js';
+import AnaPhoto from './views/AnaPhoto.js';
+import SearchFoodName from './views/SearchFoodName.js';
 
 
 const VueHighcharts = window['VueHighcharts'].default;
@@ -62,6 +64,16 @@ const VueHighcharts = window['VueHighcharts'].default;
                 name: 'Main', 
                 query: { auth: '' }, 
                 component: Main 
+            },
+            { 
+                path: '/anaPhoto', 
+                name: 'AnaPhoto', 
+                component: AnaPhoto
+            },
+            {
+                path: '/searchFoodName',
+                name: "SearchFoodName",
+                component: SearchFoodName
             },
             {
                 path: '/calendar',

@@ -198,7 +198,7 @@ export default {
                 <div class="select-photo" v-if="showPreviewImage">
                   <img :src="url" />
                   <button class="select-photo-btn cancel" @click="showPreviewImage = false" >キャンセル</button>
-                  <button class="select-photo-btn ok" @click="uploadFile" >決定</button>
+                  <router-link to="/anaPhoto" tag="button"  class="select-photo-btn ok" @click.native="uploadFile">決定</router-link>												
                 </div>							
             </main>	
         </div>
@@ -237,6 +237,8 @@ export default {
               showPreviewImage: false,
               file: null,
               file_name: null,
+              url: null,
+              foodNames:[],
              
       
               // Vue HighCharts
@@ -391,6 +393,7 @@ export default {
               this.file = e.target.files[0];
               this.file_name = this.file.name;
               this.url = URL.createObjectURL(this.file);
+              sessionStorage.setItem('imgUrl', this.url);
             //  console.log(this.file_name);
             },
             //サーバーへ画像を送信する
@@ -404,7 +407,10 @@ export default {
                 contentType: 'multipart/form-data'
               } )
                 .then((res) =>{
-                  console.log(res);
+                  // console.log(res);
+                  this.foodNames = res;
+                  sessionStorage.setItem('foodNames',this.foodNames);
+                  console.log(this.foodNames);
 
                 })
                 .catch((err) => {

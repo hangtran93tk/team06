@@ -1,145 +1,55 @@
-import Ajax from '../lib/Ajax.js';
-
-// import User from '../lib/User';
 export default {
-  
-    //テンプレート//
-    template: `
-    <div id="input">
-      <div class="wrap">
-        <header role="banner">   
-          <link rel="stylesheet" href="./assets/css/anaPhoto.css">
-          <img src="./assets/img/meal_photo2.png" alt="meal photo2">              
-        </header>
-      <main role="main">
-        <section class="select_meal">                    
-          <ul>
-              <li>全体</li>
-              <li>味噌汁</li>
-              <li>トマトスープ</li>
-              <li>オニオンスープ</li>
-              <li class="search" onclick="location.href='./searchMenu.html'">メニューを検索</li>
-          </ul>
-        </section>
-        <section class="select_meal">                    
-          <ul>
-              <li>①</li>
-              <li>味噌汁</li>
-              <li>トマトスープ</li>
-              <li>オニオンスープ</li>
-              <li class="search" onclick="location.href='./searchMenu.html'">メニューを検索</li>
-          </ul>
-        </section>
-        <section class="select_meal">                    
-            <ul>
-                <li>②</li>
-                <li>味噌汁</li>
-                <li>トマトスープ</li>
-                <li>オニオンスープ</li>
-                <li class="search" onclick="location.href='./searchMenu.html'">メニューを検索</li>
-            </ul>
-        </section>
-        <section class="select_meal">
-          <ul>
-              <li>③</li>
-              <li>味噌汁</li>
-              <li>トマトスープ</li>
-              <li>オニオンスープ</li>
-              <li class="search" onclick="location.href='./searchMenu.html'">メニューを検索</li>
-          </ul>
-        </section>
-        <section class="select_meal">
-          <ul>
-              <li>④</li>
-              <li>味噌汁</li>
-              <li>トマトスープ</li>
-              <li>オニオンスープ</li>
-              <li class="search" onclick="location.href='./searchMenu.html'">メニューを検索</li>
-          </ul>
-        </section>
-      </main>
-      <footer>
-          <button onclick="location.href='./main.html'">記録</button>
-      </footer>           
-    </div>
-    
-    `,
-    // 変数
-    data()　{
-      return{
+  template: `
+  <div class="wrap">
+  <link rel="stylesheet" href="./assets/css/anaPhoto.css">
+            <header role="banner">   
+                <img :src="url" />            
+            </header>
+            <main role="main">
+                <section class="select-meal">
 
-      }
-    },
-    //　初期化
-    mounted(){
-      this.init();
-    },
-    methods: {
-      init() {
+                <div class="show-food-name" v-for="foodName in foodNames" :key="foodName.id">
+                  <input type="radio" :id="foodName.id" :name="foodName.label" >
+                  <label :for="foodName.id" class="food-name-label">{{foodName.label}}</label>
+                </div>	
 
-        // let lineCharts = this.$refs.lineCharts
-        // lineCharts.delegateMethod('showLoading', 'Loading...');
-        // this.loading = true;
-        // Ajax(this.userWeightURL,'GET', localStorage.getItem('access'), null )
-        //   .then((res) => {
-        //     this.userWeight = res;
-        //     for(let i = 0; i < this.userWeight.length; i++) {
-        //       this.dataDate.push(this.userWeight[i].date);
-        //       this.dataWeight.push(this.userWeight[i].weight);
-        //     }
-        //     lineCharts.addSeries({name:"体重", showInLegend: false,  data: this.dataWeight} );
-        //     lineCharts.getChart().xAxis[0].setCategories(this.dataDate);
-        //     lineCharts.hideLoading();
-        //     this.loading = false;
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   });
-        // Ajax("http://192.168.1.10:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
-        //   .then((res) => {
-        //     this.goal_weight = res.goal_weight;
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   });
-        //   Ajax('http://192.168.1.10:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
-        //   .then((res) => {
-        //      console.log(res);
-        //      this.goal_kcal = res[0].kcal;
-        //   })
-        //   .catch((err) => {
-        //      console.log(err);
-        //    });
+                <div class="show-food-name">                        
+                    <input type="radio" id="food-name1" name="food-name" value="1" >
+                    <label for="food-name1" class="food-name-label">白飯</label>
+                </div>  
 
-      },
-      // ボタン押されたときの処理
-      // weightChartChange(parameter){
-      //   let lineCharts = this.$refs.lineCharts
-      //   lineCharts.removeSeries();
-      //   lineCharts.delegateMethod('showLoading', 'Loading...');
-      //   this.loading = true;
-      //   Ajax(this.userWeightURL + parameter,'GET', localStorage.getItem('access'), null )
-      //     .then((res) => {
-      //       this.userWeight = res;
-      //       this.dataDate.splice(1);
-      //       this.dataWeight.splice(0);
-      //       console.log(this.userWeight);
-      //       for(let i = 0; i < this.userWeight.length; i++) {
-      //         this.dataDate.push(this.userWeight[i].date);
-      //         this.dataWeight.push(this.userWeight[i].weight);
-      //       }
-      //       lineCharts.addSeries({name:"体重", showInLegend: false,  data: this.dataWeight} );
-      //       lineCharts.getChart().xAxis[0].setCategories(this.dataDate);
-      //       lineCharts.hideLoading();
-      //       this.loading = false;
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //     });
-      // },
+                <div class="show-food-name">  
+                    <input type="radio" id="food-name2" name="food-name" value="2" >
+                    <label for="food-name2" class="food-name-label">五目御飯</label>
+                </div>
+
+                <div class="show-food-name">
+                    <input type="radio" id="food-name3" name="food-name" value="3" >
+                    <label for="food-name3" class="food-name-label">わかめご飯</label>
+                </div>
+
+                <div class="show-food-name">
+                    <input type="radio" id="food-name4" name="food-name" value="4" >
+                    <label for="food-name4" class="food-name-label">エビピラフ</label>
+                </div>
+
+                <div class="show-food-name">
+                    <input type="radio" id="food-name5" name="food-name" value="5" >
+                    <label for="food-name5" class="food-name-label">ドライカレー</label>
+                </div>
+                    <router-link to="/searchFoodName" tag="button"  class="search-food-name" >メニュー検索</router-link>	
+                </section>
+            </main>
+            <footer>
+                <button class="register-meal" onclick="location.href='./main.html'">記録</button>
+            </footer>           
+        </div>
+  `,
+  data() {
+    return {
+      url: sessionStorage.getItem('imgUrl'),
+      foodNames: sessionStorage.getItem('foodNames')
     }
-    
+  }
 };
-
-
 

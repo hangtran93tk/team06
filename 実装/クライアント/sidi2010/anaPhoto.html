@@ -13,21 +13,36 @@
             </header>
             <main role="main">
                 <section class="select-meal">
-                    <input type="radio" id="food-name" name="food-name" value="1" v-model="picked">
-                    <label for="1" class="food-name-label">白飯</label>
-                    <input type="radio" id="food-name" name="food-name" value="2" v-model="picked">
-                    <label for="2" class="food-name-label">五目御飯</label>
-                    <input type="radio" id="food-name" name="food-name" value="3" v-model="picked">
-                    <label for="3" class="food-name-label">わかめご飯</label>
-                    <input type="radio" id="food-name" name="food-name" value="4" v-model="picked">
-                    <label for="4" class="food-name-label">エビピラフ</label>
-                    <input type="radio" id="food-name" name="food-name" value="5" v-model="picked">
-                    <label for="5" class="food-name-label">ドライカレー</label>
-                    <button onclick="location.href='./searchMenu.html'">メニュー検索</button>
+                <div class="show-food-name">                        
+                    <input type="radio" id="food-name1" name="food-name" value="1" v-model="picked">
+                    <label for="food-name1" class="food-name-label">白飯</label>
+                </div>  
+
+                <div class="show-food-name">  
+                    <input type="radio" id="food-name2" name="food-name" value="2" v-model="picked">
+                    <label for="food-name2" class="food-name-label">五目御飯</label>
+                </div>
+
+                <div class="show-food-name">
+                    <input type="radio" id="food-name3" name="food-name" value="3" v-model="picked">
+                    <label for="food-name3" class="food-name-label">わかめご飯</label>
+                </div>
+
+                <div class="show-food-name">
+                    <input type="radio" id="food-name4" name="food-name" value="4" v-model="picked">
+                    <label for="food-name4" class="food-name-label">エビピラフ</label>
+                </div>
+
+                <div class="show-food-name">
+                    <input type="radio" id="food-name5" name="food-name" value="5" v-model="picked">
+                    <label for="food-name5" class="food-name-label">ドライカレー</label>
+                </div>
+
+                    <button class="search-food-name" onclick="location.href='./searchMenu.html'">メニュー検索</button>
                 </section>
             </main>
             <footer>
-                <button onclick="location.href='./main.html'">記録</button>
+                <button class="register-meal" onclick="location.href='./main.html'">記録</button>
             </footer>           
         </div>
     </body>
