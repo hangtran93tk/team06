@@ -394,24 +394,26 @@ export default {
               this.file_name = this.file.name;
               this.url = URL.createObjectURL(this.file);
               sessionStorage.setItem('imgUrl', this.url);
-            //  console.log(this.file_name);
             },
             //サーバーへ画像を送信する
             uploadFile() {
               const formData = new FormData();
-              console.log(this.file_name);
-              // formData.append('myFile', this.selectedFile,this.selectedFile.name)
               formData.append('image', this.file, this.file_name);
-              console.log('>>>>>>',formData);
+              // console.log('>>>>>>',formData);
               Ajax('http://192.168.1.10:8000/menu/Image/','POST', localStorage.getItem('access'), formData, {
                 contentType: 'multipart/form-data'
               } )
                 .then((res) =>{
-                  // console.log(res);
-                  this.foodNames = res;
-                  sessionStorage.setItem('foodNames',this.foodNames);
-                  console.log(this.foodNames);
-
+                  console.log(res);
+                  for(let i = 0; i < res.length; i++) {
+                    this.foodNames[i] = res[i];
+                    sessionStorage.setItem( this.foodNames[i].rank ,JSON.stringify(this.foodNames));
+                    console.log(this.foodNames[i]);
+                    console.log(this.foodNames[i].rank);
+                  }
+                  // this.foodNames = res;
+                  // sessionStorage.setItem('foodNames', JSON.stringify(this.foodNames));
+                  
                 })
                 .catch((err) => {
                   console.log(err);
