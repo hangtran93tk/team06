@@ -81,6 +81,7 @@ export default {
                   Ajax('http://192.168.1.10:8000/menu/get-Menu/' + value,'GET', localStorage.getItem('access'), null)
                   .then((res) => {
                      console.log(res);
+                     this.menus = res;
                   })
                   .catch((err) => {
                      console.log(err);

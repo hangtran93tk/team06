@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    background-image: url('../img/background3.png');
+    background-size: 100%;
+    background-position-y: 50%;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    height:100%;
+}
+
+header{
+    position: fixed;
+    width:100%;
+    height: 175px;
+    top: 0;
+    background: #FFFEF8;   
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #63a052;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+#wrap {
+    text-align: center;
+    margin-top: 15%;
+
+}
+
+main {
+    margin-top: 0%;
+    margin-bottom: 10%;
+}
+
+
+input:checked + .tab1{
+    color:white;
+    background-color:#63a052;
+    position: relative;
+
+}
+
+input:checked + .tab2{
+    color:white;
+    background-color:#63a052;
+    position: relative;
+}
+
+
+
+#cookingName {
+    color: #63a052;
+    font-size: large;
+    background-color:	#ffffff;
+    text-align: center;
+    height: 50px;
+    width: 300px
+   
+}
+
+#record{
+    margin: auto 0;
+    width: 100%;
+    position: fixed; 
+    z-index: 1;
+    bottom: 0;
+    background-color: rgba(255, 254, 248, .7);
+
+}
+
+#record button {
+    background:   #81b277;
+    border: none;
+    border-radius: 50px; 
+    width: 50%;
+    height: 49px;
+    margin: 16px 0;
+}
+
+#block{
+  padding-top: 35%;
+  z-index: 2;
+}
+.block1 {
+    border: 1px solid #FAE5D3;
+}
+
+#block img {
+    width: 20%;
+    height: 20%;
+    margin-left: 5%;
+    margin-top: 5%;
+    border: 2px solid #000000;
+}
+
+label{  
+    color: #0c0c0c;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin: 8px 0;
+}
+.label-name {
+    width: 250px;
+    font-weight: bold;
+}
+.label-kcal {
+    width: 50px;
+    font-weight: bold;
+}
+button{
+    color: #f5f1da;
+    font-size: medium;
+}
+
