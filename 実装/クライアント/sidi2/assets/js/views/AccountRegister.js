@@ -71,7 +71,7 @@ export default {
         <div class="modal" v-if="regis_comp">
         <div class="wrap">
             <p>{{ message }}</p>
-            <router-link to="/" class="btn">TOPへ戻る</router-link>
+            <router-link to="/" class="btn">OK</router-link>
         </div>
     </div>
     </div>

@@ -397,6 +397,7 @@ export default {
             },
             //サーバーへ画像を送信する
             uploadFile() {
+              
               const formData = new FormData();
               formData.append('image', this.file, this.file_name);
               // console.log('>>>>>>',formData);
@@ -407,7 +408,7 @@ export default {
                   console.log(res);
                   for(let i = 0; i < res.length; i++) {
                     this.foodNames[i] = res[i];
-                    sessionStorage.setItem( this.foodNames[i].rank ,JSON.stringify(this.foodNames));
+                    sessionStorage.setItem( this.foodNames[i].rank ,JSON.stringify(this.foodNames[i]));
                     console.log(this.foodNames[i]);
                     console.log(this.foodNames[i].rank);
                   }

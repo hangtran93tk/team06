@@ -17,7 +17,8 @@ export default {
               <label :for="menu.id" class="label-name">{{menu.jp_name}}</label>
               <label :for="menu.id" class="label-kcal">{{menu.kcal}}kcal</label>
           </div> 
-        </div>      
+        </div>
+              
           <div id="record">
             <button onclick="location.href='./main.html'">記録</button>
           </div>
@@ -25,7 +26,8 @@ export default {
       </div>
     </div>
     
-    `
+    `,
+   
 };
 
 

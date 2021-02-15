@@ -17,7 +17,7 @@ import Setting from './views/Setting.js';
 import Advice from './views/Advice.js';
 import MyProfile from './views/MyProfile.js';
 import AnaPhoto from './views/AnaPhoto.js';
-import SearchFoodName from './views/SearchFoodName.js';
+import SearchFoodName from './views/SearchTest.js';
 
 
 const VueHighcharts = window['VueHighcharts'].default;

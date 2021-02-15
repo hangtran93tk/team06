@@ -99,14 +99,7 @@ function generate_year_range(start, end) {
                     var checkdate = '?date=' + year + '-' + (month + 1) + '-' + this.innerText;
                   }
                   
-                  console.log(checkdate);
-                  // Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + checkdate ,'GET', localStorage.getItem('access'), null)
-                  // .then((res) => {
-                  //   console.log(res);
-                  // })
-                  // .catch((err) => {
-                  //     console.log(err);
-                  // });
+                  // console.log(checkdate);
                   var xhr = new XMLHttpRequest();
                  
                   xhr.open('GET', 'http://192.168.1.10:8000/menu/get-MenuInfo/' + checkdate);
@@ -121,7 +114,7 @@ function generate_year_range(start, end) {
                       location.replace("http://192.168.1.10/#/onedayInfo");
                       sessionStorage.setItem('checkdate',checkdate);
                     } else {
-                      alert('No Infomation');
+                      alert('選択した日がデータがありません');
                     }
                     
                   }
