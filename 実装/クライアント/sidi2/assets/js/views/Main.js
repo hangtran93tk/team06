@@ -87,7 +87,7 @@ export default {
 
                             <div class="box-right">
                                 <div class="content">
-                                    <button class="btn-register btn-left" @click="showDialog = true">写真</button>                                  
+                                    <button class="btn-register btn-left" @click="showDialog = true, setEatTime(1)">写真</button>                                  
                                     <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(1)">記録</router-link>							
                                 </div>
                             </div>
@@ -113,7 +113,7 @@ export default {
                             </div>
                             <div class="box-right">
                                 <div class="content">
-                                    <button class="btn-register btn-left" @click="showDialog = true">写真</button>
+                                    <button class="btn-register btn-left" @click="showDialog = true, setEatTime(2)">写真</button>
                                     <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(2)">記録</router-link>												
                                 </div>
                             </div>
@@ -139,7 +139,7 @@ export default {
                             </div>
                             <div class="box-right">
                                 <div class="content">
-                                    <button class="btn-register btn-left" @click="showDialog = true">写真</button>
+                                    <button class="btn-register btn-left" @click="showDialog = true, setEatTime(3)">写真</button>
                                     <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(3)">記録</router-link>												
                                 </div>
                             </div>
@@ -165,7 +165,7 @@ export default {
                             </div>
                             <div class="box-right">
                                 <div class="content">
-                                    <button class="btn-register btn-left" @click="showDialog = true">写真</button>
+                                    <button class="btn-register btn-left" @click="showDialog = true, setEatTime(4)">写真</button>
                                     <router-link to="/mealHistory" tag="button"  class="btn-register btn-right" @click.native="setEatTime(4)">記録</router-link>												
                                 </div>
                             </div>
@@ -191,14 +191,17 @@ export default {
                             <input type="file" name="file" id="file" class="inputfile" @change="onFileChange" />
                         </li>
                         <li>
-                            <label id="take-photo"><a class="label-select-photo" href="./selectPhoto.html">写真を撮る</a> </label>
+                            <!-- <label id="take-photo"><a class="label-select-photo" href="./selectPhoto.html">写真を撮る</a> </label> -->
+                            <label id="take-photo">写真を撮る </label>
+                            <input id="file2" type="file" name="image" accept="image/*" capture="environment" @change="onFileChange">
                         </li>						
                     </ul>					
                 </div>	
                 <div class="select-photo" v-if="showPreviewImage">
-                  <img :src="url" />
+                  <img :src="url" style="width: 100%;max-height: 80%;"/>
                   <button class="select-photo-btn cancel" @click="showPreviewImage = false" >キャンセル</button>
-                  <router-link to="/anaPhoto" tag="button"  class="select-photo-btn ok" @click.native="uploadFile">決定</router-link>												
+                  <!-- <router-link to="/anaPhoto" tag="button"  class="select-photo-btn ok" @click.native="uploadFile">決定</router-link> -->
+                  <button  class="select-photo-btn ok" @click="uploadFile">決定</button>												
                 </div>							
             </main>	
         </div>
@@ -299,6 +302,7 @@ export default {
           },
           //　初期化
           mounted(){
+            
             this.init();
           },
           methods: {
@@ -406,14 +410,17 @@ export default {
               } )
                 .then((res) =>{
                   console.log(res);
-                  for(let i = 0; i < res.length; i++) {
-                    this.foodNames[i] = res[i];
-                    sessionStorage.setItem( this.foodNames[i].rank ,JSON.stringify(this.foodNames[i]));
-                    console.log(this.foodNames[i]);
-                    console.log(this.foodNames[i].rank);
-                  }
-                  // this.foodNames = res;
-                  // sessionStorage.setItem('foodNames', JSON.stringify(this.foodNames));
+                  // for(let i = 0; i < res.length; i++) {
+                  //   this.foodNames[i] = res[i];
+                  //   sessionStorage.setItem( this.foodNames[i].rank ,JSON.stringify(this.foodNames[i]));
+                  //   console.log(this.foodNames[i]);
+                  //   console.log(this.foodNames[i].rank);
+                  // }
+                  this.foodNames = res;
+                  sessionStorage.setItem( this.foodNames[0].rank ,JSON.stringify(this.foodNames));
+                  console.log(this.foodNames[0]);
+                  this.$router.push({path: '/anaPhoto'});
+                  // sessionStorage.setItem('foodNames, JSON.stringify(this.foodNames));
                   
                 })
                 .catch((err) => {

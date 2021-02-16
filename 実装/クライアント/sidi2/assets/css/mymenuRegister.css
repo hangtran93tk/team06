@@ -3,14 +3,33 @@
     margin: 10px;
     position: relative;
   }
-  #form1 input{
-    width: 100%; /*親要素いっぱい広げる*/
+  h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #63a052;
+    margin: 20px 0;
+    font-weight: bold;
+    margin-top: 10%;
+  }
+  #foodStuffName{
+    height:42px; 
+    width:250px;
     padding: 10px 15px; /*ボックスを大きくする*/
     font-size: 16px;
     border-radius: 3px; /*ボックス角の丸み*/
     border: 2px solid #ddd; /*枠線*/
     /* box-sizing: border-box; */
   }
+  #gram{
+    height:42px; 
+    width:250px;
+    padding: 10px 10px; /*ボックスを大きくする*/
+    font-size: 16px;
+    border-radius: 3px; /*ボックス角の丸み*/
+    border: 2px solid #ddd; /*枠線*/
+    /* box-sizing: border-box; */
+  }
+
   #form1 input:focus {
     box-shadow: 0 0 5px 0 rgba(255,153,0,1);
     border: 2px solid #FFF;
@@ -23,6 +42,7 @@
     position: absolute;
     margin-top:2.5em;
     display: none;
+    z-index: 100;
   }
   #kouhos ul{
     margin: 0;
@@ -39,6 +59,41 @@
     color: white;
     text-decoration: underline;
   }
+
+ #block button{
+    margin: 0 auto;
+    background: #81b277;
+    color: white;
+    border: none;
+    border-radius: 50px; 
+    width: 80px;
+    height: 30px;
+    font-size: 1.0rem;
+} 
+
+  #wButton button{
+    margin: 0 auto;
+    background: #81b277;
+    color: white;
+    border: none;
+    border-radius: 50px; 
+    width: 196px;
+    height: 46px;
+    font-size: 1.0rem;
+    text-align: center;
+    margin-bottom: 2%;
+} 
+
+  #update button{
+    margin: 0 auto;
+    background: #81b277;
+    color: white;
+    border: none;
+    border-radius: 50px; 
+    width: 196px;
+    height: 46px;
+    font-size: 1.0rem;
+} 
 /* * {
     margin: 0;
     padding: 0;
@@ -164,10 +219,6 @@ label{
     display: inline-block;
 }
 
+*/
 
-button{
-    color: #f5f1da;
-    font-size: medium;
-    margin-bottom: 7%;
-} */
 

@@ -167,5 +167,5 @@ h3{
     background: #FFFFFF;
 }
 input:checked + .active {
-    background-color: #000;
+    background-color: #88cc11;
 }
