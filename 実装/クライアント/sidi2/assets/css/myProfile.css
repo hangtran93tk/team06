@@ -9,16 +9,17 @@ html {
     background-attachment: fixed;
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 #wrap {
     text-align: center;
 }
 header {
-    margin-top: 180px;
+    margin-top: 72px;
 }
 h1 {
     text-align: center;
-    font-size: 2.0rem;
+    font-size: 3.0rem;
     color: #63a052;
     margin-bottom: 72px;
     font-weight: bold;
@@ -34,6 +35,10 @@ main {
     max-width: 375px;
     padding-bottom: 72px;
 }
+input {
+    font-size: 2.0rem;
+    font-weight: bold;
+}
 #inputInfo input {
     margin-top: 32px;
     width: 318px;
@@ -46,6 +51,7 @@ main {
     background-color: #81b277; */
     background-size: 25px;
     text-align: center;	   
+    /* font-size: 2.0rem; */
 }
 #nickname {
     background-image: url('../img/user_login.png');
@@ -76,8 +82,10 @@ main {
     height: 49px;
     border-radius: 25px;
     border: 1px solid #f5f1da;
-    color: #f5f1da;
+    /* color: #f5f1da; */
     background-color: #81b277;
+    /* font-size: 2.5rem;
+    font-weight: bold; */
 }
 #gender {
     display: inline-block;
@@ -127,21 +135,26 @@ a {
     color:#f5f1da;
 }
 label {
-    color: #93B88D;
-    font-size: 1.8rem;
+    /* color: #93B88D; */
+    color: #58A054;
+    font-size: 2.0rem;
+    font-weight: bold;
     margin: 0 16px;
 }
 h2 {
-    color:#93B88D;
-    font-size: 1.8rem;
+    /* color:#93B88D; */
+    color: #58A054;
+    font-size: 2.0rem;
     margin: 16px 60px 16px 16px;
     font-weight: bold;
     text-align: left;
     display: block;
 }
 h3{
-    color:#93B88D;
+    /* color:#93B88D; */
+    color: #58A054;
     font-size: 1.8rem;
+    font-weight: bold;
     margin: 16px;
     font-weight: normal;
     text-align: center;

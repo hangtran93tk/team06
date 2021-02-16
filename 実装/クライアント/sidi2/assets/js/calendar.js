@@ -114,7 +114,7 @@ function generate_year_range(start, end) {
                       location.replace("http://192.168.1.10/#/onedayInfo");
                       sessionStorage.setItem('checkdate',checkdate);
                     } else {
-                      alert('選択した日がデータがありません');
+                      alert('選択した日のデータがありません');
                     }
                     
                   }

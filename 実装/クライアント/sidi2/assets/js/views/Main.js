@@ -194,8 +194,12 @@ export default {
                             <!-- <label id="take-photo"><a class="label-select-photo" href="./selectPhoto.html">写真を撮る</a> </label> -->
                             <label id="take-photo">写真を撮る </label>
                             <input id="file2" type="file" name="image" accept="image/*" capture="environment" @change="onFileChange">
-                        </li>						
-                    </ul>					
+                        </li>	
+                        <li class="last-li">
+                          <button class="off-select-photo-dialog" @click="showDialog = false">閉じる</button>	
+                        </li>					
+                    </ul>	
+                    			
                 </div>	
                 <div class="select-photo" v-if="showPreviewImage">
                   <img :src="url" style="width: 100%;max-height: 80%;"/>

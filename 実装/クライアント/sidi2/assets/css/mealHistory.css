@@ -28,11 +28,11 @@ h1 {
     font-weight: bold;
 }
 
-.today{
+/* .today{
     color: #63a052;
     margin-top: 13%;
     font-size: larger;
-}
+} */
 
 #wrap {
     text-align: center;
@@ -216,8 +216,9 @@ label{
     width: 50px;
     font-weight: bold;
 }
-button{
+button {
     color: #f5f1da;
-    font-size: medium;
+    font-size: 1.8rem;
+    font-weight: bold;
 }
 

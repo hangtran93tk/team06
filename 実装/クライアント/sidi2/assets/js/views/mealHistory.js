@@ -7,7 +7,7 @@ export default {
             <link rel="stylesheet" href="./assets/css/mealHistory.css">
 				<h1>食事履歴</h1>
 				<input type="search"  id="cookingName"placeholder="料理名を検索" @input="getMenuName" ref="query" autocomplete="off">
-				<table>
+				<table >
 					<tr>
                     <td>
                         <div class="tabbox">
@@ -24,18 +24,20 @@ export default {
                     </td>
 					</tr>
 				</table>
+                <table>
+					<tr>
+                    <td>
+                        <button> Myメニュー </button>
+                    </td>
+						
+                    <td>
+                        <button> メニュー検索 </button>
+                    </td>
+					</tr>
+				</table>
 			</header>
 			<main role="main">
-				<div class="tab">
-					<input type="radio" name="s1" id="i1" checked>
-					<label for="i1" class="tab3"><img src="./assets/img/sun.png"   alt="朝" ></label>
-					<input type="radio" name="s1" id="i2">
-					<label for="i2" class="tab3"><img src="./assets/img/weather.png"  alt="昼" ></label>
-					<input type="radio" name="s1" id="i3">
-					<label for="i3" class="tab3"><img src="./assets/img/moon.png"   alt="夜" ></label>
-					<input type="radio" name="s1" id="i4">
-					<label for="i4" class="tab3"><img src="./assets/img/coffee-breaks.png"   alt="間食"></label>
-                </div>
+
                 <div id="record">
                 <button @click="postUserEat" >記録</button>
                 </div>

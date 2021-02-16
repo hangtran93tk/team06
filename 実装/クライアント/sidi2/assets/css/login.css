@@ -9,6 +9,8 @@ html {
 	background-image: url('../img/leaf_login.png');
 	margin: 0;
 	padding: 0;
+	background-size: 100%;
+	font-family: sans-serif;
 }
 header {
 	margin-top: 150px;
@@ -45,6 +47,7 @@ main input {
 	background-color: #81b277;
 	background-size: 25px;
 	text-align: center;	
+	font-size: 2.0rem;
 		
 }
 .mail {	
@@ -63,24 +66,27 @@ main input {
 	text-align: center;
 }
 button {
-	color: snow;
+	font-size: 1.8rem;
+	color: #f5f1da;
+	font-weight: bold;
 	margin-top: 16px;
 	background: #2b811a;
 	border: none;
 	border-radius: 50px; 
-	width: 33.3333%;
+	/* width: 33.3333%; */
 	width: 196px;
 	height: 49px;
 }
 .registerBtn {
+	font-size: 1.8rem;
+	font-weight: bold;
 	display: inline-block;
     line-height: 50px;
-	font-size: 1.4em;
 	margin-top: 16px;
 	background: #2b811a;
 	border: none;
 	border-radius: 50px; 
-	width: 33.3333%;
+	/* width: 33.3333%; */
 	width: 196px;
 	height: 49px;
 }

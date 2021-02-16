@@ -29,7 +29,7 @@ h1 {
 
 h2 {
     margin-right: 55px;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #63a052;
     font-weight: bold;
     margin: 30px;
@@ -86,7 +86,8 @@ label{
     border-radius: 50px; 
     width: 196px;
     height: 49px;
-    
+    font-size: 2.0rem;
+    font-weight: bold;
 
 }
 img {

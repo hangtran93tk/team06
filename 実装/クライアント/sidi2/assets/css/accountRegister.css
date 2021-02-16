@@ -10,6 +10,8 @@ html {
     background-attachment: fixed;
     margin: 0;
     padding: 0;
+    background-size: 100%;
+    font-family: sans-serif;
 }
 #wrap {
     text-align: center;
@@ -45,9 +47,8 @@ main {
     background-color: #81b277;
     background-size: 25px;
     text-align: center;	   
-
+    font-size: 2.0rem;
     margin: 30px;
-
 }
 #nickname {
     background-image: url('../img/user_login.png');
@@ -145,14 +146,15 @@ p{
 
 label {
     color: #fff;
-    font-size: 1.8rem;
+    font-size: 2.0rem;
+    font-weight: bold;
     margin: 0 16px;
 }
 h2 {
     color: #fff;
-    font-size: 1.8rem;
+    font-size: 2.0rem;
+    font-weight: bold;
     margin: 16px 60px 16px 16px;
-    font-weight: normal;
     text-align: left;
     display: block;
 }
@@ -173,7 +175,7 @@ h4{
     display: inline-block;
 }
 .goalWeight {
-    margin: 16px 25px 16px 16px;
+    margin: 16px 16px 16px 16px;
 }
 
 .active  {

@@ -163,18 +163,7 @@ export default {
                     </div>
                     
                   </div>
-                </div>
-                <dialog id="select-photo">
-                    <ul>						
-                        <li>
-                            <label for="file" id="library">ライブラリから選択</label>
-                            <input type="file" name="file" id="file" class="inputfile" />
-                        </li>
-                        <li>
-                            <label id="take-photo"><a class="label-select-photo" href="./selectPhoto.html">写真を撮る</a> </label>
-                        </li>						
-                    </ul>					
-                </dialog>									
+                </div>							
             </main>	
         </div>
         <div is="script" src="./assets/js/menuButton.js"></div>  
