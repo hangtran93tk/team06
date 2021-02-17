@@ -7,31 +7,14 @@ export default {
             <link rel="stylesheet" href="./assets/css/mealHistory.css">
 				<h1>食事履歴</h1>
 				<input type="search"  id="cookingName"placeholder="料理名を検索" @input="getMenuName" ref="query" autocomplete="off">
-				<table >
+                <table class="table1">
 					<tr>
                     <td>
-                        <div class="tabbox">
-							<input type="radio" name="tabset" id="tabcheck1" checked>
-                            <label for="tabcheck1" class="tab1">Myメニュー</label>
-                        </div>
+                        <button  @click="showMyMenu"> Myメニュー </button>
                     </td>
 						
                     <td>
-                        <div class="tabbox2">
-							<input type="radio" name="tabset" id="tabcheck2">
-                            <label for="tabcheck2" class="tab2">食事履歴</label>                          
-                        </div>
-                    </td>
-					</tr>
-				</table>
-                <table>
-					<tr>
-                    <td>
-                        <button> Myメニュー </button>
-                    </td>
-						
-                    <td>
-                        <button> メニュー検索 </button>
+                        <button  @click="showAllMenu"> メニュー検索 </button>
                     </td>
 					</tr>
 				</table>
@@ -39,15 +22,15 @@ export default {
 			<main role="main">
 
                 <div id="record">
-                <button @click="postUserEat" >記録</button>
+                    <button @click="postUserEat" >記録</button>
                 </div>
-                <div id="block">
+                <div id="block" >
                     <div class="block1" v-for="menu in menus" :key="menu.id">
                         <input type="checkbox" :id="menu.id" :value="menu.id" v-model="selectedUserEats">						
                         <label :for="menu.id" class="label-name">{{menu.jp_name}}</label>
                         <label :for="menu.id" class="label-kcal">{{menu.kcal}}kcal</label>
                     </div>
-                </div>		
+                </div>	
 			</main>	
 		</div>	
         `,
@@ -63,16 +46,7 @@ export default {
         },
         methods: {
             init() {
-                Ajax('http://192.168.1.10:8000/menu/get-Mymenu/','GET', localStorage.getItem('access'), null )
-                .then((res) => {
-                    console.log(res);
-                    this.menus = res;
-                    console.log(this.menus);
-                })
-                .catch((err) => {
-                   console.log(err);
-                 });
-
+                
             },
             getMenuName({ target }) {
                 this.findName = target.value;
@@ -104,6 +78,30 @@ export default {
                     .catch((err) => {
                         console.log(err);
                     });
-                } 
+            },
+            showMyMenu() {
+                Ajax('http://192.168.1.10:8000/menu/get-Mymenu/','GET', localStorage.getItem('access'), null )
+                .then((res) => {
+                    console.log(res);
+                    this.menus = res;
+                    console.log(this.menus);
+                })
+                .catch((err) => {
+                   console.log(err);
+                 });
+
+            },
+            showAllMenu() {
+                Ajax('http://192.168.1.10:8000/menu/get-Menu/','GET', localStorage.getItem('access'), null )
+                .then((res) => {
+                    console.log(res);
+                    this.menus = res;
+                    console.log(this.menus);
+                })
+                .catch((err) => {
+                   console.log(err);
+                 });
+            }
+
         }
 };

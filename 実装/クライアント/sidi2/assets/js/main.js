@@ -18,6 +18,7 @@ import Advice from './views/Advice.js';
 import MyProfile from './views/MyProfile.js';
 import AnaPhoto from './views/AnaPhoto.js';
 import SearchFoodName from './views/SearchFoodName.js';
+import MenuTable from './views/MenuTable.js';
 
 
 const VueHighcharts = window['VueHighcharts'].default;
@@ -115,6 +116,11 @@ const VueHighcharts = window['VueHighcharts'].default;
                 name: "mymenuRegister",
                 component: mymenuRegister
             },
+            {
+                path: '/menuTable',
+                name: "MenuTable",
+                component: MenuTable
+            }
             
         ]
     

@@ -21,7 +21,7 @@ export default {
                         <li><router-link :to="'/main'">食事</router-link></li>
                         <li><router-link :to="'/weightGraph'">体重</router-link></li>
                         <li><router-link :to="'/advice'">アドバイス</router-link></li>
-                        <li><a href="./menuTable.html">メニュー</a></li>
+                        <li><router-link :to="'/menuTable'">メニュー</router-link></li>
                         <li><router-link :to="'/calendar'">カレンダー</router-link></li>
                         <li><router-link :to="'/setting'">設定</router-link></li>
                     </ul>
@@ -246,6 +246,7 @@ export default {
               file_name: null,
               url: null,
               foodNames:[],
+              userGraphURL: 'http://192.168.1.10:8000/menu/get-Kcal/',
              
       
               // Vue HighCharts
@@ -369,7 +370,7 @@ export default {
               lineCharts.removeSeries();
               lineCharts.delegateMethod('showLoading', 'Loading...');
               this.loading = true;
-              Ajax('http://192.168.1.10:8000/menu/get-MenuInfo' + parameter,'GET', localStorage.getItem('access'), null )
+              Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + parameter,'GET', localStorage.getItem('access'), null )
                 .then((res) => {
                   this.userEatInfos = res;
                   for(let i = 0; i < this.dataEat.length; i++) {
