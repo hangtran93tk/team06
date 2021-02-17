@@ -12,12 +12,12 @@ export default {
           </button>
               <nav role="navigation" id="menu">
               <ul>
-              <li><router-link :to="'/main'">食事</router-link></li>
-              <li><router-link :to="'/weightGraph'">体重</router-link></li>
-              <li><router-link :to="'/advice'">アドバイス</router-link></li>
-              <li><router-link :to="'/menuTable'">メニュー</router-link></li>
-              <li><router-link :to="'/calendar'">カレンダー</router-link></li>
-              <li><router-link :to="'/setting'">設定</router-link></li>
+                <li><router-link :to="'/main'">食事</router-link></li>
+                <li><router-link :to="'/weightGraph'">体重</router-link></li>
+                <li><router-link :to="'/advice'">アドバイス</router-link></li>
+                <li><a href="./menuTable.html">メニュー</a></li>
+                <li><router-link :to="'/calendar'">カレンダー</router-link></li>
+                <li><router-link :to="'/setting'">設定</router-link></li>
               </ul>
               </nav>                
           </header>
@@ -27,7 +27,7 @@ export default {
             <router-link to="/myProfile" tag="button">プロフィール</router-link>	
             <router-link to="/goalWeight" tag="button">体重目標設定</router-link>	
             <button>4群点数法とは</button>
-            <button onclick="location.href='./login.html'">ログアウト</button>
+            <button @click="clickLogout">ログアウト</button>
           </div>              
         </main>	
       </div>
@@ -35,6 +35,13 @@ export default {
     </div>
     
     `,
+    methods: {
+      clickLogout() {   
+        localStorage.clear();
+        sessionStorage.clear();
+        this.$router.push({path: '/'});
+      }   
+    }
 };
 
 

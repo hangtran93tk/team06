@@ -1,5 +1,5 @@
 @charset "UTF-8";
-* {
+	* {
 		margin: 0;
 		padding: 0;
 	}
@@ -102,3 +102,4 @@ p{
     text-align: center;
     font-size: 1.6em;
 }
+

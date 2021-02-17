@@ -1,10 +1,13 @@
-html {
+@charset "UTF-8";
+
+  html {
     font-size: 62.5%;
     line-height: 1.4;
     background-image: url('../img/background9.png');
     background-attachment: fixed;
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 body {	
 	flex-direction: row;
@@ -200,3 +203,5 @@ img {
     border-radius: 3px;
     padding: 5px 1em;
   }
+
+

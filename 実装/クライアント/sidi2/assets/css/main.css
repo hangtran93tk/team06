@@ -428,19 +428,30 @@ img {
 .meal-detail-name {
     text-align: center;
 }
+.meal-detail-name button {
+    float: right;
+    background-color: #EEBB4D;
+    border-radius: 5px;
+    box-shadow: #333;
+}
 .meal-detail h3 {
-    padding-top: 8px;
+    padding-top: 16px;
+    font-size: 1.6rem;
+    margin: 20px;
 }
 .meal-detail ul {
     width: 100%;
-    list-style: none;   
-    padding: 0 20px;
+    list-style: none;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 .meal-detail ul li {
     display: inline-block;
     width: calc(50% - 3px);
     margin: 5px 0;
 }
+
 /* select photo from library */
 .select-photo {
     top: 0;

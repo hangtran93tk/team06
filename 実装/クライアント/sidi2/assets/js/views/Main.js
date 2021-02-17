@@ -28,7 +28,7 @@ export default {
                 </nav>                
                 <h1 class="box-title">                    
                     <p class="date-pre icon-date" @click="previousDate()"></p>
-                    <p class="txt-tile date">{{ year }}年{{ month }}月{{ date }}日</p>
+                    <p class="txt-tile date">{{ year }}年{{ month + 1 }}月{{ date }}日</p>
                     <p class="date-next icon-date" @click="nextDate()"></p>
                 </h1>   
             </header>
@@ -51,19 +51,19 @@ export default {
                                 <p>全体</p>
                                 <!-- <p class="input-calories">1000kcal</p> -->
                             </button>
-                            <button class="info" @click="eatTimeChartChange('?eatTime=1') ">
+                            <button class="info" @click="eatTimeChartChange('&eatTime=1') ">
                                 <div class="icon icon-breakfast"></div>							
                                 <p class="input-calories">朝食</p>
                             </button>
-                            <button class="info" @click="eatTimeChartChange('?eatTime=2')">
+                            <button class="info" @click="eatTimeChartChange('&eatTime=2')">
                                 <div class="icon icon-lunch"></div>								
                                 <p class="input-calories">昼食</p>
                             </button>
-                            <button class="info" @click="eatTimeChartChange('?eatTime=3')">
+                            <button class="info" @click="eatTimeChartChange('&eatTime=3')">
                                 <div class="icon icon-dinner"></div>
                                 <p class="input-calories">夕食</p>
                             </button>
-                            <button class="info" @click="eatTimeChartChange('?eatTime=4')">
+                            <button class="info" @click="eatTimeChartChange('&eatTime=4')">
                                 <div class="icon icon-snack"></div>
                                 <p class="input-calories">間食</p>
                             </button>													
@@ -93,14 +93,19 @@ export default {
                             </div>
                         </div>
                         <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 1">
-                          <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
-                            <ul> 
-                              <li>カロリー     : {{ userEatInfo.kcal }}kcal</li>
-                              <li>第一群点数 : {{ userEatInfo.one_point }}</li>
-                              <li>第二群点数 : {{ userEatInfo.two_point }}</li>
-                              <li>第三群点数 : {{ userEatInfo.three_point }}</li>
-                              <li>第四群点数 : {{ userEatInfo.four_point }}</li>
-                            </ul>
+                          <h3 class="meal-detail-name">
+                            {{ userEatInfo.jp_name }}
+                            <button class="meal-detail-info-btn" @click="deleteMeal(userEatInfo.id)">✖</button>
+                          </h3>
+                              <ul> 
+                                <li>カロリー     : {{ userEatInfo.kcal }}kcal</li>
+                                <li>第一群点数 : {{ userEatInfo.one_point }}</li>
+                                <li>第二群点数 : {{ userEatInfo.two_point }}</li>
+                                <li>第三群点数 : {{ userEatInfo.three_point }}</li>
+                                <li>第四群点数 : {{ userEatInfo.four_point }}</li>
+                              </ul>
+                              
+                           
                         </div>
                       </div>
                       <div>
@@ -119,7 +124,10 @@ export default {
                             </div>
                         </div>
                         <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 2">
-                          <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
+                          <h3 class="meal-detail-name">
+                            {{ userEatInfo.jp_name }}
+                            <button class="meal-detail-info-btn" @click="deleteMeal(userEatInfo.id)">✖</button>
+                          </h3>
                             <ul> 
                               <li>カロリー     : {{ userEatInfo.kcal }}kcal</li>
                               <li>第一群点数 : {{ userEatInfo.one_point }}</li>
@@ -145,7 +153,10 @@ export default {
                             </div>
                         </div>
                         <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 3">
-                          <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
+                        <h3 class="meal-detail-name">
+                          {{ userEatInfo.jp_name }}
+                          <button class="meal-detail-info-btn" @click="deleteMeal(userEatInfo.id)">✖</button>
+                        </h3>
                             <ul> 
                               <li>カロリー     : {{ userEatInfo.kcal }}kcal</li>
                               <li>第一群点数 : {{ userEatInfo.one_point }}</li>
@@ -171,7 +182,10 @@ export default {
                             </div>
                         </div>
                         <div class="meal-detail" v-for="userEatInfo in userEatInfos"  v-if="userEatInfo.eatTime == 4">
-                          <h3 class="meal-detail-name">{{ userEatInfo.jp_name }}</h3>
+                          <h3 class="meal-detail-name">
+                            {{ userEatInfo.jp_name }}
+                            <button class="meal-detail-info-btn" @click="deleteMeal(userEatInfo.id)">✖</button>
+                          </h3>
                             <ul> 
                               <li>カロリー     : {{ userEatInfo.kcal }}kcal</li>
                               <li>第一群点数 : {{ userEatInfo.one_point }}</li>
@@ -236,8 +250,11 @@ export default {
               ActiveBtn: false,
               percent: null,
               year : new Date().getFullYear(),
-              month: new Date().getMonth() + 1,
+              month: new Date().getMonth(),
               date: new Date().getDate(),
+              prevDay: null,
+              nextDay: null,
+              checkDate: null,
               userEatInfos: [], //　menu/get-MenuInfo　の値を格納する
               // testdate: "?date=2020-12-28",
               showDialog: false,
@@ -311,68 +328,23 @@ export default {
             this.init();
           },
           methods: {
-            init() {                
-                Ajax('http://192.168.1.10:8000/auth/update-KcalID/','GET', localStorage.getItem('access'), null )
-               
-                Ajax('http://192.168.1.10:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
-                 .then((res) => {
-                  console.log(res);
-                  this.goalKcal = res[0].kcal;
-                  let lineCharts = this.$refs.lineCharts
-                  lineCharts.delegateMethod('showLoading', 'Loading...');
-                  Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/','GET', localStorage.getItem('access'), null)
-                  // Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + this.testdate ,'GET', localStorage.getItem('access'), null) // 過去のきろく取りたいとき
-                  .then((res) => {
-                    console.log(res);
-                    this.userEatInfos = res;
-                    //四群点数グラフ表示
-                    for(let i = 0; i < this.userEatInfos.length; i++) {
-                      this.nowKcal += res[i].kcal;
-                      this.dataEat[0] += res[i].one_point;
-                      this.dataEat[1] += res[i].two_point;
-                      this.dataEat[2] += res[i].three_point;
-                      this.dataEat[3] += res[i].four_point;
-                    }
-                    console.log("データ" + this.dataEat);
-                    lineCharts.addSeries({name: "点数",showInLegend: false,  data: this.dataEat} );
-                    lineCharts.hideLoading();                                    
-                    //カロリーグラフ表示
-                    const progress = document.querySelector('.progress-done');       
-                    this.percent = parseInt((this.nowKcal / this.goalKcal) * 100, 10);
-                    progress.style.width = Math.min(this.percent, 100) + '%';
-                      if (this.nowKcal > this.goalKcal) {
-                      progress.style.background = "linear-gradient(to left, #fc8621, #f9e0ae)";
-                    } else {
-                      progress.style.background = "linear-gradient(to left, #58A054, #9EE097)";
-                    }
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-                    
-                 })
-                 .catch((err) => {
-                    console.log(err);
-                  });
-                //目標カロリー取得
-              Ajax("http://192.168.1.10:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
-                .then((res) => {
-                  this.goal_weight = res.goal_weight;
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-      
+            init() {   
+              this.checkDate = '?date=' + this.year + '-' + (this.month + 1) + '-' + this.date;
+              sessionStorage.setItem('checkDate', this.checkDate);  
+              this.showOneDayInfo(this.checkDate);          
             },
             // ボタン押されたときの処理
             eatTimeChartChange(parameter){
+              this.checkDate = sessionStorage.getItem('checkDate');
               let lineCharts = this.$refs.lineCharts
               lineCharts.removeSeries();
               lineCharts.delegateMethod('showLoading', 'Loading...');
               this.loading = true;
-              Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + parameter,'GET', localStorage.getItem('access'), null )
+              Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + this.checkDate + parameter,'GET', localStorage.getItem('access'), null )
                 .then((res) => {
+                  console.log('checkDate khac ngay hom nay', this.checkDate);
                   this.userEatInfos = res;
+
                   for(let i = 0; i < this.dataEat.length; i++) {
                     this.dataEat[i] = 0;
                   }
@@ -415,24 +387,119 @@ export default {
               } )
                 .then((res) =>{
                   console.log(res);
-                  // for(let i = 0; i < res.length; i++) {
-                  //   this.foodNames[i] = res[i];
-                  //   sessionStorage.setItem( this.foodNames[i].rank ,JSON.stringify(this.foodNames[i]));
-                  //   console.log(this.foodNames[i]);
-                  //   console.log(this.foodNames[i].rank);
-                  // }
                   this.foodNames = res;
                   sessionStorage.setItem( this.foodNames[0].rank ,JSON.stringify(this.foodNames));
                   console.log(this.foodNames[0]);
-                  this.$router.push({path: '/anaPhoto'});
-                  // sessionStorage.setItem('foodNames, JSON.stringify(this.foodNames));
-                  
+                  this.$router.push({path: '/anaPhoto'});                 
                 })
                 .catch((err) => {
                   console.log(err);
                 });
 
-            }
+            },
+            /**登録した食事を削除する */
+            deleteMeal(id) {
+              console.log(id);
+              var index = this.userEatInfos.findIndex(v => {
+                return v.id = id;
+              });
 
+              /*Dialog */
+              if(confirm("食事を削除しますか？")) {
+                Ajax("http://192.168.1.10:8000/menu/delete-UserEat/" + id + "/",'DELETE', localStorage.getItem('access'), null )
+                .then((res) => {
+                  
+                  console.log('delete res',res);
+                })
+                .then(() => {
+                  console.log(id + 'の食事を削除した')
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+                this.init();
+      
+              }
+            },
+            /**前の日 */
+            previousDate() {
+              this.prevDay = new Date(this.year, this.month,this.date - 1);
+              this.date = this.prevDay.getDate();
+              this.month = this.prevDay.getMonth();
+              this.year = this.prevDay.getFullYear();
+              console.log('prevDay',this.prevDay);
+              this.checkDate =　'?date=' + this.year + '-' + (this.month + 1) + '-' + this.date;
+              sessionStorage.setItem('checkDate',this.checkDate);
+              this.showOneDayInfo(this.checkDate);
+
+            },
+            /**次の日 */
+            nextDate() {
+              this.nextDay = new Date(this.year, this.month, this.date + 1);
+              this.date = this.nextDay.getDate();
+              this.month = this.nextDay.getMonth();
+              this.year = this.nextDay.getFullYear();
+              console.log('nextDay', this.nextDay);
+              this.checkDate =　'?date=' + this.year + '-' + (this.month + 1) + '-' + this.date;
+              sessionStorage.setItem('checkDate',this.checkDate);
+              this.showOneDayInfo(this.checkDate);
+            },
+            /**一日の情報 */
+            showOneDayInfo(checkDate) {
+              this.nowKcal = 0;
+              this.dataEat = [0,0,0,0];
+              Ajax('http://192.168.1.10:8000/auth/update-KcalID/','GET', localStorage.getItem('access'), null )
+               
+              Ajax('http://192.168.1.10:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
+               .then((res) => {
+                console.log(res);
+                this.goalKcal = res[0].kcal;
+                let lineCharts = this.$refs.lineCharts
+                lineCharts.removeSeries();
+                lineCharts.delegateMethod('showLoading', 'Loading...');
+                // Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/','GET', localStorage.getItem('access'), null)
+                  Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + checkDate ,'GET', localStorage.getItem('access'), null) // 過去のきろく取りたいとき
+                  .then((res) => {
+                    console.log(res);
+                    this.userEatInfos = res;
+                    //四群点数グラフ表示
+                    for(let i = 0; i < this.userEatInfos.length; i++) {
+                      this.nowKcal += res[i].kcal;
+                      // console.log('nowKcal', this.nowKcal);
+                      this.dataEat[0] += res[i].one_point;
+                      this.dataEat[1] += res[i].two_point;
+                      this.dataEat[2] += res[i].three_point;
+                      this.dataEat[3] += res[i].four_point;
+                    }
+                    console.log("データ" + this.dataEat);
+                    lineCharts.addSeries({name: "点数",showInLegend: false,  data: this.dataEat} );
+                    lineCharts.hideLoading();                                    
+                    //カロリーグラフ表示
+                    const progress = document.querySelector('.progress-done');       
+                    this.percent = parseInt((this.nowKcal / this.goalKcal) * 100, 10);
+                    progress.style.width = Math.min(this.percent, 100) + '%';
+                      if (this.nowKcal > this.goalKcal) {
+                      progress.style.background = "linear-gradient(to left, #fc8621, #f9e0ae)";
+                    } else {
+                      progress.style.background = "linear-gradient(to left, #58A054, #9EE097)";
+                    }
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+                  
+               })
+               .catch((err) => {
+                  console.log(err);
+                });
+              //目標カロリー取得
+            Ajax("http://192.168.1.10:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
+              .then((res) => {
+                this.goal_weight = res.goal_weight;
+              })
+              .catch((err) => {
+                console.log(err);
+              });   
+            }
           }
 };
