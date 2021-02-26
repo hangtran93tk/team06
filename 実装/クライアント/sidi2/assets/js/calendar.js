@@ -102,7 +102,7 @@ function generate_year_range(start, end) {
                   // console.log(checkdate);
                   var xhr = new XMLHttpRequest();
                  
-                  xhr.open('GET', 'http://192.168.1.10:8000/menu/get-MenuInfo/' + checkdate);
+                  xhr.open('GET', 'http://180.46.192.112:8000/menu/get-MenuInfo/' + checkdate);
                   xhr.setRequestHeader('Authorization',`JWT ` + localStorage.getItem('access'));
 
                   xhr.send();
@@ -111,7 +111,7 @@ function generate_year_range(start, end) {
                   if(xhr.readyState === 4 && xhr.status === 200) {
                     console.log( xhr.responseText );
                     if(xhr.responseText != '[]') {
-                      location.replace("http://192.168.1.10/#/onedayInfo");
+                      location.replace("http://180.46.192.112/#/onedayInfo");
                       sessionStorage.setItem('checkdate',checkdate);
                     } else {
                       alert('選択した日のデータがありません');

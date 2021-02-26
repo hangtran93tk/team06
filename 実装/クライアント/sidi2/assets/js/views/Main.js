@@ -263,7 +263,7 @@ export default {
               file_name: null,
               url: null,
               foodNames:[],
-              userGraphURL: 'http://192.168.1.10:8000/menu/get-Kcal/',
+              userGraphURL: 'http://180.46.192.112:8000/menu/get-Kcal/',
              
       
               // Vue HighCharts
@@ -340,7 +340,7 @@ export default {
               lineCharts.removeSeries();
               lineCharts.delegateMethod('showLoading', 'Loading...');
               this.loading = true;
-              Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + this.checkDate + parameter,'GET', localStorage.getItem('access'), null )
+              Ajax('http://180.46.192.112:8000/menu/get-MenuInfo/' + this.checkDate + parameter,'GET', localStorage.getItem('access'), null )
                 .then((res) => {
                   console.log('checkDate khac ngay hom nay', this.checkDate);
                   this.userEatInfos = res;
@@ -382,7 +382,7 @@ export default {
               const formData = new FormData();
               formData.append('image', this.file, this.file_name);
               // console.log('>>>>>>',formData);
-              Ajax('http://192.168.1.10:8000/menu/Image/','POST', localStorage.getItem('access'), formData, {
+              Ajax('http://180.46.192.112:8000/menu/Image/','POST', localStorage.getItem('access'), formData, {
                 contentType: 'multipart/form-data'
               } )
                 .then((res) =>{
@@ -406,7 +406,7 @@ export default {
 
               /*Dialog */
               if(confirm("食事を削除しますか？")) {
-                Ajax("http://192.168.1.10:8000/menu/delete-UserEat/" + id + "/",'DELETE', localStorage.getItem('access'), null )
+                Ajax("http://180.46.192.112:8000/menu/delete-UserEat/" + id + "/",'DELETE', localStorage.getItem('access'), null )
                 .then((res) => {
                   
                   console.log('delete res',res);
@@ -448,17 +448,17 @@ export default {
             showOneDayInfo(checkDate) {
               this.nowKcal = 0;
               this.dataEat = [0,0,0,0];
-              Ajax('http://192.168.1.10:8000/auth/update-KcalID/','GET', localStorage.getItem('access'), null )
+              Ajax('http://180.46.192.112:8000/auth/update-KcalID/','GET', localStorage.getItem('access'), null )
                
-              Ajax('http://192.168.1.10:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
+              Ajax('http://180.46.192.112:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
                .then((res) => {
                 console.log(res);
                 this.goalKcal = res[0].kcal;
                 let lineCharts = this.$refs.lineCharts
                 lineCharts.removeSeries();
                 lineCharts.delegateMethod('showLoading', 'Loading...');
-                // Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/','GET', localStorage.getItem('access'), null)
-                  Ajax('http://192.168.1.10:8000/menu/get-MenuInfo/' + checkDate ,'GET', localStorage.getItem('access'), null) // 過去のきろく取りたいとき
+                // Ajax('http://180.46.192.112:8000/menu/get-MenuInfo/','GET', localStorage.getItem('access'), null)
+                  Ajax('http://180.46.192.112:8000/menu/get-MenuInfo/' + checkDate ,'GET', localStorage.getItem('access'), null) // 過去のきろく取りたいとき
                   .then((res) => {
                     console.log(res);
                     this.userEatInfos = res;
@@ -493,7 +493,7 @@ export default {
                   console.log(err);
                 });
               //目標カロリー取得
-            Ajax("http://192.168.1.10:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
+            Ajax("http://180.46.192.112:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
               .then((res) => {
                 this.goal_weight = res.goal_weight;
               })

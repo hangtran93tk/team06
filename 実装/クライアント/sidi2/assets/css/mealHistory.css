@@ -68,8 +68,9 @@ td{
 }
 
 #block{
-  padding-top: 55%;
+  padding-top: 150px;
   z-index: 2;
+  padding-bottom: 200px;
 }
 .block1 {
     border: 1px solid #FAE5D3;

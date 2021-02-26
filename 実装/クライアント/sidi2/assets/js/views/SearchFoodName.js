@@ -38,7 +38,7 @@ export default {
             let value = "?jp_name=" + this.findName;
             if(value.length >= 11) {
               console.log(this.$refs.query.value);
-              Ajax('http://192.168.1.10:8000/menu/get-Menu/' + value,'GET', localStorage.getItem('access'), null)
+              Ajax('http://180.46.192.112:8000/menu/get-Menu/' + value,'GET', localStorage.getItem('access'), null)
               .then((res) => {
                  console.log(res);
                  this.menus = res;
@@ -54,7 +54,7 @@ export default {
                 "eatTime": sessionStorage.getItem('eatTime'),
                 "userEat": this.selectedUserEats
             };
-            Ajax(`http://192.168.1.10:8000/menu/post-UserEat/`,'POST', localStorage.getItem('access'), obj)
+            Ajax(`http://180.46.192.112:8000/menu/post-UserEat/`,'POST', localStorage.getItem('access'), obj)
                 .then((res) => {
                     console.log(res);
                     this.$router.push({path: '/main'});

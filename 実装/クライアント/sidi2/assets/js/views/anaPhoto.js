@@ -88,7 +88,7 @@ export default {
         "eatTime": sessionStorage.getItem('eatTime'),
         "userEat": this.selectedUserEats
     };
-    Ajax(`http://192.168.1.10:8000/menu/post-UserEat/`,'POST', localStorage.getItem('access'), obj)
+    Ajax(`http://180.46.192.112:8000/menu/post-UserEat/`,'POST', localStorage.getItem('access'), obj)
         .then((res) => {
             console.log(res);
             this.$router.push({path: '/main'});

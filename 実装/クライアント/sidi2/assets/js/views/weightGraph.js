@@ -116,8 +116,8 @@ export default {
         dataKcalDate: ["0"],
         dataKcal: [],
         loading: false,
-        userWeightURL: `http://192.168.1.10:8000/auth/user-weight/`,
-        userKcalURL: 'http://192.168.1.10:8000/menu/get-Kcal/',
+        userWeightURL: `http://180.46.192.112:8000/auth/user-weight/`,
+        userKcalURL: 'http://180.46.192.112:8000/menu/get-Kcal/',
         goal_weight: null,
         goal_kcal: null,
         showDialog: false,
@@ -259,14 +259,14 @@ export default {
           .catch((err) => {
             console.log(err);
           });
-        Ajax("http://192.168.1.10:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
+        Ajax("http://180.46.192.112:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
           .then((res) => {
             this.goal_weight = res.goal_weight;
           })
           .catch((err) => {
             console.log(err);
           });
-          Ajax('http://192.168.1.10:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
+          Ajax('http://180.46.192.112:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
           .then((res) => {
              console.log(res);
              this.goal_kcal = res[0].kcal;
@@ -306,7 +306,7 @@ export default {
         const obj = {
           "weight": this.postWeight
         };
-        Ajax(`http://192.168.1.10:8000/auth/user-weight/`,'POST', localStorage.getItem('access'), obj)
+        Ajax(`http://180.46.192.112:8000/auth/user-weight/`,'POST', localStorage.getItem('access'), obj)
         .then((res) => {
           this.weightChartChange('?selectNumber=1');
           console.log(res);

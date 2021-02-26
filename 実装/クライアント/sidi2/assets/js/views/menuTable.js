@@ -22,7 +22,7 @@ export default {
 
           <h1>メニュー</h1>
           <div id="register">
-            <button onclick="location.href='./mymenuRegister.html'">Myメニュー登録</button>
+            <router-link to="/mymenuRegister" tag="button"  class="" >Myメニュー登録</router-link>
           </div>
 
         </header>
@@ -30,7 +30,7 @@ export default {
         <main role="main">
           <div id="block">
             <div class="block1" v-for="menu in menus" :key="menu.id">	
-                <label :for="menu.id" class="label-name">{{menu.jp_name}}</label>
+                <label :for="menu.id" class="label-name">{{menu.jp_name.substring(7,30)}}</label>
                 <label :for="menu.id" class="label-kcal">{{menu.kcal}}kcal</label>
                 <router-link to="/mymenuUpdate" tag="button"  class="" >編集</router-link>	
             </div>
@@ -50,11 +50,12 @@ export default {
     },
     methods: {
       init() {
-        Ajax('http://192.168.1.10:8000/menu/get-Mymenu/','GET', localStorage.getItem('access'), null )
+        Ajax('http://180.46.192.112:8000/menu/get-Mymenu/','GET', localStorage.getItem('access'), null )
           .then((res) => {
-            console.log(res);
+            // console.log(res);
               this.menus = res;
-              console.log(this.menus);
+              console.log(this.menus[0].jp_name.substring(7,30));
+              
           })
           .catch((err) => {
             console.log(err);

@@ -103,3 +103,7 @@ p{
     font-size: 1.6em;
 }
 
+input::placeholder {
+	color: #dadada;
+  }
+

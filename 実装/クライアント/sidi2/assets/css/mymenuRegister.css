@@ -1,5 +1,19 @@
+html {
+  background: linear-gradient(#f5f1da,#58a054);
+  background-image: url('../img/background5.png');
+  position: fixed;
+  background-size:100%;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+li {
+  margin-top: 16px;
+}
 #form1{
-    width: 50%;
+    width: 100%;
     margin: 10px;
     position: relative;
   }
@@ -11,9 +25,19 @@
     font-weight: bold;
     margin-top: 10%;
   }
-  #foodStuffName{
+  #cookName{
+    height:18px; 
+    width:325px;
+    padding: 10px 15px; /*ボックスを大きくする*/
+    font-size: 16px;
+    border-radius: 3px; /*ボックス角の丸み*/
+    border: 2px solid #ddd; /*枠線*/
+    /* box-sizing: border-box; */
+  }
+
+  #foodStuffName {
     height:42px; 
-    width:250px;
+    width:359px;
     padding: 10px 15px; /*ボックスを大きくする*/
     font-size: 16px;
     border-radius: 3px; /*ボックス角の丸み*/
@@ -22,7 +46,7 @@
   }
   #gram{
     height:42px; 
-    width:250px;
+    width:210px;
     padding: 10px 10px; /*ボックスを大きくする*/
     font-size: 16px;
     border-radius: 3px; /*ボックス角の丸み*/
@@ -30,7 +54,7 @@
     /* box-sizing: border-box; */
   }
 
-  #form1 input:focus {
+  input:focus {
     box-shadow: 0 0 5px 0 rgba(255,153,0,1);
     border: 2px solid #FFF;
     outline: 0;
@@ -43,20 +67,37 @@
     margin-top:2.5em;
     display: none;
     z-index: 100;
+    cursor: pointer;
   }
   #kouhos ul{
     margin: 0;
     border: 1px solid #EEE;
+    cursor: pointer;
     padding-left: 0;
+   
   }
-  #kouhos li{
+  /* #kouhos li{
     border: 1px solid white;
+    cursor: pointer;
     list-style-type: none;
     padding: 0.8rem 5%;;
+  } */
+  #kouhos li {
+    border: 1px solid white;
+    cursor: pointer;
+    list-style-type: none;
+    height: 40px;
+    list-style-type: none;
   }
+  #kouhos li a {
+    height: 100%;
+    font-weight: bold;
+    display: block;
+  } 
   #kouhos li:hover{
     background-color: lightskyblue;
     color: white;
+    cursor: pointer;
     text-decoration: underline;
   }
 
@@ -71,17 +112,18 @@
     font-size: 1.0rem;
 } 
 
-  #wButton button{
+  #addList{
     margin: 0 auto;
     background: #81b277;
     color: white;
     border: none;
     border-radius: 50px; 
-    width: 196px;
-    height: 46px;
+    width: 78px;
+    height: 30px;
     font-size: 1.0rem;
     text-align: center;
     margin-bottom: 2%;
+    margin-left: 4%;
 } 
 
   #update button{
@@ -93,7 +135,37 @@
     width: 196px;
     height: 46px;
     font-size: 1.0rem;
+    margin-left: 22%;
+    margin-top: 20%; 
+    position: fixed;
+    bottom: 10px; 
 } 
+
+#delButton{
+  margin: 0 auto;
+  background: #81b277;
+  color: white;
+  border: none;
+  border-radius: 50px; 
+  width: 55px;
+  height: 20px;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-bottom: 2%;
+}
+
+#update{
+  margin-top: 100%;
+  display: flex;;
+}
+
+#scrol ul{
+  overflow:auto;
+  height:240px;
+	line-height:1.5;
+  font-size: larger;
+}
+
 /* * {
     margin: 0;
     padding: 0;

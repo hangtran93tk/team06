@@ -6,72 +6,76 @@ export default {
     //テンプレート//
     template: `
     <div id="input">
-    <header role="banner">  
+    <header role="banner">
             <link rel="stylesheet" href="./assets/css/mymenuRegister.css">
-            <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-
               <h1>Myメニュー登録</h1><br>
               <!-- <div id="menu">
                 <p><label for="menuName" class="menuName">食事名</label></p><br>
                 <img src="./assets/img/goal.png" alt="image">
               </div> -->
             </header>
-              <main role="main">
-                <label for="foodStuff" class="foodStuff">食材</label><br>
-                <div id="block" v-for="find in foodStuff">
-                <div id="addform">
-                  <div id="kouhos">
-                    <ul>
-                      <li v-for="n in foodStuffList" :key="n"  @click="itemSelected">{{n}}</li>
-                    </ul>
-                  </div>
-                </div>
-                  <div id="form1">
-                    <div id="kouhos">
-                      <ul>
-                        <li v-for="n in foodStuffList" :key="n"  @click="itemSelected">{{n}}</li>
-                      </ul>
-                    </div>
-                    <input type="search" id="foodStuffName"  class="form-control" placeholder="食材-0" style="float:left;" v-model="find.name"  @input="getFoodStuffName" autocomplete="off">
-                  </div>
-                  <input type="search"  id="gram" @blur="isRegNum" v-model="find.gram"  placeholder="グラム-0"  autocomplete="off">g/ml
-                  <button @click="delFoodstuff"　 id="del" class="del pluralBtn" >削除</button>
-                </div>
-                <br>
-                <br>
-                <div id="wButton">
-                  <button type="button" id="add"@click="addBox">追加</button>
-                </div>
-                  <div id="update">
-                    <button onclick="location.href='./menuTable.html'">登録</button>
-                    <br><br><br><br><br>
-                    <pre>{{ $data | json }}</pre>
-                </div>
-              </main>	
+            <main role="main">
+              <label>Myメニュー名</label><br>
+              <input type="text" v-model="myMenuName" class="form-control" id="cookName"  autocomplete="off" placeholder="料理名入力">
+              <br><br>
+              <label>食材の追加</label>
+              <br>
+              <form v-on:submit.prevent>
+              <input type="search" v-model="newItem" class="form-control" id="foodStuffName" @input="getFoodStuffName" autocomplete="off" placeholder="食材を入力">
+              <div id="kouhos">
+                <ul>
+                  <li v-for="n in foodStuffItem"  ><a :key="n.id" :value="n.id" @click="itemSelected">{{n.jp_name}}</a></li>
+                </ul>
+              </div>
+              <input type="search"  id="gram" @blur="isRegNum" v-model="gram"  placeholder="グラムを入力"  autocomplete="off">g/ml
+              <button v-on:click="addItem" id="addList">追加</button>
+            </form>
+            <div style="overflow:auto;" id="scrol">
+              <ul>
+                <li v-for="(todo,index) in todos" > <!--indexを引数に追加-->
+                <!-- <input type="checkbox" v-model="todo.isDone"> -->
+                <span>{{todo.item}}:{{todo.gram}}g/ml</span>
+                <button v-on:click="deleteItem(index)"id="delButton">削除</button>　<!--indexを引数に指定-->
+                </li>
+              </ul>
+            </div>
+            <div id="update">
+            <router-link to="/main" tag="button" @click.native="postMymenu"  >Myメニュー登録</router-link>
+            <br><br><br><br><br>
+                <br><br><br><br><br>
+            </div>
+            
+            <!-- <pre>{{ $data }}</pre> -->
+
+            </main>	
         </div>
     </div>
 
 `,
 
 mounted(){
- this.init();
- $('#foodStuffName.form-control').focusin(function(){
-   $('#kouhos').show();
- });
- $('#foodStuffName.form-control').focusout(function(){
-   setTimeout(function(){
-     $('#kouhos').hide();
-   },100);
- });
- $('#kouhos').on('touchstart click','li', function(){
-   $('#foodStuffName.form-control').val($(this).text());
-   setTimeout(function(){
-   $('#kouhos').hide();
-   },100);
- });
+  this.init();
+  $('#foodStuffName').focusin(function(){
+    $('#kouhos').show();
+  });
+  $('#foodStuffName').focusout(function(){
+    setTimeout(function(){
+      $('#kouhos').hide();
+    },450);
+  });
+  $('#kouhos').on('touchstart click','li', function(){
+    $('#foodStuffName').val($(this).text());
+    setTimeout(function(){
+    $('#kouhos').hide();
+    },450);
+  });
+  // 450以外の数字を入れると何故か動かない
 },
+
+
 // 変数
 data()　{
+
   return{
     boxIndex: {current:0, max:0},  // 入力ボックスに関するインデックス
 
@@ -80,7 +84,16 @@ data()　{
     foodStuffList: [],  // 入力した食材のリスト
     foodStuffItem: [],  // 検索候補
     no:1,  //入力ボックスの数
-    i:1,
+
+    // 土屋がテスト中のもの
+    // foodStuffs:[], 
+    // gram: '',
+    // foodStuffName:'',
+    newItem:"",
+    gram:"",
+    id:"",
+    todos:[],
+    myMenuName:"",
   }
 },
 
@@ -90,6 +103,33 @@ data()　{
 
 methods: {
   init() {
+  },
+
+  addItem:function(event){
+    if(document.getElementById('gram').value == '' || document.getElementById('foodStuffName').value == '' ){
+      /* アラート表示 */
+      alert ('食材とグラムを入力してください。');
+      /* テキストボックスを空にする */
+     document.getElementById('gram').value = "";
+     document.getElementById('foodStuffName').value = "";
+     return false;
+    }else{
+      if(this.newItem == '')return;
+      var todo = {
+        item: this.newItem,
+        gram: this.gram,
+        id: this.id,
+        // isDone:false
+      };
+      this.todos.push(todo);
+      this.newItem = ''
+      this.findName = '';
+      this.foodStuffItem = '';
+      this.gram = '';
+    }
+  },
+  deleteItem:function(index){ //indexを引数に指定
+    this.todos.splice(index,1) //indexで指定された要素を1つ削除
   },
 
 
@@ -129,7 +169,24 @@ methods: {
   itemSelected(e){
     // console.log(this.boxIndex.current);
     this.foodStuff[this.boxIndex.current].name = e.target.innerText;
+
+    // this.$set(this.newItem, e.target.innerText);
+    console.log("なんでーーーーーー")
+    console.log(e);
+    this.newItem = e.target.innerText;
+    console.log(e.target.innerText);
+      const msg = document.getElementById('foodStuffName');
+      this.$nextTick(() => {
+	      console.log(msg.textContent); // log is 'updated.'
+      })
+    // this.newItem = e.target.innerText;
+    // console.log("newItem更新したい");
+    // console.log(this.newItem);
+    // this.$nextTick(function () {
+    //   console.log(this.$fs.textContent) // => 'updated'
+    // })
   },
+  
   
   // ボックスを追加する
   addBox() {
@@ -137,50 +194,20 @@ methods: {
       /* アラート表示 */
       alert ('食材とグラムを入力してください。');
       /* テキストボックスを空にする */
-     document.getElementById('gram' + this.i).value = "";
-     document.getElementById('foodStuffName' + this.i).value = "";
-      return false;
-    }else{
-      var food = document.getElementById('foodStuffName' + this.i).value;
-      var g = document.getElementById('gram' + this.i).value;
+     document.getElementById('gram').value = "";
+     document.getElementById('foodStuffName').value = "";
+     return false;
+    }else{ //追加処理
+      var food = document.getElementById('foodStuffName').value;
+      var g = document.getElementById('gram').value;
       this.no += 1;
-      //this.boxIndex.max += 1;
-      //this.foodStuff.push({index:this.boxIndex.max, name:food, gram: g});
-      //this.foodStuffItem = [];
-
-      var input_data = document.createElement('input');
-      input_data.type = 'search';
-      input_data.id = 'foodStuffName' + this.i;
-      input_data.placeholder = '食材' + this.i;
-      var parent = document.getElementById('addform');
-      parent.appendChild(input_data);
-      this.init();
-      $('#foodStuffName' + this.i).focusin(function(){
-        $('#kouhos').show();
-      });
-      $('#foodStuffName' + this.i).focusout(function(){
-        setTimeout(function(){
-          $('#kouhos').hide();
-        },100);
-      });
-      $('#kouhos').on('touchstart click','li', function(){
-        $('#foodStuffName' + this.i).val($(this).text());
-        setTimeout(function(){
-        $('#kouhos').hide();
-        },100);
-      });
-      
-      
-      var input_data = document.createElement('input');
-      input_data.type = 'search';
-      input_data.id = 'gram' + this.i;
-      input_data.placeholder = 'グラム' +this. i;
-      var parent = document.getElementById('addform');
-      parent.appendChild(input_data);
-
-      this.i++;
       this.boxIndex.max += 1;
       this.foodStuff.push({index:this.boxIndex.max, name:food, gram: g});
+      this.foodStuffItem = [];
+      //document.getElementById('foodStuffName').textContent = '';
+      //document.getElementById('gram').textContent = '';
+      this.foodStuff.name.resset();
+      this.foodStuff.gram.resset();
     }
   },
 
@@ -191,11 +218,11 @@ methods: {
     let value = "?jp_name=" + this.findName;
     if(value.length >= 11) {
       // console.log(this.$refs.query.value);
-      Ajax('http://192.168.1.10:8000/menu/get-FoodStuffName/' + value,'GET', localStorage.getItem('access'), null)
+      Ajax('http://180.46.192.112:8000/menu/get-FoodStuffName/' + value,'GET', localStorage.getItem('access'), null)
       .then((res) => {
          this.foodStuffItem = res;
          this.foodStuffList.splice(0);
-         console.log(res);
+         console.log(this.foodStuffItem[0]);
          for(let i = 0; i < this.foodStuffItem.length; i++) {
           this.foodStuffList.push(this.foodStuffItem[i].jp_name);
          }
@@ -206,5 +233,22 @@ methods: {
        });
     }
   },
+
+  postMymenu(){
+    const obj = {
+      "myMenu_name": this.myMenuName,
+      "foodStuff": this.todos
+  };
+  Ajax(`http://180.46.192.112:8000/menu/post-FoodStuffName/`,'POST', localStorage.getItem('access'), obj)
+      .then((res) => {
+          console.log(res);
+      })
+      .catch((err) => {
+          console.log(err);
+      });
+  }
+  
 }
+
+
 };

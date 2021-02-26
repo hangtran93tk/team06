@@ -26,7 +26,7 @@ export default {
           <div id="btn">
             <router-link to="/myProfile" tag="button">プロフィール</router-link>	
             <router-link to="/goalWeight" tag="button">体重目標設定</router-link>	
-            <button>4群点数法とは</button>
+            <button onclick="location.href='https://www.taisho-direct.jp/simages/m/contents/column/body/diet/05.html'">4群点数法とは</button>
             <button @click="clickLogout">ログアウト</button>
           </div>              
         </main>	

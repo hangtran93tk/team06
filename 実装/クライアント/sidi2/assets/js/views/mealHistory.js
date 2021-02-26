@@ -5,7 +5,7 @@ export default {
     <div id="wrap">
             <header role="banner">  
             <link rel="stylesheet" href="./assets/css/mealHistory.css">
-				<h1>食事履歴</h1>
+				<h1>メニュー検索</h1>
 				<input type="search"  id="cookingName"placeholder="料理名を検索" @input="getMenuName" ref="query" autocomplete="off">
                 <table class="table1">
 					<tr>
@@ -27,7 +27,8 @@ export default {
                 <div id="block" >
                     <div class="block1" v-for="menu in menus" :key="menu.id">
                         <input type="checkbox" :id="menu.id" :value="menu.id" v-model="selectedUserEats">						
-                        <label :for="menu.id" class="label-name">{{menu.jp_name}}</label>
+                        <label v-if=" type === '1'" :for="menu.id" class="label-name">{{menu.jp_name.substring(7,30)}}</label>
+                        <label v-if=" type === '2'" :for="menu.id" class="label-name">{{menu.jp_name}}</label>
                         <label :for="menu.id" class="label-kcal">{{menu.kcal}}kcal</label>
                     </div>
                 </div>	
@@ -39,6 +40,7 @@ export default {
                 selectedUserEats: [],
                 menus: [],
                 findName: '',
+                type: ''
             };
         },
         mounted() {
@@ -54,7 +56,7 @@ export default {
                 let value = "?jp_name=" + this.findName;
                 if(value.length >= 11) {
                   console.log(this.$refs.query.value);
-                  Ajax('http://192.168.1.10:8000/menu/get-Menu/' + value,'GET', localStorage.getItem('access'), null)
+                  Ajax('http://180.46.192.112:8000/menu/get-Menu/' + value,'GET', localStorage.getItem('access'), null)
                   .then((res) => {
                      console.log(res);
                      this.menus = res;
@@ -70,7 +72,7 @@ export default {
                     "eatTime": sessionStorage.getItem('eatTime'),
                     "userEat": this.selectedUserEats
                 };
-                Ajax(`http://192.168.1.10:8000/menu/post-UserEat/`,'POST', localStorage.getItem('access'), obj)
+                Ajax(`http://180.46.192.112:8000/menu/post-UserEat/`,'POST', localStorage.getItem('access'), obj)
                     .then((res) => {
                         console.log(res);
                         this.$router.push({path: '/main'});
@@ -80,11 +82,15 @@ export default {
                     });
             },
             showMyMenu() {
-                Ajax('http://192.168.1.10:8000/menu/get-Mymenu/','GET', localStorage.getItem('access'), null )
+                this.type = '1';
+                Ajax('http://180.46.192.112:8000/menu/get-Mymenu/','GET', localStorage.getItem('access'), null )
                 .then((res) => {
                     console.log(res);
                     this.menus = res;
                     console.log(this.menus);
+                    // for (let i = 0 ; i < this.menus.length ; i++) {
+                    //     this.menus[i].jp_name = this.menu[i].jp_name.substring(7,30);
+                    // }
                 })
                 .catch((err) => {
                    console.log(err);
@@ -92,7 +98,8 @@ export default {
 
             },
             showAllMenu() {
-                Ajax('http://192.168.1.10:8000/menu/get-Menu/','GET', localStorage.getItem('access'), null )
+                this.type = '2';
+                Ajax('http://180.46.192.112:8000/menu/get-Menu/','GET', localStorage.getItem('access'), null )
                 .then((res) => {
                     console.log(res);
                     this.menus = res;

@@ -42,7 +42,7 @@ export default {
             //     "weight": this.weight
             // };
 
-            Ajax(`http://192.168.1.10:8000/auth/update-goal-weight/`,'PATCH',localStorage.getItem('access'), obj1)
+            Ajax(`http://180.46.192.112:8000/auth/update-goal-weight/`,'PATCH',localStorage.getItem('access'), obj1)
             .then((res) => {
                 console.log(res);
                 this.regis_comp = true;
@@ -51,12 +51,12 @@ export default {
                 } else {
                     this.message = 'テスト'
                 }
-                this.$router.push({path: '/weighGraph'});
+                this.$router.push({path: '/weightGraph'});
             })
             .catch((err) => {
                 console.log(err);
             });
-            // Ajax(`http://192.168.1.10:8000/auth/user-weight/`,'POST',null, obj1)
+            // Ajax(`http://180.46.192.112:8000/auth/user-weight/`,'POST',null, obj1)
             // .then((res) => {
             //     console.log(res);
 

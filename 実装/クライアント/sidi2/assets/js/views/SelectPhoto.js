@@ -52,14 +52,14 @@ export default {
         //   .catch((err) => {
         //     console.log(err);
         //   });
-        // Ajax("http://192.168.1.10:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
+        // Ajax("http://180.46.192.112:8000/auth/get-goal-weight/",'GET', localStorage.getItem('access'), null )
         //   .then((res) => {
         //     this.goal_weight = res.goal_weight;
         //   })
         //   .catch((err) => {
         //     console.log(err);
         //   });
-        //   Ajax('http://192.168.1.10:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
+        //   Ajax('http://180.46.192.112:8000/auth/get-GoalKcal/','GET', localStorage.getItem('access'), null )
         //   .then((res) => {
         //      console.log(res);
         //      this.goal_kcal = res[0].kcal;

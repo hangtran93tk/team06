@@ -109,7 +109,7 @@ export default {
     },
     methods: {
         init() {
-            Ajax('http://192.168.1.10:8000/auth/get-UserInfo/','GET', localStorage.getItem('access'), null )
+            Ajax('http://180.46.192.112:8000/auth/get-UserInfo/','GET', localStorage.getItem('access'), null )
                 .then((res) => {
                     
                     this.profiles = res;
@@ -144,7 +144,7 @@ export default {
                 "height"      :this.height,
                 "active_level":this.active
             };
-            Ajax(`http://192.168.1.10:8000/auth/put-UserInfo/`,'PUT', localStorage.getItem('access'), obj1)
+            Ajax(`http://180.46.192.112:8000/auth/put-UserInfo/`,'PUT', localStorage.getItem('access'), obj1)
             .then((res) => {
                 console.log(res);
                 this.$router.push({path: '/main'});

@@ -117,7 +117,7 @@ export default {
             //     "weight": this.weight
             // };
 
-            Ajax(`http://192.168.1.10:8000/auth/register/`,'POST',null, obj1)
+            Ajax(`http://180.46.192.112:8000/auth/register/`,'POST',null, obj1)
             .then((res) => {
                 console.log(res);
                 this.regis_comp = true;
@@ -131,7 +131,7 @@ export default {
                 console.log(err);
             });
 
-            // Ajax(`http://192.168.1.10:8000/auth/user-weight/`,'POST',null, obj1)
+            // Ajax(`http://180.46.192.112:8000/auth/user-weight/`,'POST',null, obj1)
             // .then((res) => {
             //     console.log(res);
 

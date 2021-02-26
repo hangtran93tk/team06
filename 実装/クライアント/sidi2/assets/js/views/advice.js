@@ -24,19 +24,29 @@ export default {
             </header>
         <main role="main">
             <div class="advice">                   
-                <p class="bubble speech">Let’s start with a quick tour of Vue’s data binding features. If you are more interested in a high-level overview first, check out this blog post.</p>
+                <p class="bubble speech">はじめまして、Munさん。<br>
+                まずは食材の記録からチャレンジしてみましょう！
+                </p>
                 <img src="./assets/img/user_icon.png" alt="" align="left">
             </div>
             <div class="advice">                   
-                <p class="bubble speech">Let’s start with a quick tour of Vue’s data binding features. If you are more interested in a high-level overview first, check out this blog post.</p>
+                <p class="bubble speech">Munさん朝食は食べましたか？</p>
                 <img src="./assets/img/user_icon.png" alt="" align="left">
             </div>
             <div class="advice">                   
-                <p class="bubble speech">Let’s start with a quick tour of Vue’s data binding features. If you are more interested in a high-level overview first, check out this blog post.</p>
+                <p class="bubble speech">昼食のカロリーが多いようです。<br>
+                昼食に注意して食材を選びましょう！
+                </p>
                 <img src="./assets/img/user_icon.png" alt="" align="left">
             </div>
             <div class="advice">                   
-                <p class="bubble speech">Let’s start with a quick tour of Vue’s data binding features. If you are more interested in a high-level overview first, check out this blog post.</p>
+                <p class="bubble speech">目標体重までもう少しです。頑張りましょう！</p>
+                <img src="./assets/img/user_icon.png" alt="" align="left">
+            </div>
+            <div class="advice">                   
+                <p class="bubble speech">第二群の食材が少ないようです。<br>
+                魚介類や肉類・豆類を食べましょう！
+                </p>
                 <img src="./assets/img/user_icon.png" alt="" align="left">
             </div>
         </main>			
