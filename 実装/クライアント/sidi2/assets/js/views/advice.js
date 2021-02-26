@@ -24,13 +24,13 @@ export default {
             </header>
         <main role="main">
             <div class="advice">                   
-                <p class="bubble speech">はじめまして、Munさん。<br>
+                <p class="bubble speech">はじめまして、ハナコさん。<br>
                 まずは食材の記録からチャレンジしてみましょう！
                 </p>
                 <img src="./assets/img/user_icon.png" alt="" align="left">
             </div>
             <div class="advice">                   
-                <p class="bubble speech">Munさん朝食は食べましたか？</p>
+                <p class="bubble speech">ハナコさん朝食は食べましたか？</p>
                 <img src="./assets/img/user_icon.png" alt="" align="left">
             </div>
             <div class="advice">                   

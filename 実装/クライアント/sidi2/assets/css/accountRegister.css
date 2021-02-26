@@ -269,3 +269,6 @@ summary{
     font-size: 1.5em;
     margin-left: 25%;
 }
+input::placeholder {
+	color: #dadada;
+  }
